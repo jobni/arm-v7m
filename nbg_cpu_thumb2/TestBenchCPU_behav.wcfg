@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="TestBenchCPU_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="TestBenchCPU" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="4,085.000001 us"></ZoomEndTime>
+      <Cursor1Time time="301.270000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="156"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r0" type="array">
+      <obj_property name="ElementShortName">r0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r0[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r1" type="array">
+      <obj_property name="ElementShortName">r1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r2" type="array">
+      <obj_property name="ElementShortName">r2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r3" type="array">
+      <obj_property name="ElementShortName">r3[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r3[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r4" type="array">
+      <obj_property name="ElementShortName">r4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r5" type="array">
+      <obj_property name="ElementShortName">r5[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r5[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r6" type="array">
+      <obj_property name="ElementShortName">r6[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r6[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r7" type="array">
+      <obj_property name="ElementShortName">r7[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r7[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r8" type="array">
+      <obj_property name="ElementShortName">r8[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r8[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r9" type="array">
+      <obj_property name="ElementShortName">r9[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r9[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r10" type="array">
+      <obj_property name="ElementShortName">r10[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r10[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r11" type="array">
+      <obj_property name="ElementShortName">r11[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r11[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r12" type="array">
+      <obj_property name="ElementShortName">r12[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r12[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/sp_r13" type="array">
+      <obj_property name="ElementShortName">sp_r13[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sp_r13[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/lr_r14" type="array">
+      <obj_property name="ElementShortName">lr_r14[31:0]</obj_property>
+      <obj_property name="ObjectShortName">lr_r14[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/pc_r15" type="array">
+      <obj_property name="ElementShortName">pc_r15[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_r15[31:0]</obj_property>
+   </wvobject>
+</wave_config>

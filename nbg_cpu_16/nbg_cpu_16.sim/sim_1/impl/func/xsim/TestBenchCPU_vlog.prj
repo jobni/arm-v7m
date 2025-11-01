@@ -1,7 +1,0 @@
-# compile verilog/system verilog design source files
-verilog xil_defaultlib  --include "../../../../../nbg_cpu_16.srcs/sources_1/new" \
-"TestBenchCPU_func_impl.v" \
-"../../../../../nbg_cpu_16.srcs/sim_1/new/TestBenchCPU.v" \
-
-# Do not sort compile order
-nosort
