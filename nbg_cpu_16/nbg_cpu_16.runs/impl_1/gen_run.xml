@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-2" LaunchTime="1758946590">
+  <File Type="REPORTS-TCL" Name="ProcesserCoreSystem_reports.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="ProcesserCoreSystem_power_summary_routed.pb"/>
+  <File Type="BITSTR-MMI" Name="ProcesserCoreSystem.mmi"/>
+  <File Type="OPT-DRC" Name="ProcesserCoreSystem_drc_opted.rpt"/>
+  <File Type="BG-DRC" Name="ProcesserCoreSystem.drc"/>
+  <File Type="ROUTE-STATUS-PB" Name="ProcesserCoreSystem_route_status.pb"/>
+  <File Type="BG-BGN" Name="ProcesserCoreSystem.bgn"/>
+  <File Type="PLACE-UTIL" Name="ProcesserCoreSystem_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="ProcesserCoreSystem_utilization_placed.pb"/>
+  <File Type="PLACE-IO" Name="ProcesserCoreSystem_io_placed.rpt"/>
+  <File Type="BG-BIN" Name="ProcesserCoreSystem.bin"/>
+  <File Type="PLACE-CTRL" Name="ProcesserCoreSystem_control_sets_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="ProcesserCoreSystem_power_routed.rpx"/>
+  <File Type="ROUTE-DCP" Name="ProcesserCoreSystem_routed.dcp"/>
+  <File Type="BITSTR-MSK" Name="ProcesserCoreSystem.msk"/>
+  <File Type="BITSTR-RBT" Name="ProcesserCoreSystem.rbt"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="ProcesserCoreSystem_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="ProcesserCoreSystem_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="ProcesserCoreSystem_route_status.rpt"/>
+  <File Type="PA-TCL" Name="ProcesserCoreSystem.tcl"/>
+  <File Type="ROUTE-PWR" Name="ProcesserCoreSystem_power_routed.rpt"/>
+  <File Type="ROUTE-DRC" Name="ProcesserCoreSystem_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="ProcesserCoreSystem_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="ProcesserCoreSystem_drc_routed.pb"/>
+  <File Type="BITSTR-SYSDEF" Name="ProcesserCoreSystem.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="ProcesserCoreSystem_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="ProcesserCoreSystem_methodology_drc_routed.rpx"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="ProcesserCoreSystem.ltx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="ProcesserCoreSystem_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-SIMILARITY" Name="ProcesserCoreSystem_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="ProcesserCoreSystem.vdi"/>
+  <File Type="ROUTE-CLK" Name="ProcesserCoreSystem_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="ProcesserCoreSystem_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="ProcesserCoreSystem_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="ProcesserCoreSystem_bus_skew_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="ProcesserCoreSystem_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="ProcesserCoreSystem_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="ProcesserCoreSystem_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="ProcesserCoreSystem_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="ProcesserCoreSystem_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="ProcesserCoreSystem.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="ProcesserCoreSystem_bus_skew_postroute_physopted.pb"/>
+  <File Type="BITSTR-NKY" Name="ProcesserCoreSystem.nky"/>
+  <File Type="BITSTR-BMM" Name="ProcesserCoreSystem_bd.bmm"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="OPT-HWDEF" Name="ProcesserCoreSystem.hwdef"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="ProcesserCoreSystem_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="ProcesserCoreSystem_routed_error.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="ProcesserCoreSystem_routed_bb.dcp"/>
+  <File Type="ROUTE-TIMING-PB" Name="ProcesserCoreSystem_timing_summary_routed.pb"/>
+  <File Type="OPT-DCP" Name="ProcesserCoreSystem_opt.dcp"/>
+  <File Type="PLACE-DCP" Name="ProcesserCoreSystem_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="ProcesserCoreSystem_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="ProcesserCoreSystem_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="ProcesserCoreSystem_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="ProcesserCoreSystem_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="ProcesserCoreSystem_postroute_physopt_bb.dcp"/>
+  <File Type="PDI-FILE" Name="ProcesserCoreSystem.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="ProcesserCoreSystem_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="ProcesserCoreSystem_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="ProcesserCoreSystem.rcfi"/>
+  <File Type="CFI_FILE" Name="ProcesserCoreSystem.cfi"/>
+  <File Type="RNPI_FILE" Name="ProcesserCoreSystem.rnpi"/>
+  <File Type="NPI_FILE" Name="ProcesserCoreSystem.npi"/>
+  <File Type="RBD_FILE" Name="ProcesserCoreSystem.rbd"/>
+  <File Type="ROUTE-RQS" Name="ProcesserCoreSystem_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="ProcesserCoreSystem_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/param_def.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/function.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ALU.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Decoder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/InstructionFetch.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MemoryInterface.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/OperationController.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/RegisterBank.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SystemBus.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/key_debounce.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/uart_rx.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/uart_tx.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ProcesserCoreSystem.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/rom.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="ProcesserCoreSystem"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/cpu.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/cpu.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/ProcesserCoreSystem.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="blk_ram"/>
+  <BlockFileSet Type="BlockSrcs" Name="blk_flash"/>
+  <BlockFileSet Type="BlockSrcs" Name="umult"/>
+  <BlockFileSet Type="BlockSrcs" Name="sdiv"/>
+  <BlockFileSet Type="BlockSrcs" Name="udiv"/>
+</GenRun>

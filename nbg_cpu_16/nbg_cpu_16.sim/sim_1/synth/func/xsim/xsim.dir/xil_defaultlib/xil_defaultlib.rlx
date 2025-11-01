@@ -1,0 +1,6 @@
+0.7
+2020.2
+Sep  5 2024
+15:23:16
+C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.sim/sim_1/synth/func/xsim/TestBenchCPU_func_synth.v,1730894618,verilog,,C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.srcs/sim_1/new/TestBenchCPU.v,,Decoder;InstructionFetch;MemoryInterface;OperationController;ProcesserCoreSystem;RegisterBank;SystemBus;blk_ram;blk_ram_blk_mem_gen_generic_cstr;blk_ram_blk_mem_gen_prim_width;blk_ram_blk_mem_gen_prim_wrapper;blk_ram_blk_mem_gen_top;blk_ram_blk_mem_gen_v8_4_8;blk_ram_blk_mem_gen_v8_4_8_synth;blk_rom;blk_rom_blk_mem_gen_generic_cstr;blk_rom_blk_mem_gen_prim_width;blk_rom_blk_mem_gen_prim_wrapper_init;blk_rom_blk_mem_gen_top;blk_rom_blk_mem_gen_v8_4_8;blk_rom_blk_mem_gen_v8_4_8_synth;glbl;uart_tx,,,../../../../../nbg_cpu_16.srcs/sources_1/new,,,,,
+C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.srcs/sim_1/new/TestBenchCPU.v,1730514966,verilog,,,,TestBenchCPU,,,../../../../../nbg_cpu_16.srcs/sources_1/new,,,,,

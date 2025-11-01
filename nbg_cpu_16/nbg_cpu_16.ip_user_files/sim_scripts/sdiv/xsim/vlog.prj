@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../nbg_cpu_16.gen/sources_1/ip/sdiv/sdiv_sim_netlist.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
