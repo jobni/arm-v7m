@@ -1,4 +1,5 @@
 #include <sys.h>
+#include <assert.h>
 #include "math.h"
 
 #define SOFT_VER 41
@@ -278,7 +279,7 @@ void sleep(uint32_t sleep_time)
     uint32_t start_time;
     start_time = get_system_time();
     while(get_system_time()-start_time<sleep_time);
-    my_printf("sleep end\r\n");
+    my_printf("sleep end\n");
 }
 
 void scan_calc_d(){
@@ -287,7 +288,7 @@ void scan_calc_d(){
     char c;
     uint32_t r;
     volatile uint32_t* system_signal;
-    my_printf("please input int +-*/=\r\n");
+    my_printf("please input int +-*/=\n");
     system_signal = (uint32_t*)SYSTEM_SIGNAL;
     *system_signal=1;
     *system_signal=0;
@@ -295,19 +296,19 @@ void scan_calc_d(){
     my_printf("%s", read_str);
     r = my_scanf(read_str, "%d%c%d=", &a, &c, &b);
     if(c=='+'){
-        my_printf("%d+%d=%d\r\n", a,b,a+b);
+        my_printf("%d+%d=%d\n", a,b,a+b);
     }else if(c=='-'){
-        my_printf("%d-%d=%d\r\n", a,b,a-b);
+        my_printf("%d-%d=%d\n", a,b,a-b);
     }else if(c=='*'){
-        my_printf("%d*%d=%d\r\n", a,b,a*b);
+        my_printf("%d*%d=%d\n", a,b,a*b);
     }else if(c=='/'){
-        my_printf("%d/%d=%d %% %d\r\n", a,b,a/b,a%b);
+        my_printf("%d/%d=%d %% %d\n", a,b,a/b,a%b);
     }else if(c=='&'){
-        my_printf("%x&%x=%x\r\n", a,b,a&b);
+        my_printf("%x&%x=%x\n", a,b,a&b);
     }else if(c=='|'){
-        my_printf("%x|%x=%x\r\n", a,b,a|b);
+        my_printf("%x|%x=%x\n", a,b,a|b);
     }else if(c=='^'){
-        my_printf("%x^%x=%x\r\n", a,b,a^b);
+        my_printf("%x^%x=%x\n", a,b,a^b);
     }else{
         my_printf("not_support:<%u> <%d><%c><%d>=", r, a, c, b);
     }
@@ -319,7 +320,7 @@ void scan_calc_f(){
     char c;
     float r;
     volatile uint32_t* system_signal;
-    my_printf("please input float +-*/=\r\n");
+    my_printf("please input float +-*/=\n");
     system_signal = (uint32_t*)SYSTEM_SIGNAL;
     *system_signal=2;
     *system_signal=0;
@@ -327,13 +328,13 @@ void scan_calc_f(){
     my_printf("%s", read_str);
     r = my_scanf(read_str, "%f%c%f=", &a, &c, &b);
     if(c=='+'){
-        my_printf("%f+%f=%f\r\n", a,b,a+b);
+        my_printf("%f+%f=%f\n", a,b,a+b);
     }else if(c=='-'){
-        my_printf("%f-%f=%f\r\n", a,b,a-b);
+        my_printf("%f-%f=%f\n", a,b,a-b);
     }else if(c=='*'){
-        my_printf("%f*%f=%f\r\n", a,b,a*b);
+        my_printf("%f*%f=%f\n", a,b,a*b);
     }else if(c=='/'){
-        my_printf("%f/%f=%f\r\n", a,b,a/b);
+        my_printf("%f/%f=%f\n", a,b,a/b);
     }else{
         my_printf("r:%f not support:%f%c%f=", r, a, c, b);
     }
@@ -341,29 +342,54 @@ void scan_calc_f(){
 
 void test_float()
 {
-    float f_v1=0.987654321;
-    float f_v2=0.123456789;
-    float f_v;
+    static float f_v1=0.123456789;
+    static float f_v2=0.987654321;
+    static float f_v;
+    static float f_c;
     static char str[50];
     uint32_t index=0;
     f_v=f_v1*f_v2;
-    sprintf(str,"test float:%f\r\n", f_v);
-    my_printf("%s", str);
+    assert(f_v==0.121932633f);
+    my_printf("test float1 OK\n");
+    
+    f_v=f_v1/f_v2;
+    assert(f_v==0.125f);
+    my_printf("test float2 OK\n");
+    
+    f_c=asinf(f_v);
+    assert(f_c==0.125327826f);
+    my_printf("test float3 OK\n");
+    
+    f_c=acosf(f_v);
+    assert(f_c==1.44546854f);
+    my_printf("test float4 OK\n");
 }
 
 void test_double()
 {
-    double d_v1=1.23456789987651;
-    double d_v2=0.5357924682336;
-    double d_v;
-    double d_c;
+    static double d_v1=0.5357924682336;
+    static double d_v2=1.23456789987651;
+    static double d_v;
+    static double d_c;
     static char str[50];
     d_v=d_v1*d_v2;
-    sprintf(str,"test double1:%.14f\r\n", d_v);
+    sprintf(str,"test double3:%.10f\n", d_v);
     my_printf("%s", str);
+    assert(d_v==0.6614721822768073);
+    my_printf("test double1 OK\n");
+    
+    d_v=d_v1/d_v2;
+    assert(d_v==0.43399189974661884);
+    my_printf("test double2 OK\n");
+    
+    d_c=asin(d_v);
+    assert(d_c==0.44891900322483796);
+    my_printf("test double3 OK\n");
+    
+    
     d_c=acos(d_v);
-    sprintf(str,"test double2:%.10f\r\n", d_c);
-    my_printf("%s", str);
+    assert(d_c==1.1218773235700588);
+    my_printf("test double4 OK\n");
     
 }
 void test2()
@@ -372,7 +398,7 @@ void test2()
     int32_t b;
     char c;
     uint32_t r;
-    my_printf("please input ex.:21+35=\r\n");
+    my_printf("please input ex.:21+35=\n");
     while(1)
     {
         scan_calc_d();
@@ -408,20 +434,21 @@ void check_cpu(){
 
 void SystemInit (void)
 {
-//    uint32_t* systick_ctrl;
-//    //关闭滴答定时器
-//    systick_ctrl=(uint32_t*)0xE000E010;
-//    *systick_ctrl&=~0x01;
+    uint32_t* systick_ctrl;
+    //关闭滴答定时器
+    systick_ctrl=(uint32_t*)0xE000E010;
+    *systick_ctrl&=~0x01;
     check_cpu();
-    my_printf("SystemInit end!\r\n");
+    my_printf("SystemInit end!\n");
 }
 
 int main(void){
-    uint32_t flash_ver;
+    static uint32_t index;
+    static uint32_t flash_ver;
     check_cpu();
     flash_ver=get_flash_ver();
-    my_printf("soft_ver:%u cpu_ver:%u flash_ver:%x\r\n", SOFT_VER, cpu_ver, flash_ver);
-    //test_float();
+    my_printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
+    test_float();
     test_double();
     sleep(500);
 //    scan_calc_d();
@@ -435,8 +462,10 @@ int main(void){
 //    my_printf("a*b=%d a/b=%d %% %d\n", a*b, a/b, a%b);
     
     //test2();
+    index = 0;
     while(1){
+        index++;
         scan_calc_f();
-        my_printf("scan over!");
+        my_printf("scan over index:%d!", index);
     }
 }

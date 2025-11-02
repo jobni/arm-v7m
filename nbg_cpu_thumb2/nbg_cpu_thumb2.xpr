@@ -59,20 +59,20 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="2079"/>
+    <Option Name="WTXSimLaunchSim" Val="2087"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="243"/>
-    <Option Name="WTModelSimExportSim" Val="243"/>
-    <Option Name="WTQuestaExportSim" Val="243"/>
+    <Option Name="WTXSimExportSim" Val="245"/>
+    <Option Name="WTModelSimExportSim" Val="245"/>
+    <Option Name="WTQuestaExportSim" Val="245"/>
     <Option Name="WTIesExportSim" Val="0"/>
     <Option Name="WTVcsExportSim" Val="199"/>
-    <Option Name="WTRivieraExportSim" Val="243"/>
-    <Option Name="WTActivehdlExportSim" Val="243"/>
+    <Option Name="WTRivieraExportSim" Val="245"/>
+    <Option Name="WTActivehdlExportSim" Val="245"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -212,11 +212,6 @@
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../nbg_cpu_16/TestBenchCPU_behav.wcfg">
-        <FileInfo>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>

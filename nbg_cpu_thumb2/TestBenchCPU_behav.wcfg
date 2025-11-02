@@ -11,15 +11,32 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="4,085.000001 us"></ZoomEndTime>
-      <Cursor1Time time="301.270000 us"></Cursor1Time>
+      <ZoomStartTime time="5,416.163333 us"></ZoomStartTime>
+      <ZoomEndTime time="6,189.163334 us"></ZoomEndTime>
+      <Cursor1Time time="6,535.330000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="156"></NameColumnWidth>
-      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+      <NameColumnWidth column_width="186"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="16" />
+   <WVObjectSize size="20" />
+   <wvobject fp_name="/TestBenchCPU/sys_clk" type="logic">
+      <obj_property name="ElementShortName">sys_clk</obj_property>
+      <obj_property name="ObjectShortName">sys_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/u_system_bus/u_uart_rx/uart_rx_data" type="array">
+      <obj_property name="ElementShortName">uart_rx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">uart_rx_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/u_system_bus/u_uart_tx/uart_tx_data" type="array">
+      <obj_property name="ElementShortName">uart_tx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">uart_tx_data[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_decoder/decode_error" type="logic">
+      <obj_property name="ElementShortName">decode_error</obj_property>
+      <obj_property name="ObjectShortName">decode_error</obj_property>
+   </wvobject>
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r0" type="array">
       <obj_property name="ElementShortName">r0[31:0]</obj_property>
       <obj_property name="ObjectShortName">r0[31:0]</obj_property>
