@@ -2,7 +2,7 @@
 #include <assert.h>
 #include "math.h"
 
-#define SOFT_VER 41
+#define SOFT_VER 43
 
 #define my_printf(fmt, arg...) printf(fmt, ##arg)
 #define my_scanf(str, fmt, arg...) sscanf(str, fmt, ##arg)
@@ -350,19 +350,23 @@ void test_float()
     uint32_t index=0;
     f_v=f_v1*f_v2;
     assert(f_v==0.121932633f);
-    my_printf("test float1 OK\n");
+    my_printf("test float * OK\n");
     
     f_v=f_v1/f_v2;
     assert(f_v==0.125f);
-    my_printf("test float2 OK\n");
+    my_printf("test float / OK\n");
     
     f_c=asinf(f_v);
     assert(f_c==0.125327826f);
-    my_printf("test float3 OK\n");
+    my_printf("test float asinf OK\n");
     
     f_c=acosf(f_v);
     assert(f_c==1.44546854f);
-    my_printf("test float4 OK\n");
+    my_printf("test float acosf OK\n");
+    
+    f_c=tanf(f_v);
+    assert(f_c==0.12565513f);
+    my_printf("test float tanf OK\n");
 }
 
 void test_double()
@@ -373,53 +377,24 @@ void test_double()
     static double d_c;
     static char str[50];
     d_v=d_v1*d_v2;
-    sprintf(str,"test double3:%.10f\n", d_v);
-    my_printf("%s", str);
     assert(d_v==0.6614721822768073);
-    my_printf("test double1 OK\n");
+    my_printf("test double * OK\n");
     
     d_v=d_v1/d_v2;
     assert(d_v==0.43399189974661884);
-    my_printf("test double2 OK\n");
+    my_printf("test double / OK\n");
     
     d_c=asin(d_v);
     assert(d_c==0.44891900322483796);
-    my_printf("test double3 OK\n");
-    
+    my_printf("test double asin OK\n");
     
     d_c=acos(d_v);
     assert(d_c==1.1218773235700588);
-    my_printf("test double4 OK\n");
+    my_printf("test double acos OK\n");
     
-}
-void test2()
-{
-    int32_t a;
-    int32_t b;
-    char c;
-    uint32_t r;
-    my_printf("please input ex.:21+35=\n");
-    while(1)
-    {
-        scan_calc_d();
-    }
-}
-
-void test3()
-{
-    float a=1.234567;
-    float b=7.654321;
-    float c=0.0;
-    printf("test3:");
-    c=a/b;
-    my_printf("<a/b=%f>", c);
-    my_printf("<a:%f><b:%f>", a, b);
-    c=a+b;
-    my_printf("<a+b=%f>", c);
-    c=a-b;
-    my_printf("<a-b=%f>", c);
-    c=a*b;
-    my_printf("<a*b=%f>", c);
+    d_c=tan(d_v);
+    assert(d_c==0.46346143984841026);
+    my_printf("test double tan OK\n");
 }
 
 void check_cpu(){
@@ -450,21 +425,13 @@ int main(void){
     my_printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
     test_float();
     test_double();
-    sleep(500);
-//    scan_calc_d();
-//    test3();
-//    int32_t a=-3;
-//    int32_t b=9;
-//    uint32_t c=25;
-//    uint32_t d=3;
-//    my_printf("a-b=%d a+b=%d", a-b, a+b);
-//    my_printf("c*d=%u c/d=%u %% %u\n", c*d, c/d, c%d);
-//    my_printf("a*b=%d a/b=%d %% %d\n", a*b, a/b, a%b);
-    
-    //test2();
+    sleep(100);
     index = 0;
+    
+    assert(1==0);
     while(1){
         index++;
+        scan_calc_d();
         scan_calc_f();
         my_printf("scan over index:%d!", index);
     }

@@ -4,3 +4,7 @@ nbg_cpu_thumb2/nbg_cpu_thumb2.cache/
 *.jou
 *.sdb
 *.obj
+*.mif
+*.o
+*.d
+*.str

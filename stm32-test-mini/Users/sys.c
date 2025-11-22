@@ -8,6 +8,7 @@ extern char read_str[];
 int _ttywrch(int ch)
 {
     ch = ch;
+    fput_char(ch);
     return ch;
 }
 
