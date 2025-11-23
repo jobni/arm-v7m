@@ -96,7 +96,8 @@ function [34:0] shift_c(input [31:0] value, input [2:0] sr_type, input [7:0] shi
                 `SRTYPE_LSL:{carry_out, result}=lsl_c(value, shift);
                 `SRTYPE_LSR:{carry_out, result}=lsr_c(value, shift);
                 `SRTYPE_ASR:{carry_out, result}=asr_c(value, shift);
-                `SRTYPE_ROR:{carry_out, result}=ror_c(value, shift);
+                // 套圈无意义所以只移动5位之内的
+                `SRTYPE_ROR:{carry_out, result}=ror_c(value, shift[4:0]);
                 `SRTYPE_RRX:{carry_out, result}=rrx_c(value, carry_in);
             endcase
         end
@@ -133,7 +134,7 @@ function [32:0] asr_c(input [31:0] x, input [7:0] shift);
     end
 endfunction
 
-function [32:0] ror_c(input [31:0] x, input [7:0] shift);
+function [32:0] ror_c(input [31:0] x, input [4:0] shift);
     reg [31:0] result;
     begin
         result = (x<<(32-shift))|(x>>shift);

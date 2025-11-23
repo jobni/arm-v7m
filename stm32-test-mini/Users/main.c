@@ -2,10 +2,7 @@
 #include <assert.h>
 #include "math.h"
 
-#define SOFT_VER 43
-
-#define my_printf(fmt, arg...) printf(fmt, ##arg)
-#define my_scanf(str, fmt, arg...) sscanf(str, fmt, ##arg)
+#define SOFT_VER 44
 
 char read_str[1024]="15*21=";
 
@@ -42,244 +39,13 @@ void scan_uart(char *ch, uint16_t len)
     }
 }
 
-char x_to_char(uint8_t i)
-{
-    switch(i){
-        case 0:return '0';
-        case 1:return '1';
-        case 2:return '2';
-        case 3:return '3';
-        case 4:return '4';
-        case 5:return '5';
-        case 6:return '6';
-        case 7:return '7';
-        case 8:return '8';
-        case 9:return '9';
-        case 10:return 'A';
-        case 11:return 'B';
-        case 12:return 'C';
-        case 13:return 'D';
-        case 14:return 'E';
-        case 15:return 'F';
-        default:return 'X';
-    }
-}
-
-void fput_x(uint8_t i)
-{
-    fput_char(x_to_char(i));
-}
-
-void print_x(uint32_t val)
-{
-    fput_char('0');
-    fput_char('x');
-    fput_x(val>>28);
-    fput_x(val>>24 & 0xF);
-    fput_x(val>>20 & 0xF);
-    fput_x(val>>16 & 0xF);
-    fput_x(val>>12 & 0xF);
-    fput_x(val>>8 & 0xF);
-    fput_x(val>>4 & 0xF);
-    fput_x(val & 0xF);
-}
-
-void print_u(uint32_t val)
-{
-    uint8_t start=0;
-    if(val>=1000000000u||start){
-        fput_x(val/1000000000u);
-        val %= 1000000000u;
-        start = 1;
-    }
-    if(val>=100000000u||start){
-        fput_x(val/100000000u);
-        val %= 100000000u;
-        start = 1;
-    }
-    if(val>=10000000u||start){
-        fput_x(val/10000000u);
-        val %= 10000000u;
-        start = 1;
-    }
-    if(val>=1000000u||start){
-        fput_x(val/1000000u);
-        val %= 1000000u;
-        start = 1;
-    }
-    if(val>=100000u||start){
-        fput_x(val/100000u);
-        val %= 100000u;
-        start = 1;
-    }
-    if(val>=10000u||start){
-        fput_x(val/10000u);
-        val %= 10000u;
-        start = 1;
-    }
-    if(val>=1000u||start){
-        fput_x(val/1000u);
-        val %= 1000u;
-        start = 1;
-    }
-    if(val>=100u||start){
-        fput_x(val/100u);
-        val %= 100u;
-        start = 1;
-    }
-    if(val>=10u||start){
-        fput_x(val/10u);
-        val %= 10u;
-        start = 1;
-    }
-    fput_x(val);
-}
-
-void print_d(int32_t val)
-{
-    if(val<0){
-        fput_char('-');
-        print_u(-val);
-    }else{
-        print_u(val);
-    }
-}
-
-int xi_printf(const char* format, ...)
-{
-    int result=0;
-    va_list args;
-    va_start(args, format);
-    while(*format!='\0'){
-        if(*format=='%'){
-            format++;
-            if(*format=='d'){
-                print_d(va_arg(args, int32_t));
-                result++;
-            }else if(*format=='x'||*format=='X'){
-                print_x(va_arg(args, uint32_t));
-                result++;
-            }else if(*format=='u'){
-                print_u(va_arg(args, uint32_t));
-                result++;
-            }else if(*format=='c'){
-                fput_char(va_arg(args, uint32_t));
-                result++;
-            }else if(*format=='s'){
-                print_uart(va_arg(args, char*));
-                result++;
-            }else if(*format=='%'){
-                print_uart("%");
-                result++;
-            }else{
-                print_uart("<%error%>");
-            }
-        }else{
-            fput_char(*format);
-        }
-        format++;
-    }
-    va_end(args);
-    return result;
-}
-
-int scan_s(char** scan_str_p, char* val)
-{
-    return 0;
-}
-
-int scan_c(char** scan_str_p, char* val)
-{
-    if(**scan_str_p!='\0'){
-        *val=**scan_str_p;
-        (*scan_str_p)++;
-        return 1;
-    }else{
-        return 0;
-    }
-}
-
-int scan_x(char** scan_str_p, uint32_t* val)
-{
-    return 0;
-}
-
-int scan_u(char** scan_str_p, uint32_t* val)
-{
-    int result=0;
-    uint8_t tmp;
-    *val=0;
-    while(**scan_str_p>='0'&&**scan_str_p<='9'){
-        tmp = (**scan_str_p)-'0';
-        *val=(*val)*10;
-        *val=*val+tmp;
-        result=1;
-        (*scan_str_p)++;
-    }
-    return result;
-}
-
-int scan_d(char** scan_str_p, int32_t* val)
-{
-    if(**scan_str_p=='-'){
-        (*scan_str_p)++;
-        int result=0;
-        result = scan_u(scan_str_p, (uint32_t*)val);
-        *val = -*val;
-        return result;
-    }else if(**scan_str_p=='+'){
-        (*scan_str_p)++;
-        return scan_u(scan_str_p, (uint32_t*)val);
-    }else{
-        return scan_u(scan_str_p, (uint32_t*)val);
-    }
-}
-
-int xi_scanf(const char *format, ...)
-{
-    va_list args;
-    va_start(args, format);
-    char* scan_str;
-    char** scan_str_p;
-    int result=0;
-    scan_uart(&read_str[0], sizeof(read_str));
-    
-    //my_printf("read_str:%s", read_str);
-    scan_str_p = &scan_str;
-    scan_str = &read_str[0];
-    while(*format!='\0'){
-        if(*format=='%'){
-            format++;
-            if(*format=='u'){
-                result+=scan_d(scan_str_p, va_arg(args, int32_t*));
-            }else if(*format=='d'){
-                result+=scan_d(scan_str_p, va_arg(args, int32_t*));
-            }else if(*format=='x'){
-                result+=scan_x(scan_str_p, va_arg(args, uint32_t*));
-            }else if(*format=='c'){
-                result+=scan_c(scan_str_p, va_arg(args, char*));
-            }else if(*format=='s'){
-                result+=scan_s(scan_str_p, va_arg(args, char*));
-            }
-        }else{
-            if(*format!=*scan_str){
-                break;
-            }
-            scan_str++;
-        }
-        format++;
-    }
-    va_end(args);
-    return result;
-}
-
 void sleep(uint32_t sleep_time)
 {
-    my_printf("sleep %u ms start >> ", sleep_time);
+    printf("sleep %u ms start >> ", sleep_time);
     uint32_t start_time;
     start_time = get_system_time();
     while(get_system_time()-start_time<sleep_time);
-    my_printf("sleep end\n");
+    printf("sleep end\n");
 }
 
 void scan_calc_d(){
@@ -288,29 +54,29 @@ void scan_calc_d(){
     char c;
     uint32_t r;
     volatile uint32_t* system_signal;
-    my_printf("please input int +-*/=\n");
+    printf("please input int +-*/=\n");
     system_signal = (uint32_t*)SYSTEM_SIGNAL;
     *system_signal=1;
     *system_signal=0;
     scan_uart(&read_str[0], sizeof(read_str));
-    my_printf("%s", read_str);
-    r = my_scanf(read_str, "%d%c%d=", &a, &c, &b);
+    printf("%s", read_str);
+    r = scanf(read_str, "%d%c%d=", &a, &c, &b);
     if(c=='+'){
-        my_printf("%d+%d=%d\n", a,b,a+b);
+        printf("%d+%d=%d\n", a,b,a+b);
     }else if(c=='-'){
-        my_printf("%d-%d=%d\n", a,b,a-b);
+        printf("%d-%d=%d\n", a,b,a-b);
     }else if(c=='*'){
-        my_printf("%d*%d=%d\n", a,b,a*b);
+        printf("%d*%d=%d\n", a,b,a*b);
     }else if(c=='/'){
-        my_printf("%d/%d=%d %% %d\n", a,b,a/b,a%b);
+        printf("%d/%d=%d %% %d\n", a,b,a/b,a%b);
     }else if(c=='&'){
-        my_printf("%x&%x=%x\n", a,b,a&b);
+        printf("%x&%x=%x\n", a,b,a&b);
     }else if(c=='|'){
-        my_printf("%x|%x=%x\n", a,b,a|b);
+        printf("%x|%x=%x\n", a,b,a|b);
     }else if(c=='^'){
-        my_printf("%x^%x=%x\n", a,b,a^b);
+        printf("%x^%x=%x\n", a,b,a^b);
     }else{
-        my_printf("not_support:<%u> <%d><%c><%d>=", r, a, c, b);
+        printf("not_support:<%u> <%d><%c><%d>=", r, a, c, b);
     }
 }
 
@@ -320,23 +86,23 @@ void scan_calc_f(){
     char c;
     float r;
     volatile uint32_t* system_signal;
-    my_printf("please input float +-*/=\n");
+    printf("please input float +-*/=\n");
     system_signal = (uint32_t*)SYSTEM_SIGNAL;
     *system_signal=2;
     *system_signal=0;
     scan_uart(&read_str[0], sizeof(read_str));
-    my_printf("%s", read_str);
-    r = my_scanf(read_str, "%f%c%f=", &a, &c, &b);
+    printf("%s", read_str);
+    r = scanf(read_str, "%f%c%f=", &a, &c, &b);
     if(c=='+'){
-        my_printf("%f+%f=%f\n", a,b,a+b);
+        printf("%f+%f=%f\n", a,b,a+b);
     }else if(c=='-'){
-        my_printf("%f-%f=%f\n", a,b,a-b);
+        printf("%f-%f=%f\n", a,b,a-b);
     }else if(c=='*'){
-        my_printf("%f*%f=%f\n", a,b,a*b);
+        printf("%f*%f=%f\n", a,b,a*b);
     }else if(c=='/'){
-        my_printf("%f/%f=%f\n", a,b,a/b);
+        printf("%f/%f=%f\n", a,b,a/b);
     }else{
-        my_printf("r:%f not support:%f%c%f=", r, a, c, b);
+        printf("r:%f not support:%f%c%f=", r, a, c, b);
     }
 }
 
@@ -350,23 +116,43 @@ void test_float()
     uint32_t index=0;
     f_v=f_v1*f_v2;
     assert(f_v==0.121932633f);
-    my_printf("test float * OK\n");
+    printf("test float * OK\n");
     
     f_v=f_v1/f_v2;
     assert(f_v==0.125f);
-    my_printf("test float / OK\n");
+    printf("test float / OK\n");
+    
+    f_c=ldexpf(f_v, 25);
+    assert(f_c==4194304.0f);
+    printf("test float ldexpf OK\n");
+    
+    f_c=fmodf(f_v, 0.02314f);
+    assert(f_c==0.0092999991f);
+    printf("test float fmodf OK\n");
     
     f_c=asinf(f_v);
     assert(f_c==0.125327826f);
-    my_printf("test float asinf OK\n");
+    printf("test float asinf OK\n");
     
     f_c=acosf(f_v);
     assert(f_c==1.44546854f);
-    my_printf("test float acosf OK\n");
+    printf("test float acosf OK\n");
     
     f_c=tanf(f_v);
     assert(f_c==0.12565513f);
-    my_printf("test float tanf OK\n");
+    printf("test float tanf OK\n");
+    
+    f_c=expf(f_v);
+    assert(f_c==1.13314843f);
+    printf("test float expf OK\n");
+    
+    f_c=powf(f_v, f_v);
+    assert(f_c==0.771105409f);
+    printf("test float powf OK\n");
+    
+    f_c=sqrtf(f_v);
+    assert(f_c==0.353553385f);
+    printf("test float sqrtf OK\n");
 }
 
 void test_double()
@@ -378,23 +164,43 @@ void test_double()
     static char str[50];
     d_v=d_v1*d_v2;
     assert(d_v==0.6614721822768073);
-    my_printf("test double * OK\n");
+    printf("test double * OK\n");
     
     d_v=d_v1/d_v2;
     assert(d_v==0.43399189974661884);
-    my_printf("test double / OK\n");
+    printf("test double / OK\n");
+    
+    d_c=ldexp(d_v, 25);
+    assert(d_c==14562351.688598739);
+    printf("test float ldexp OK\n");
+    
+    d_c=fmod(d_v, 0.02314f);
+    assert(d_c==0.017471896517239183);
+    printf("test float fmod OK\n");
     
     d_c=asin(d_v);
     assert(d_c==0.44891900322483796);
-    my_printf("test double asin OK\n");
+    printf("test double asin OK\n");
     
     d_c=acos(d_v);
     assert(d_c==1.1218773235700588);
-    my_printf("test double acos OK\n");
+    printf("test double acos OK\n");
     
     d_c=tan(d_v);
     assert(d_c==0.46346143984841026);
-    my_printf("test double tan OK\n");
+    printf("test double tan OK\n");
+    
+    d_c=exp(d_v);
+    assert(d_c==1.543406366083217);
+    printf("test double exp OK\n");
+    
+    d_c=pow(d_v, d_v);
+    assert(d_c==0.6960973191288687);
+    printf("test double powf OK\n");
+    
+    d_c=sqrtf(d_v);
+    assert(d_c==0.6587806344032288);
+    printf("test double sqrtf OK\n");
 }
 
 void check_cpu(){
@@ -414,7 +220,7 @@ void SystemInit (void)
     systick_ctrl=(uint32_t*)0xE000E010;
     *systick_ctrl&=~0x01;
     check_cpu();
-    my_printf("SystemInit end!\n");
+    printf("SystemInit end!\n");
 }
 
 int main(void){
@@ -422,8 +228,8 @@ int main(void){
     static uint32_t flash_ver;
     check_cpu();
     flash_ver=get_flash_ver();
-    my_printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
-    test_float();
+    printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
+    //test_float();
     test_double();
     sleep(100);
     index = 0;
@@ -433,6 +239,6 @@ int main(void){
         index++;
         scan_calc_d();
         scan_calc_f();
-        my_printf("scan over index:%d!", index);
+        printf("scan over index:%d!", index);
     }
 }

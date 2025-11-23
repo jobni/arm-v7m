@@ -29,7 +29,7 @@ module Decoder(
     input [15:0] ir_B,
     input micro_done,
     input apsr_c,
-    output reg [63:0] micro_code,
+    output reg [95:0] micro_code,
     output reg [7:0]  micro_type,
     output reg [3:0] micro_cond,
     output reg [7:0] micro_it,
@@ -57,7 +57,7 @@ module Decoder(
     
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            micro_code <= 64'b0;
+            micro_code <= 96'b0;
             micro_type <= 8'b0;
             micro_cond <= 4'b0;
             micro_register_rn <= 16'b0;
@@ -77,7 +77,7 @@ module Decoder(
             error_code <= 8'b0;
         end
         else if(decode_en) begin
-            micro_code <= 64'b0;
+            micro_code <= 96'b0;
             micro_type <= 8'b0;
             micro_cond <= 4'b1111;
             micro_register_rn <= 16'b0;
@@ -98,7 +98,7 @@ module Decoder(
                 micro_register_rt[`REGISTER_CODE_SP] <= 1'b1;
                 micro_data <= 32'h08000000;
                 if(micro_done) begin
-                    micro_code <= 64'b0;
+                    micro_code <= 96'b0;
                 end
             end
             else if(if_cnt == 8'h2) begin
@@ -106,7 +106,7 @@ module Decoder(
                 micro_register_rt[`REGISTER_CODE_PC] <= 1'b1;
                 micro_data <= 32'h08000004;
                 if(micro_done) begin
-                    micro_code <= 64'b0;
+                    micro_code <= 96'b0;
                 end
             end
             else if(!thumb32) begin

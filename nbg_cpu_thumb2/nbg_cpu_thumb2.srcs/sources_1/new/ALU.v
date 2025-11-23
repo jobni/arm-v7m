@@ -25,7 +25,7 @@ module ALU(
     input rst_n,
     input [7:0] curr_cnt,
     input micro_en,
-    input [63:0] micro_code,
+    input [95:0] micro_code,
     input [7:0] micro_type,
     input [3:0] micro_cond,
     input [7:0] micro_it,
@@ -157,7 +157,7 @@ module ALU(
             end
             case(micro_code)
                 //转移指令
-                64'b1 << `MICRO_CODE_B: begin
+                96'b1 << `MICRO_CODE_B: begin
                     if(condition_pass(micro_cond, apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= next_pc + micro_data;
@@ -171,7 +171,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_BX: begin
+                96'b1 << `MICRO_CODE_BX: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= register_rm;
@@ -185,7 +185,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_BL: begin
+                96'b1 << `MICRO_CODE_BL: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= {next_pc[31:1],1'b1};
@@ -203,7 +203,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_BLX: begin
+                96'b1 << `MICRO_CODE_BLX: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= pc_r15 + 32'h3;
@@ -221,7 +221,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_TBB: begin
+                96'b1 << `MICRO_CODE_TBB: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             d_bus_addr <= register_rn + register_rm;
@@ -243,7 +243,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_CBNZ_CBZ: begin
+                96'b1 << `MICRO_CODE_CBNZ_CBZ: begin
                     if(curr_cnt==8'h0) begin
                         if(micro_index!=(register_rn==32'b0)) begin
                             register_set_data <= next_pc + micro_data;
@@ -252,14 +252,14 @@ module ALU(
                         micro_done <= 1'b1;
                     end
                 end
-                64'b1<<`MICRO_CODE_IT: begin
+                64'b1 << `MICRO_CODE_IT: begin
                     if(curr_cnt==8'h0) begin
                         micro_done <= 1'b1;
                     end
                 end
                 
                 //数据传送指令
-                64'b1 << `MICRO_CODE_LDR: begin
+                96'b1 << `MICRO_CODE_LDR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -343,7 +343,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_LDRH: begin
+                96'b1 << `MICRO_CODE_LDRH: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -425,7 +425,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_LDRB: begin
+                96'b1 << `MICRO_CODE_LDRB: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -513,7 +513,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_LDRSB: begin
+                96'b1 << `MICRO_CODE_LDRSB: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -585,7 +585,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_LDRD: begin
+                96'b1 << `MICRO_CODE_LDRD: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -646,7 +646,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_STR: begin
+                96'b1 << `MICRO_CODE_STR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -687,7 +687,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_STRH: begin
+                96'b1 << `MICRO_CODE_STRH: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -742,7 +742,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_STRB: begin
+                96'b1 << `MICRO_CODE_STRB: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -797,7 +797,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_STRD: begin
+                96'b1 << `MICRO_CODE_STRD: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -832,7 +832,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_STMIA: begin
+                96'b1 << `MICRO_CODE_STMIA: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             d_bus_addr <= register_rn;
@@ -925,7 +925,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_LDMIA: begin
+                96'b1 << `MICRO_CODE_LDMIA: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             d_bus_addr <= register_rn;
@@ -1024,7 +1024,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_PUSH: begin
+                96'b1 << `MICRO_CODE_PUSH: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             d_bus_addr <= sp_r13 - 32'h4;
@@ -1115,7 +1115,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_POP: begin
+                96'b1 << `MICRO_CODE_POP: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             d_bus_addr <= sp_r13;
@@ -1212,7 +1212,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_ASR: begin
+                96'b1 << `MICRO_CODE_ASR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1241,7 +1241,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_LSL: begin
+                96'b1 << `MICRO_CODE_LSL: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1270,7 +1270,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_LSR: begin
+                96'b1 << `MICRO_CODE_LSR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1299,7 +1299,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_RRX: begin
+                96'b1 << `MICRO_CODE_RRX: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             if(micro_set_flag) begin
@@ -1316,7 +1316,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_ROR: begin
+                96'b1 << `MICRO_CODE_ROR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1345,41 +1345,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_AND: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= register_rn & micro_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:29] <= {register_rn[31] & micro_data[31], (register_rn & micro_data) == 32'b0, micro_carry};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                register_set_data <= register_rn & register_set_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:30] <= {register_rn[31] & register_set_data[31], (register_rn & register_set_data) == 32'b0};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1<<`MICRO_CODE_BIC: begin
+                96'b1 << `MICRO_CODE_BIC: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1413,323 +1379,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_EOR: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= register_rn ^ micro_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:29] <= {register_rn[31] ^ micro_data[31], (register_rn ^ micro_data) == 32'b0, micro_carry};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                register_set_data <= register_rn ^ register_set_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:30] <= {register_rn[31] ^ register_set_data[31], (register_rn ^ register_set_data) == 32'b0};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1<<`MICRO_CODE_ORR: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= register_rn | micro_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:29] <= {register_rn[31] | micro_data[31], (register_rn | micro_data) == 32'b0, micro_carry};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                register_set_data <= register_rn | register_set_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:30] <= {register_rn[31] | register_set_data[31], (register_rn | register_set_data) == 32'b0};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_MVN: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= ~micro_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:29] <= {~micro_data[31], ~micro_data == 32'b0, micro_carry};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                register_set_data <= ~register_set_data;
-                                register_set_code <= micro_register_rd;
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:29] <= 3'b111;
-                                end
-                                psr_set_data[31:30] <= {!register_set_data[31], (~register_set_data) == 32'b0};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1<<`MICRO_CODE_TST: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                psr_set_code[31:29] <= 3'b111;
-                                psr_set_data[31:29] <= {register_rn[31] & micro_data[31], (register_rn&micro_data) == 32'b0, micro_carry};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                psr_set_code[31:29] <= 3'b111;
-                                psr_set_data[31:30] <= {register_rn[31] & register_set_data[31], (register_rn & register_set_data) == 32'b0};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1<<`MICRO_CODE_TEQ: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= register_rn ^ micro_data;
-                                psr_set_code[31:29] <= 3'b111;
-                                psr_set_data[31:29] <= {register_rn[31] ^ micro_data[31], (register_rn ^ micro_data) == 32'b0, micro_carry};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                register_set_data <= register_rn ^ register_set_data;
-                                psr_set_code[31:29] <= 3'b111;
-                                psr_set_data[31:30] <= {register_rn[31] ^ register_set_data[31], (register_rn ^ register_set_data) == 32'b0};
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_ADD: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,micro_data,1'b0);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,register_set_data,1'b0);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_ADC: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, micro_data, apsr_c);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, register_set_data, apsr_c);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_SUB: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,~micro_data,1'b1);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, ~register_set_data, 1'b1);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_SBC: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,~micro_data,apsr_c);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, ~register_set_data, apsr_c);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_RSB: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
-                            if(curr_cnt==8'h0) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(~register_rn,micro_data,1'b1);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
-                            if(curr_cnt==8'h0) begin
-                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
-                            end
-                            else if(curr_cnt==8'h1) begin
-                                if(micro_set_flag) begin
-                                    psr_set_code[31:28] <= 4'b1111;
-                                end
-                                {psr_set_data[31:28], register_set_data} <= add_with_carry(~register_rn, register_set_data, 1'b1);
-                                register_set_code <= micro_register_rd;
-                                micro_done <= 1'b1;
-                            end
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_BFC: begin
+                96'b1 << `MICRO_CODE_BFC: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= {register_rn};
@@ -1793,7 +1443,357 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_CMN: begin
+                96'b1 << `MICRO_CODE_AND: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= register_rn & micro_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:29] <= {register_rn[31] & micro_data[31], (register_rn & micro_data) == 32'b0, micro_carry};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                register_set_data <= register_rn & register_set_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:30] <= {register_rn[31] & register_set_data[31], (register_rn & register_set_data) == 32'b0};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_EOR: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= register_rn ^ micro_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:29] <= {register_rn[31] ^ micro_data[31], (register_rn ^ micro_data) == 32'b0, micro_carry};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                register_set_data <= register_rn ^ register_set_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:30] <= {register_rn[31] ^ register_set_data[31], (register_rn ^ register_set_data) == 32'b0};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_ORR: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= register_rn | micro_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:29] <= {register_rn[31] | micro_data[31], (register_rn | micro_data) == 32'b0, micro_carry};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                register_set_data <= register_rn | register_set_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:30] <= {register_rn[31] | register_set_data[31], (register_rn | register_set_data) == 32'b0};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_MVN: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= ~micro_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:29] <= {~micro_data[31], ~micro_data == 32'b0, micro_carry};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                register_set_data <= ~register_set_data;
+                                register_set_code <= micro_register_rd;
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:29] <= 3'b111;
+                                end
+                                psr_set_data[31:30] <= {!register_set_data[31], (~register_set_data) == 32'b0};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_TST: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                psr_set_code[31:29] <= 3'b111;
+                                psr_set_data[31:29] <= {register_rn[31] & micro_data[31], (register_rn&micro_data) == 32'b0, micro_carry};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                psr_set_code[31:29] <= 3'b111;
+                                psr_set_data[31:30] <= {register_rn[31] & register_set_data[31], (register_rn & register_set_data) == 32'b0};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_TEQ: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= register_rn ^ micro_data;
+                                psr_set_code[31:29] <= 3'b111;
+                                psr_set_data[31:29] <= {register_rn[31] ^ micro_data[31], (register_rn ^ micro_data) == 32'b0, micro_carry};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                {psr_set_data[29], register_set_data} <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                register_set_data <= register_rn ^ register_set_data;
+                                psr_set_code[31:29] <= 3'b111;
+                                psr_set_data[31:30] <= {register_rn[31] ^ register_set_data[31], (register_rn ^ register_set_data) == 32'b0};
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_ADC: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, micro_data, apsr_c);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, register_set_data, apsr_c);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_ADD: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,micro_data,1'b0);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,register_set_data,1'b0);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_SUB: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,~micro_data,1'b1);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, ~register_set_data, 1'b1);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_SBC: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn,~micro_data,apsr_c);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(register_rn, ~register_set_data, apsr_c);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_RSB: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
+                            if(curr_cnt==8'h0) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(~register_rn,micro_data,1'b1);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else if(micro_type[`MICRO_TYPE_REGISTER]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= shift_c(register_rm, micro_data[10:8], micro_data[5:0], apsr_c);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                if(micro_set_flag) begin
+                                    psr_set_code[31:28] <= 4'b1111;
+                                end
+                                {psr_set_data[31:28], register_set_data} <= add_with_carry(~register_rn, register_set_data, 1'b1);
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_CMN: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1819,7 +1819,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_CMP: begin
+                96'b1 << `MICRO_CODE_CMP: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -1845,7 +1845,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_MUL: begin
+                96'b1 << `MICRO_CODE_MUL: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             umult_a <= register_rn;
@@ -1867,7 +1867,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_UMLAL: begin
+                96'b1 << `MICRO_CODE_UMLAL: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             umult_a <= register_rn;
@@ -1891,7 +1891,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_UMULL: begin
+                96'b1 << `MICRO_CODE_UMULL: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             umult_a <= register_rn;
@@ -1913,7 +1913,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_MLA: begin
+                96'b1 << `MICRO_CODE_MLA: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             umult_a <= register_rn;
@@ -1931,7 +1931,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_MLS: begin
+                96'b1 << `MICRO_CODE_MLS: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             umult_a <= register_rn;
@@ -1949,7 +1949,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_UDIV: begin
+                96'b1 << `MICRO_CODE_UDIV: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt<8'h8) begin
                             u_divisor_tvalid <= 1'b1;
@@ -1969,7 +1969,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_SDIV: begin
+                96'b1 << `MICRO_CODE_SDIV: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt<8'h8) begin
                             s_divisor_tvalid <= 1'b1;
@@ -1989,41 +1989,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_UXTB: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(curr_cnt==8'h0) begin
-                            register_set_data <= ror_c(register_rm, micro_data[4:0]);
-                        end
-                        else if(curr_cnt==8'h1) begin
-                            register_set_data <= {24'b0, register_set_data[7:0]};
-                            register_set_code <= micro_register_rd;
-                            micro_done <= 1'b1;
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1<<`MICRO_CODE_SXTB: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(curr_cnt==8'h0) begin
-                            register_set_data <= ror_c(register_rm, micro_data[4:0]);
-                        end
-                        else if(curr_cnt==8'h1) begin
-                            register_set_data <= {{24{register_set_data[7]}}, register_set_data[7:0]};
-                            register_set_code <= micro_register_rd;
-                            micro_done <= 1'b1;
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                64'b1 << `MICRO_CODE_ADR: begin
+                96'b1 << `MICRO_CODE_ADR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             if(micro_add) begin
@@ -2042,7 +2008,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_CLZ: begin
+                96'b1 << `MICRO_CODE_CLZ: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= count_leading_zero_bits(register_rm);
@@ -2056,7 +2022,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_MOV: begin
+                96'b1 << `MICRO_CODE_MOV: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
                             if(curr_cnt==8'h0) begin
@@ -2087,7 +2053,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_MOVT: begin
+                96'b1 << `MICRO_CODE_MOVT: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= {micro_data[15:0], register_rm[15:0]};
@@ -2101,7 +2067,7 @@ module ALU(
                         end
                     end
                 end
-                64'b1<<`MICRO_CODE_UBFX: begin
+                96'b1 << `MICRO_CODE_UBFX: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= register_rn << micro_data[20:16];
@@ -2118,9 +2084,43 @@ module ALU(
                         end
                     end
                 end
-                64'b1 << `MICRO_CODE_NOP: begin
+                96'b1 << `MICRO_CODE_NOP: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_SXTB: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= ror_c(register_rm, micro_data[4:0]);
+                        end
+                        else if(curr_cnt==8'h1) begin
+                            register_set_data <= {{24{register_set_data[7]}}, register_set_data[7:0]};
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_UXTB: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= ror_c(register_rm, micro_data[4:0]);
+                        end
+                        else if(curr_cnt==8'h1) begin
+                            register_set_data <= {24'b0, register_set_data[7:0]};
+                            register_set_code <= micro_register_rd;
                             micro_done <= 1'b1;
                         end
                     end

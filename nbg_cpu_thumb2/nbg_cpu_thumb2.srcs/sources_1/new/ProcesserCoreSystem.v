@@ -53,7 +53,7 @@
     wire [31:0] register_set_data;
     wire [31:0] psr_set_code;
     wire [31:0] psr_set_data;
-    wire [63:0] micro_code;
+    wire [95:0] micro_code;
     wire [7:0] micro_type;
     wire [3:0] micro_cond;
     wire [7:0] micro_it;

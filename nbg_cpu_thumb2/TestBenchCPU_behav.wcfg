@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="5,416.163333 us"></ZoomStartTime>
-      <ZoomEndTime time="6,189.163334 us"></ZoomEndTime>
-      <Cursor1Time time="6,535.330000 us"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="782.500001 us"></ZoomEndTime>
+      <Cursor1Time time="547.490000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="186"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <NameColumnWidth column_width="139"></NameColumnWidth>
+      <ValueColumnWidth column_width="124"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="20" />
+   <WVObjectSize size="31" />
    <wvobject fp_name="/TestBenchCPU/sys_clk" type="logic">
       <obj_property name="ElementShortName">sys_clk</obj_property>
       <obj_property name="ObjectShortName">sys_clk</obj_property>
@@ -36,6 +36,14 @@
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_decoder/decode_error" type="logic">
       <obj_property name="ElementShortName">decode_error</obj_property>
       <obj_property name="ObjectShortName">decode_error</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/mem_test1" type="logic">
+      <obj_property name="ElementShortName">mem_test1</obj_property>
+      <obj_property name="ObjectShortName">mem_test1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/mem_test2" type="logic">
+      <obj_property name="ElementShortName">mem_test2</obj_property>
+      <obj_property name="ObjectShortName">mem_test2</obj_property>
    </wvobject>
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/r0" type="array">
       <obj_property name="ElementShortName">r0[31:0]</obj_property>
@@ -100,5 +108,41 @@
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/pc_r15" type="array">
       <obj_property name="ElementShortName">pc_r15[31:0]</obj_property>
       <obj_property name="ObjectShortName">pc_r15[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_instruction_fetch/ir_A" type="array">
+      <obj_property name="ElementShortName">ir_A[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ir_A[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_instruction_fetch/ir_B" type="array">
+      <obj_property name="ElementShortName">ir_B[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ir_B[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_decoder/micro_code" type="array">
+      <obj_property name="ElementShortName">micro_code[95:0]</obj_property>
+      <obj_property name="ObjectShortName">micro_code[95:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/d_bus_addr" type="array">
+      <obj_property name="ElementShortName">d_bus_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">d_bus_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/d_data" type="array">
+      <obj_property name="ElementShortName">d_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">d_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/write_en" type="logic">
+      <obj_property name="ElementShortName">write_en</obj_property>
+      <obj_property name="ObjectShortName">write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/register_rn" type="array">
+      <obj_property name="ElementShortName">register_rn[31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_rn[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/micro_register_rn" type="array">
+      <obj_property name="ElementShortName">micro_register_rn[15:0]</obj_property>
+      <obj_property name="ObjectShortName">micro_register_rn[15:0]</obj_property>
    </wvobject>
 </wave_config>
