@@ -40,55 +40,57 @@
 `define MICRO_CODE_POP      36
 
 //位操作指令
-`define MICRO_CODE_ASR      38
-`define MICRO_CODE_LSL      39
-`define MICRO_CODE_LSR      40
-`define MICRO_CODE_RRX      41
-`define MICRO_CODE_ROR      42
-`define MICRO_CODE_BIC      43
-`define MICRO_CODE_BFC      44
-`define MICRO_CODE_BFI      45  //未实现
-`define MICRO_CODE_RBIT     46  //未实现
+`define MICRO_CODE_ASR      37
+`define MICRO_CODE_LSL      38
+`define MICRO_CODE_LSR      39
+`define MICRO_CODE_RRX      40
+`define MICRO_CODE_ROR      41
+`define MICRO_CODE_BIC      42
+`define MICRO_CODE_BFC      43
+`define MICRO_CODE_BFI      44
+`define MICRO_CODE_UBFX     74
+`define MICRO_CODE_SBFX     114 //未实现
+`define MICRO_CODE_RBIT     45  //未实现
 
 //与或非
-`define MICRO_CODE_AND      47
-`define MICRO_CODE_EOR      48
-`define MICRO_CODE_ORR      49
-`define MICRO_CODE_ORN      50  //未实现
-`define MICRO_CODE_MVN      51
-`define MICRO_CODE_TST      52
-`define MICRO_CODE_TEQ      53
+`define MICRO_CODE_AND      46
+`define MICRO_CODE_EOR      47
+`define MICRO_CODE_ORR      48
+`define MICRO_CODE_ORN      49  //未实现
+`define MICRO_CODE_MVN      50
+`define MICRO_CODE_TST      51
+`define MICRO_CODE_TEQ      52
 
 //加减乘除
-`define MICRO_CODE_ADC      54
-`define MICRO_CODE_ADD      55
-`define MICRO_CODE_ADDW     56  //未实现
-`define MICRO_CODE_SUB      57
-`define MICRO_CODE_SUBW     58  //未实现
-`define MICRO_CODE_SBC      59
-`define MICRO_CODE_RSB      60
-`define MICRO_CODE_CMN      61
-`define MICRO_CODE_CMP      62
-`define MICRO_CODE_MUL      63
-`define MICRO_CODE_UMLAL    64
-`define MICRO_CODE_UMULL    65
-`define MICRO_CODE_MLA      66
-`define MICRO_CODE_MLS      67
-`define MICRO_CODE_UDIV     68
-`define MICRO_CODE_SDIV     69
+`define MICRO_CODE_ADC      53
+`define MICRO_CODE_ADD      54
+`define MICRO_CODE_ADDW     55  //未实现
+`define MICRO_CODE_SUB      56
+`define MICRO_CODE_SUBW     57  //未实现
+`define MICRO_CODE_SBC      58
+`define MICRO_CODE_RSB      59
+`define MICRO_CODE_CMN      60
+`define MICRO_CODE_CMP      61
+`define MICRO_CODE_MUL      62
+`define MICRO_CODE_UMLAL    63
+`define MICRO_CODE_UMULL    64
+`define MICRO_CODE_MLA      65
+`define MICRO_CODE_MLS      66
+`define MICRO_CODE_UDIV     67
+`define MICRO_CODE_SDIV     68
 
 //综合指令
-`define MICRO_CODE_ADR      70
-`define MICRO_CODE_CLZ      71
-`define MICRO_CODE_MOV      72
-`define MICRO_CODE_MOVT     73
-`define MICRO_CODE_MOVW     74  //未实现
-`define MICRO_CODE_UBFX     75
-`define MICRO_CODE_NOP      76
-`define MICRO_CODE_SXTB     77
-`define MICRO_CODE_SXTH     78  //未实现
-`define MICRO_CODE_UXTB     79
-`define MICRO_CODE_UXTH     80  //未实现
+`define MICRO_CODE_ADR      69
+`define MICRO_CODE_CLZ      70
+`define MICRO_CODE_MOV      71
+`define MICRO_CODE_MOVT     72
+`define MICRO_CODE_MOVW     73  //未实现
+`define MICRO_CODE_NOP      75
+`define MICRO_CODE_SXTB     76
+`define MICRO_CODE_SXTH     77  //未实现
+`define MICRO_CODE_UXTB     78
+`define MICRO_CODE_UXTH     79  //未实现
+`define MICRO_CODE_UDF      80  //未实现
 `define MICRO_CODE_CPY      81  //未实现
 `define MICRO_CODE_NEG      82  //未实现
 `define MICRO_CODE_REV      83  //未实现
@@ -122,11 +124,9 @@
 `define MICRO_CODE_MRRC     111 //未实现
 `define MICRO_CODE_PLD      112 //未实现
 `define MICRO_CODE_PLI      113 //未实现
-`define MICRO_CODE_SBFX     114 //未实现
 `define MICRO_CODE_STC      115 //未实现
 `define MICRO_CODE_YIELD    116 //未实现
 `define MICRO_CODE_BKPT     117 //未实现
-`define MICRO_CODE_UDF      118 //未实现
 
 //包含CDP2、LDC2、MCR2、MCRR2、MRC2、MRRC2、STC2
 

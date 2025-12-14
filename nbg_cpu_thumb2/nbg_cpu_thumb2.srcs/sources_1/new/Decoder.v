@@ -1384,16 +1384,22 @@ module Decoder(
                             else if(ir_A[8:4]==5'b10110) begin
                                 if(ir_A[3:0]!=4'b1111) begin
                                     //BFI
-                                    decode_error <= 1'b1;
+                                    micro_code[`MICRO_CODE_BFI] <= 1'b1;
+                                    micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                    micro_register_rn <= convert_4_16(ir_A[3:0]);
+                                    //lsb
+                                    micro_data[7:0] <= {3'b0, ir_B[14:12], ir_B[7:6]};
+                                    //msb
+                                    micro_data[15:8] <= {3'b0, ir_B[4:0]};
                                 end
                                 else begin
                                     //BFC T1
                                     micro_code[`MICRO_CODE_BFC] <= 1'b1;
                                     micro_register_rd <= convert_4_16(ir_B[11:8]);
-                                    micro_register_rn <= convert_4_16(ir_B[11:8]);
+                                    //lsb
                                     micro_data[7:0] <= {3'b0, ir_B[14:12], ir_B[7:6]};
+                                    //msb
                                     micro_data[15:8] <= {3'b0, ir_B[4:0]};
-                                    micro_data[31:16] <= {11'b0,ir_B[4:0] - {ir_B[14:12], ir_B[7:6]}};
                                 end
                             end
                             else if(ir_A[8:4]==5'b11000 || ir_A[8:4]==5'b11010) begin

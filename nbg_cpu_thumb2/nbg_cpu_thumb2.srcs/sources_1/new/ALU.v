@@ -1382,58 +1382,35 @@ module ALU(
                 96'b1 << `MICRO_CODE_BFC: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
-                            register_set_data <= {register_rn};
-                        end
-                        else if(curr_cnt==8'h1) begin
-                            if(micro_data[12:8]>=0 && micro_data[4:0]<=0) begin
-                                register_set_data[0] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=1 && micro_data[4:0]<=1) begin
-                                register_set_data[1] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=2 && micro_data[4:0]<=2) begin
-                                register_set_data[2] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=3 && micro_data[4:0]<=3) begin
-                                register_set_data[3] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=4 && micro_data[4:0]<=4) begin
-                                register_set_data[4] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=5 && micro_data[4:0]<=5) begin
-                                register_set_data[5] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=6 && micro_data[4:0]<=6) begin
-                                register_set_data[6] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=7 && micro_data[4:0]<=7) begin
-                                register_set_data[7] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=8 && micro_data[4:0]<=8) begin
-                                register_set_data[8] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=9 && micro_data[4:0]<=9) begin
-                                register_set_data[9] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=10 && micro_data[4:0]<=10) begin
-                                register_set_data[10] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=11 && micro_data[4:0]<=11) begin
-                                register_set_data[11] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=12 && micro_data[4:0]<=12) begin
-                                register_set_data[12] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=13 && micro_data[4:0]<=13) begin
-                                register_set_data[13] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=14 && micro_data[4:0]<=14) begin
-                                register_set_data[14] <= 1'b0;
-                            end
-                            if(micro_data[12:8]>=15 && micro_data[4:0]<=15) begin
-                                register_set_data[15] <= 1'b0;
-                            end
+                            register_set_data <= bfc(register_rd, micro_data[12:8], micro_data[4:0]);
                             register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_BFI: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(micro_data[12:8]>=micro_data[4:0]) begin
+                            if(curr_cnt==8'h0) begin
+                                register_set_data <= register_rn << micro_data[4:0];
+                                register_set_data_hi <= ~bfc(32'hFFFFFFFF,micro_data[12:8], micro_data[4:0]);
+                            end
+                            else if(curr_cnt==8'h1) begin
+                                register_set_data <= bfc(register_rd,micro_data[12:8], micro_data[4:0]);
+                                register_set_data_hi <= register_set_data & register_set_data_hi;
+                            end
+                            else if(curr_cnt==8'h2) begin
+                                register_set_data <= register_set_data | register_set_data_hi;
+                                register_set_code <= micro_register_rd;
+                                micro_done <= 1'b1;
+                            end
+                        end
+                        else begin
                             micro_done <= 1'b1;
                         end
                     end

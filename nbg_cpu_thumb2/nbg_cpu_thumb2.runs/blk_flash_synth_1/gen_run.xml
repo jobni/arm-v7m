@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="blk_flash_synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1763874971">
+<GenRun Id="blk_flash_synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1765682454">
   <File Type="REPORTS-TCL" Name="blk_flash_reports.tcl"/>
   <File Type="RDS-UTIL" Name="blk_flash_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="blk_flash_utilization_synth.pb"/>

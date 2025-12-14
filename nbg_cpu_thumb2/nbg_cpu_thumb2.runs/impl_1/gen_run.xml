@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z020clg400-2" LaunchTime="1763874971">
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-2" LaunchTime="1765682454">
   <File Type="REPORTS-TCL" Name="ProcesserCoreSystem_reports.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="ProcesserCoreSystem_power_summary_routed.pb"/>
   <File Type="BITSTR-MMI" Name="ProcesserCoreSystem.mmi"/>
@@ -213,7 +213,6 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
-    <Step Id="write_device_image"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="blk_ram"/>
   <BlockFileSet Type="BlockSrcs" Name="blk_flash"/>

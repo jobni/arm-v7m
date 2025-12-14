@@ -143,8 +143,19 @@ function [32:0] ror_c(input [31:0] x, input [4:0] shift);
 endfunction
 
 function [32:0] rrx_c(input [31:0] x, input carry_in);
-    reg [31:0] result;
     begin
         rrx_c = {x[0], carry_in, x[31:1]};
+    end
+endfunction
+
+function [31:0] bfc(input [31:0] x,input [4:0] msb,input [4:0] lsb);
+    integer i;
+    begin
+        bfc = x;
+        for(i=0;i<32;i=i+1) begin
+            if(msb>=i && lsb<=i) begin
+                bfc[i] = 1'b0;
+            end
+        end
     end
 endfunction
