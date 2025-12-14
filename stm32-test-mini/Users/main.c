@@ -229,7 +229,7 @@ int main(void){
     check_cpu();
     flash_ver=get_flash_ver();
     printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
-    //test_float();
+    test_float();
     test_double();
     sleep(100);
     index = 0;
