@@ -404,6 +404,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\Users\sys.c</FilePath>
             </File>
+            <File>
+              <FileName>test-ctype.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Users\test-ctype.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

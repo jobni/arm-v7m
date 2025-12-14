@@ -1,10 +1,17 @@
 #include <sys.h>
 #include <assert.h>
 #include "math.h"
+#include "test-ctype.h"
 
-#define SOFT_VER 44
+#define SOFT_VER 45
 
 char read_str[1024]="15*21=";
+
+struct{
+    unsigned int test1 :4;
+    signed int test2 :8;
+    unsigned int test3:20;
+} status;
 
 uint32_t get_flash_write_addr()
 {
@@ -104,6 +111,19 @@ void scan_calc_f(){
     }else{
         printf("r:%f not support:%f%c%f=", r, a, c, b);
     }
+}
+
+void test_bit_field()
+{
+    uint16_t a;
+    a = 18;
+    a +=4;
+    status.test1 = 5;
+    status.test2 = a;
+    status.test3 = 1;
+    a = status.test1+status.test2;
+    assert(a ==27);
+    printf("test bit field OK\n");
 }
 
 void test_float()
@@ -229,6 +249,8 @@ int main(void){
     check_cpu();
     flash_ver=get_flash_ver();
     printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
+    test_bit_field();
+    test_ctype();
     test_float();
     test_double();
     sleep(100);

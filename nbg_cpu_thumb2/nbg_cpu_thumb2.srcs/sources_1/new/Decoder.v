@@ -871,7 +871,9 @@ module Decoder(
                         end
                         else if(ir_A[8:7]==2'b01 && ir_A[5:4]==2'b01 && ir_B[7:4]==4'b0001) begin
                             //TBH
-                            decode_error <= 1'b1;
+                            micro_code[`MICRO_CODE_TBH] <= 1'b1;
+                            micro_register_rn <= convert_4_16(ir_A[3:0]);
+                            micro_register_rm <= convert_4_16(ir_B[3:0]);
                         end
                         else if(ir_A[8:7]==2'b01 && ir_A[5:4]==2'b01 && ir_B[7:4]==4'b0100) begin
                             //LDREXB
@@ -1793,7 +1795,7 @@ module Decoder(
                                     micro_code[`MICRO_CODE_LDRH] <= 1'b1;
                                     micro_type[`MICRO_TYPE_LITERAL] <= 1'b1;
                                     micro_register_rt <= convert_4_16(ir_B[15:12]);
-                                    micro_data <= {20'b0, ir_A[11:0]};
+                                    micro_data <= {20'b0, ir_B[11:0]};
                                     micro_add <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b01) begin
@@ -1802,7 +1804,7 @@ module Decoder(
                                     micro_type[`MICRO_TYPE_IMMEDIATE] <= 1'b1;
                                     micro_register_rn <= convert_4_16(ir_A[3:0]);
                                     micro_register_rt <= convert_4_16(ir_B[15:12]);
-                                    micro_data <= {20'b0, ir_A[11:0]};
+                                    micro_data <= {20'b0, ir_B[11:0]};
                                     micro_index <= 1'b1;
                                     micro_add <= 1'b1;
                                 end
@@ -1812,7 +1814,7 @@ module Decoder(
                                     micro_type[`MICRO_TYPE_IMMEDIATE] <= 1'b1;
                                     micro_register_rn <= convert_4_16(ir_A[3:0]);
                                     micro_register_rt <= convert_4_16(ir_B[15:12]);
-                                    micro_data <= {24'b0, ir_A[7:0]};
+                                    micro_data <= {24'b0, ir_B[7:0]};
                                     micro_index <= ir_B[10];
                                     micro_add <= ir_B[9];
                                     micro_wback <= ir_B[8];

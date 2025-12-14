@@ -243,6 +243,28 @@ module ALU(
                         end
                     end
                 end
+                96'b1 << `MICRO_CODE_TBH: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            d_bus_addr <= register_rn + register_rm<<1;
+                        end
+                        else if(curr_cnt==8'h2) begin
+                            if(d_bus_addr[0]) begin
+                                register_set_data <= next_pc + {15'b0, d_data[23:16], 1'b0};
+                            end
+                            else begin
+                                register_set_data <= next_pc + {15'b0, d_data[15:0], 1'b0};
+                            end
+                            register_set_code <= 16'b1<<`REGISTER_CODE_PC;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
                 96'b1 << `MICRO_CODE_CBNZ_CBZ: begin
                     if(curr_cnt==8'h0) begin
                         if(micro_index!=(register_rn==32'b0)) begin
@@ -364,8 +386,8 @@ module ALU(
                             end
                             else if(curr_cnt==8'h2) begin
                                 case(d_bus_addr[1])
-                                    1'b0:register_set_data <= {12'b0, d_data[15:0]};
-                                    1'b1:register_set_data <= {12'b0, d_data[23:16]};
+                                    1'b0:register_set_data <= {16'b0, d_data[15:0]};
+                                    1'b1:register_set_data <= {16'b0, d_data[23:16]};
                                 endcase
                                 register_set_code <= micro_register_rt;
                                 micro_done <= 1'b1;
@@ -382,8 +404,8 @@ module ALU(
                             end
                             else if(curr_cnt==8'h2) begin
                                 case(d_bus_addr[1])
-                                    1'b0:register_set_data <= {12'b0, d_data[15:0]};
-                                    1'b1:register_set_data <= {12'b0, d_data[23:16]};
+                                    1'b0:register_set_data <= {16'b0, d_data[15:0]};
+                                    1'b1:register_set_data <= {16'b0, d_data[23:16]};
                                 endcase
                                 register_set_code <= micro_register_rt;
                                 micro_done <= 1'b1;
@@ -411,8 +433,8 @@ module ALU(
                             end
                             else if(curr_cnt==8'h3) begin
                                 case(d_bus_addr[1])
-                                    1'b0:register_set_data <= {12'b0, d_data[15:0]};
-                                    1'b1:register_set_data <= {12'b0, d_data[23:16]};
+                                    1'b0:register_set_data <= {16'b0, d_data[15:0]};
+                                    1'b1:register_set_data <= {16'b0, d_data[23:16]};
                                 endcase
                                 register_set_code <= micro_register_rt;
                                 micro_done <= 1'b1;

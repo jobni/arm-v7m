@@ -4,7 +4,7 @@
 `define MICRO_CODE_BL       2
 `define MICRO_CODE_BLX      3
 `define MICRO_CODE_TBB      4
-`define MICRO_CODE_TBH      5   //未实现
+`define MICRO_CODE_TBH      5
 `define MICRO_CODE_CBNZ_CBZ 6
 `define MICRO_CODE_IT       7
 
