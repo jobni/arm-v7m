@@ -1,17 +1,9 @@
-#include <sys.h>
-#include <assert.h>
-#include "math.h"
 #include "test-ctype.h"
+#include "test-math.h"
 
 #define SOFT_VER 45
 
 char read_str[1024]="15*21=";
-
-struct{
-    unsigned int test1 :4;
-    signed int test2 :8;
-    unsigned int test3:20;
-} status;
 
 uint32_t get_flash_write_addr()
 {
@@ -113,116 +105,6 @@ void scan_calc_f(){
     }
 }
 
-void test_bit_field()
-{
-    uint16_t a;
-    a = 18;
-    a +=4;
-    status.test1 = 5;
-    status.test2 = a;
-    status.test3 = 1;
-    a = status.test1+status.test2;
-    assert(a ==27);
-    printf("test bit field OK\n");
-}
-
-void test_float()
-{
-    static float f_v1=0.123456789;
-    static float f_v2=0.987654321;
-    static float f_v;
-    static float f_c;
-    static char str[50];
-    uint32_t index=0;
-    f_v=f_v1*f_v2;
-    assert(f_v==0.121932633f);
-    printf("test float * OK\n");
-    
-    f_v=f_v1/f_v2;
-    assert(f_v==0.125f);
-    printf("test float / OK\n");
-    
-    f_c=ldexpf(f_v, 25);
-    assert(f_c==4194304.0f);
-    printf("test float ldexpf OK\n");
-    
-    f_c=fmodf(f_v, 0.02314f);
-    assert(f_c==0.0092999991f);
-    printf("test float fmodf OK\n");
-    
-    f_c=asinf(f_v);
-    assert(f_c==0.125327826f);
-    printf("test float asinf OK\n");
-    
-    f_c=acosf(f_v);
-    assert(f_c==1.44546854f);
-    printf("test float acosf OK\n");
-    
-    f_c=tanf(f_v);
-    assert(f_c==0.12565513f);
-    printf("test float tanf OK\n");
-    
-    f_c=expf(f_v);
-    assert(f_c==1.13314843f);
-    printf("test float expf OK\n");
-    
-    f_c=powf(f_v, f_v);
-    assert(f_c==0.771105409f);
-    printf("test float powf OK\n");
-    
-    f_c=sqrtf(f_v);
-    assert(f_c==0.353553385f);
-    printf("test float sqrtf OK\n");
-}
-
-void test_double()
-{
-    static double d_v1=0.5357924682336;
-    static double d_v2=1.23456789987651;
-    static double d_v;
-    static double d_c;
-    static char str[50];
-    d_v=d_v1*d_v2;
-    assert(d_v==0.6614721822768073);
-    printf("test double * OK\n");
-    
-    d_v=d_v1/d_v2;
-    assert(d_v==0.43399189974661884);
-    printf("test double / OK\n");
-    
-    d_c=ldexp(d_v, 25);
-    assert(d_c==14562351.688598739);
-    printf("test float ldexp OK\n");
-    
-    d_c=fmod(d_v, 0.02314f);
-    assert(d_c==0.017471896517239183);
-    printf("test float fmod OK\n");
-    
-    d_c=asin(d_v);
-    assert(d_c==0.44891900322483796);
-    printf("test double asin OK\n");
-    
-    d_c=acos(d_v);
-    assert(d_c==1.1218773235700588);
-    printf("test double acos OK\n");
-    
-    d_c=tan(d_v);
-    assert(d_c==0.46346143984841026);
-    printf("test double tan OK\n");
-    
-    d_c=exp(d_v);
-    assert(d_c==1.543406366083217);
-    printf("test double exp OK\n");
-    
-    d_c=pow(d_v, d_v);
-    assert(d_c==0.6960973191288687);
-    printf("test double powf OK\n");
-    
-    d_c=sqrtf(d_v);
-    assert(d_c==0.6587806344032288);
-    printf("test double sqrtf OK\n");
-}
-
 void check_cpu(){
     volatile uint32_t* cpu_status;
     cpu_status = (uint32_t*)CPU_STATUS;
@@ -251,8 +133,8 @@ int main(void){
     printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
     test_bit_field();
     test_ctype();
-    test_float();
-    test_double();
+    test_math_float();
+    //test_math_double();
     sleep(100);
     index = 0;
     

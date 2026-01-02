@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>2</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -408,6 +408,11 @@
               <FileName>test-ctype.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Users\test-ctype.c</FilePath>
+            </File>
+            <File>
+              <FileName>test-math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Users\test-math.c</FilePath>
             </File>
           </Files>
         </Group>

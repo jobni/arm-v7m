@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <assert.h>
 
 #define SYSTEM_TICK 	        0x40000000
 #define SYSTEM_SIGNAL           0x40000004
