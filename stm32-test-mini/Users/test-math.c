@@ -116,39 +116,83 @@ void test_math_double()
     assert(d_v==0.43399189974661884);
     printf("test double / OK\n");
     
-    d_c=cosh(d_v);
-    assert(d_c==1.095661934921631);
-    printf("test double cosh OK\n");
-    
-    d_c=ldexp(d_v, 25);
-    assert(d_c==14562351.688598739);
-    printf("test double ldexp OK\n");
-    
-    d_c=fmod(d_v, 0.02314f);
-    assert(d_c==0.017471896517239183);
-    printf("test double fmod OK\n");
+    d_c=acos(d_v);
+    assert(d_c==1.1218773235700588);
+    printf("test double acos OK\n");
     
     d_c=asin(d_v);
     assert(d_c==0.44891900322483796);
     printf("test double asin OK\n");
     
-    d_c=acos(d_v);
-    assert(d_c==1.1218773235700588);
-    printf("test double acos OK\n");
+    d_c=atan(d_v);
+    assert(d_c==0.409462148258109);
+    printf("test double atan OK\n");
+    
+    d_c=atan2(d_v,1.2356);
+    assert(d_c==0.3377788930835305);
+    printf("test double atan2 OK\n");
+    
+    d_c=cos(d_v);
+    assert(d_c==0.9072944053491652);
+    printf("test double cos OK\n");
+    
+    d_c=cosh(d_v);
+    assert(d_c==1.095661934921631);
+    printf("test double cosh OK\n");
+    
+    d_c=sin(d_v);
+    assert(d_c==0.42049597146953127);
+    printf("test double sin OK\n");
+    
+    d_c=sinh(d_v);
+    assert(d_c==0.44774443116158597);
+    printf("test double sinh OK\n");
     
     d_c=tan(d_v);
     assert(d_c==0.46346143984841026);
     printf("test double tan OK\n");
     
+    d_c=tanh(d_v);
+    assert(d_c==0.4086519909935647);
+    printf("test double tanh OK\n");
+    
     d_c=exp(d_v);
     assert(d_c==1.543406366083217);
     printf("test double exp OK\n");
+    
+    d_c=ldexp(d_v, 25);
+    assert(d_c==14562351.688598739);
+    printf("test double ldexp OK\n");
+    
+    d_c=log(d_v);
+    assert(d_c==-0.8347294092342077);
+    printf("test double log OK\n");
+    
+    d_c=log10(d_v);
+    assert(d_c==-0.3625183763127777);
+    printf("test double log10 OK\n");
     
     d_c=pow(d_v, d_v);
     assert(d_c==0.6960973191288687);
     printf("test double powf OK\n");
     
-    d_c=sqrtf(d_v);
-    assert(d_c==0.6587806344032288);
-    printf("test double sqrtf OK\n");
+    d_c=sqrt(d_v);
+    assert(d_c==0.658780615794529);
+    printf("test double sqrt OK\n");
+    
+    d_c=ceil(d_v);
+    assert(d_c==1.0);
+    printf("test double ceil OK\n");
+    
+    d_c=fabs(d_v);
+    assert(d_c==0.43399189974661884);
+    printf("test double fabs OK\n");
+    
+    d_c=floor(d_v);
+    assert(d_c==0.0);
+    printf("test double floor OK\n");
+    
+    d_c=fmod(d_v, 0.02314f);
+    assert(d_c==0.017471896517239183);
+    printf("test double fmod OK\n");
 }

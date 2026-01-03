@@ -1,7 +1,7 @@
 #include "test-ctype.h"
 #include "test-math.h"
 
-#define SOFT_VER 45
+#define SOFT_VER 46
 
 char read_str[1024]="15*21=";
 
@@ -133,8 +133,8 @@ int main(void){
     printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
     test_bit_field();
     test_ctype();
-    test_math_float();
-    //test_math_double();
+    //test_math_float();
+    test_math_double();
     sleep(100);
     index = 0;
     
