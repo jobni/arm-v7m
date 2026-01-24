@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -302,7 +302,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x1000</Size>
+                <Size>0x2800</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103x6</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\Drivers\CMSIS\Include;..\..\Users</IncludePath>
+              <IncludePath>..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\Drivers\CMSIS\Include;..\..\Users;..\..\Drivers\CMSIS\CoreValidation\Include;..\..\Drivers\CMSIS\CoreValidation\Source\Config;..\..\Drivers\CMSIS\Core\Include;..\..\Drivers\CMSIS\Core\Include\m-profile</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -413,6 +413,26 @@
               <FileName>test-math.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Users\test-math.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>CV_CoreInstr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\CMSIS\CoreValidation\Source\CV_CoreInstr.c</FilePath>
+            </File>
+            <File>
+              <FileName>CV_CoreFunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\CMSIS\CoreValidation\Source\CV_CoreFunc.c</FilePath>
+            </File>
+            <File>
+              <FileName>CV_Report.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\CMSIS\CoreValidation\Source\CV_Report.c</FilePath>
             </File>
           </Files>
         </Group>

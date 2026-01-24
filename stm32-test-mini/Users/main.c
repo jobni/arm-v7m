@@ -1,7 +1,12 @@
 #include "test-ctype.h"
 #include "test-math.h"
 
-#define SOFT_VER 46
+#include "cmsis_cv.h"
+#include "RTE_Components.h"
+#include "CV_Framework.h"
+#include "CV_Config.h"
+
+#define SOFT_VER 47
 
 char read_str[1024]="15*21=";
 
@@ -125,16 +130,28 @@ void SystemInit (void)
     printf("SystemInit end!\n");
 }
 
+void test_cmsis_func(){
+    TC_CoreFunc_Control();
+    TC_CoreFunc_APSR();
+    TC_CoreFunc_PSP();
+    TC_CoreFunc_MSP();
+}
+
+void (*TST_IRQHandler)(void);
+IRQn_Type Interrupt0_IRQn = EXTI0_IRQn;
+
 int main(void){
     static uint32_t index;
     static uint32_t flash_ver;
     check_cpu();
     flash_ver=get_flash_ver();
     printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
-    test_bit_field();
-    test_ctype();
-    //test_math_float();
-    test_math_double();
+//    test_bit_field();
+//    test_ctype();
+//    test_math_float();
+//    test_math_double();
+    test_cmsis_func();
+    
     sleep(100);
     index = 0;
     
