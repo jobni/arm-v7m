@@ -63,6 +63,8 @@ module ALU(
     output reg [31:0] register_set_data,
     output reg [31:0] psr_set_code,
     output reg [31:0] psr_set_data,
+    output reg [11:0] ext_set_code,
+    output reg [11:0] ext_set_data,
     output reg [15:0] write_register,
     output reg micro_done,
     output reg update_pc,
@@ -92,6 +94,7 @@ module ALU(
     
     wire [31:0] next_align_pc;
     wire [31:0] next_pc;
+    reg handler_mode;
     
     assign next_align_pc = {pc_r15[31:2], 2'b0}+ 32'h4;
     assign next_pc = pc_r15 + 32'h4;
@@ -125,6 +128,8 @@ module ALU(
             register_set_data_hi <= 32'b0;
             psr_set_code <= 32'b0;
             psr_set_data <= 32'b0;
+            ext_set_code <= 12'b0;
+            ext_set_data <= 12'b0;
             write_register <= 16'b0;
             register_index <= 16'b0;
             micro_done <= 1'b0;
@@ -141,11 +146,13 @@ module ALU(
             umult_a <= 32'b0;
             umult_b <= 32'b0;
             alu_error <= 1'b0;
+            handler_mode <= 1'b0;
         end
         else if(micro_en) begin
             micro_done <= 1'b0;
             register_set_code <= 16'b0;
             psr_set_code <= 32'b0;
+            ext_set_code <= 12'b0;
             write_register <= 16'b0;
             write_en <= 1'b0;
             register_index <= 16'b0;
@@ -2201,6 +2208,69 @@ module ALU(
                                 end
                             endcase
                             register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_MSR: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            case (micro_data[7:3])
+                                5'b00000: begin
+                                    if(!micro_data[2]) begin
+                                        if(micro_data[11]) begin
+                                            psr_set_code[31:27] <= 5'b11111;
+                                            psr_set_data[31:27] <= register_rn[31:27];
+                                        end
+                                    end
+                                end
+                                5'b00001: begin
+                                    case (micro_data[2:0])
+                                        3'b000: begin
+                                            register_set_data <= register_rn;
+                                            register_set_code <= 16'b1<<`REGISTER_CODE_SP;
+                                        end
+                                        3'b001: begin
+                                            register_set_data <= register_rn;
+                                            register_set_code <= 16'b1<<`REGISTER_CODE_SP;
+                                        end
+                                    endcase
+                                end
+                                5'b00010: begin
+                                    case (micro_data[2:0])
+                                        3'b000: begin
+                                            ext_set_data[9] <= register_rn[0];
+                                            ext_set_code[9] <= 1'b1;
+                                        end
+                                        3'b001: begin
+                                            ext_set_data[7:0] <= register_rn[7:0];
+                                            ext_set_code[0] <= 1'b1;
+                                        end
+                                        3'b010: begin
+                                            if(register_rn[7:0]!=8'b0 && register_rn[7:0]<base_pri[7:0] || base_pri[7:0]==8'b0) begin
+                                                ext_set_data[7:0] <= register_rn[7:0];
+                                                ext_set_code[0] <= 1'b1;
+                                            end
+                                        end
+                                        3'b011: begin
+                                            ext_set_data[8] <= register_rn[0];
+                                            ext_set_code[8] <= 1'b1;
+                                        end
+                                        3'b100: begin
+                                            ext_set_data[11:10] <= register_rn[1:0];
+                                            ext_set_code[10] <= 1'b1;
+                                            if(!handler_mode) begin
+                                                ext_set_code[11] <= 1'b1;
+                                            end
+                                        end
+                                    endcase
+                                end
+                            endcase
                             micro_done <= 1'b1;
                         end
                     end

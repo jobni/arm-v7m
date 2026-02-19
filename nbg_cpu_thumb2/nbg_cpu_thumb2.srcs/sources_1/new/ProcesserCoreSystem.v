@@ -54,6 +54,8 @@
     wire [31:0] register_set_data;
     wire [31:0] psr_set_code;
     wire [31:0] psr_set_data;
+    wire [11:0] ext_set_code;
+    wire [11:0] ext_set_data;
     wire [95:0] micro_code;
     wire [7:0] micro_type;
     wire [3:0] micro_cond;
@@ -110,6 +112,8 @@
         .register_set_data(register_set_data),
         .psr_set_code(psr_set_code),
         .psr_set_data(psr_set_data),
+        .ext_set_code(ext_set_code),
+        .ext_set_data(ext_set_data),
         .write_register(write_register),
         .micro_thumb32(micro_thumb32),
         .micro_done(micro_done),
@@ -178,6 +182,8 @@
         .register_set_data(register_set_data),
         .psr_set_code(psr_set_code),
         .psr_set_data(psr_set_data),
+        .ext_set_code(ext_set_code),
+        .ext_set_data(ext_set_data),
         .write_register(write_register),
         .micro_done(micro_done),
         .update_pc(update_pc),

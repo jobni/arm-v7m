@@ -30,6 +30,8 @@ module RegisterBank(
     input [31:0] register_set_data,
     input [31:0] psr_set_code,
     input [31:0] psr_set_data,
+    input [11:0] ext_set_code,
+    input [11:0] ext_set_data,
     input [15:0] write_register,
     input micro_thumb32,
     input micro_done,
@@ -390,6 +392,34 @@ module RegisterBank(
             end
             if(psr_set_code[27]) begin
                 psr[27] <= psr_set_data[27];
+            end
+        end
+    end
+    
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)begin
+            pri_mask <= 1'b0;
+            fault_mask <= 1'b0;
+            base_pri <= 8'b0;
+        end
+        else begin
+            pri_mask <= 1'b0;
+            fault_mask <= 1'b0;
+            base_pri <= 8'b0;
+            if(ext_set_code[11]) begin
+                control[1] <= ext_set_data[11];
+            end
+            if(ext_set_code[10]) begin
+                control[0] <= ext_set_data[10];
+            end
+            if(ext_set_code[9]) begin
+                pri_mask <= ext_set_data[9];
+            end
+            if(ext_set_code[8]) begin
+                fault_mask <= ext_set_data[8];
+            end
+            if(ext_set_code[0]) begin
+                base_pri <= ext_set_data[7:0];
             end
         end
     end
