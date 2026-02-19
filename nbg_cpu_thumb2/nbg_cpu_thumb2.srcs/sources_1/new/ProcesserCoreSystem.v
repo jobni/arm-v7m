@@ -38,7 +38,8 @@
     wire [15:0] ir_B;
     wire [31:0] ar;
     wire [31:0] dr;
-    wire [31:0] sp_r13;
+    wire [31:0] sp_main_r13;
+    wire [31:0] sp_process_r13;
     wire [31:0] pc_r15;
     wire [31:0] i_bus_addr;
     wire [31:0] i_data;
@@ -73,7 +74,16 @@
     wire write_en;
     wire [15:0] write_register;
     wire [31:0] write_data;
+    wire apsr_n;
+    wire apsr_z;
     wire apsr_c;
+    wire apsr_v;
+    wire apsr_q;
+    wire [8:0] ipsr;
+    wire pri_mask;
+    wire fault_mask;
+    wire [8:0] base_pri;
+    wire [1:0] control;
     
     assign if_en     = curr_st[`CPU_ST_IF];
     assign decode_en = curr_st[`CPU_ST_DECODE];
@@ -105,7 +115,8 @@
         .micro_done(micro_done),
         .update_pc(update_pc),
         .if_cnt(if_cnt),
-        .sp_r13(sp_r13),
+        .sp_main_r13(sp_main_r13),
+        .sp_process_r13(sp_process_r13),
         .pc_r15(pc_r15),
         .register_rn(register_rn),
         .register_rt(register_rt),
@@ -116,7 +127,12 @@
         .apsr_z(apsr_z),
         .apsr_c(apsr_c),
         .apsr_v(apsr_v),
-        .apsr_q(apsr_q)
+        .apsr_q(apsr_q),
+        .ipsr(ipsr),
+        .pri_mask(pri_mask),
+        .fault_mask(fault_mask),
+        .base_pri(base_pri),
+        .control(contol)
     );
     
     ALU u_alu(
@@ -134,7 +150,8 @@
         .micro_register_rd(micro_register_rd),
         .micro_registers(micro_registers),
         .micro_data(micro_data),
-        .sp_r13(sp_r13),
+        .sp_main_r13(sp_main_r13),
+        .sp_process_r13(sp_process_r13),
         .pc_r15(pc_r15),
         .register_rn(register_rn),
         .register_rt(register_rt),
@@ -151,6 +168,11 @@
         .apsr_c(apsr_c),
         .apsr_v(apsr_v),
         .apsr_q(apsr_q),
+        .ipsr(ipsr),
+        .pri_mask(pri_mask),
+        .fault_mask(fault_mask),
+        .base_pri(base_pri),
+        .control(control),
         .d_bus_addr(d_bus_addr),
         .register_set_code(register_set_code),
         .register_set_data(register_set_data),

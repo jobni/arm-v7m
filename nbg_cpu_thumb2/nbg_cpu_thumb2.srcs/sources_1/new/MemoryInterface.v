@@ -53,7 +53,7 @@ module MemoryInterface(
     wire [12:0] flash_d_addr;
     wire [31:0] flash_d_data;
     
-    wire [9:0] ram_d_addr;
+    wire [11:0] ram_d_addr;
     wire [31:0] ram_d_data;
     
     wire [17:0] system_d_addr;
@@ -69,13 +69,13 @@ module MemoryInterface(
     assign rom_d_addr       = (d_bus_addr[31:16] == 16'h0800) ? d_bus_addr[14:2] : 13'hFFF;
     assign flash_d_addr     = (d_bus_addr[31:16] == 16'h0800) ? d_bus_addr[14:2] : 13'hFFF;
     assign flash_d_write_en = (d_bus_addr[31:16] == 16'h0800) ? write_en : 1'b0;
-    assign ram_d_addr       = (d_bus_addr[31:16] == 16'h2000) ? d_bus_addr[11:2] : 10'h3FF;
+    assign ram_d_addr       = (d_bus_addr[31:16] == 16'h2000) ? d_bus_addr[13:2] : 10'h9FF;
     assign ram_write_en     = (d_bus_addr[31:16] == 16'h2000) ? write_en : 1'b0;
     assign system_d_addr    = (d_bus_addr[31:20] == 12'h400)  ? d_bus_addr[19:2] : 18'h3FFFF;
     assign system_write_en  = (d_bus_addr[31:20] == 12'h400)  ? write_en : 1'b0;
     assign i_data = flash_i_data;
-    assign mem_test1 = i_bus_addr==32'h08001756;
-    assign mem_test2 = d_bus_addr==32'h020008de;
+    assign mem_test1 = i_bus_addr==32'h08000f84;
+    assign mem_test2 = d_bus_addr==32'h20000000;
     
     blk_flash u_blk_flash(
             .clka(clk),

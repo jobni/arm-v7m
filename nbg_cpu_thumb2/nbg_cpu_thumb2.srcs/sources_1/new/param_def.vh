@@ -89,7 +89,9 @@
 `define MICRO_CODE_SXTB     77
 `define MICRO_CODE_SXTH     78  //未实现
 `define MICRO_CODE_UXTB     78
-`define MICRO_CODE_UXTH     80  //未实现
+`define MICRO_CODE_UXTH     79  //未实现
+`define MICRO_CODE_MRS      80
+`define MICRO_CODE_MSR      81
 
 //暂未实现
 `define MICRO_CODE_UDF      100  //未实现
@@ -109,8 +111,6 @@
 `define MICRO_CODE_SSAT     114  //未实现
 `define MICRO_CODE_USAT     115  //未实现
 `define MICRO_CODE_CLREX    116  //未实现
-`define MICRO_CODE_MRS      117  //未实现
-`define MICRO_CODE_MSR      118  //未实现
 `define MICRO_CODE_SEV      119  //未实现
 `define MICRO_CODE_WFE      120  //未实现
 `define MICRO_CODE_WFI      121  //未实现

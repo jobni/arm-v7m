@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/blk_ram_synth_1'
+HD_PWD='C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_ram_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -132,9 +132,13 @@ void SystemInit (void)
 
 void test_cmsis_func(){
     TC_CoreFunc_Control();
+    printf("TC_CoreFunc_Control");
     TC_CoreFunc_APSR();
+    printf("TC_CoreFunc_APSR");
     TC_CoreFunc_PSP();
+    printf("TC_CoreFunc_PSP");
     TC_CoreFunc_MSP();
+    printf("TC_CoreFunc_MSP");
 }
 
 void (*TST_IRQHandler)(void);
@@ -146,6 +150,21 @@ int main(void){
     check_cpu();
     flash_ver=get_flash_ver();
     printf("soft_ver:%u cpu_ver:%u flash_ver:%x\n", SOFT_VER, cpu_ver, flash_ver);
+    __asm volatile(
+        "MOV	 R0, 	#0x0;"
+        "MOV	 R1, 	#0x0;"
+        "MOV	 R2, 	#0x0;"
+        "MOV	 R3, 	#0x0;"
+        "MOV	 R4, 	#0x0;"
+        "MOV	 R5, 	#0x0;"
+        "MOV	 R6, 	#0x0;"
+        "MOV	 R7, 	#0x0;"
+        "MOV	 R8, 	#0x0;"
+        "MOV	 R9,  	#0x0;"
+        "MOV	 R10, 	#0x0;"
+        "MOV	 R11, 	#0x0;"
+        "MOV	 R12, 	#0x0;"
+    );
 //    test_bit_field();
 //    test_ctype();
 //    test_math_float();

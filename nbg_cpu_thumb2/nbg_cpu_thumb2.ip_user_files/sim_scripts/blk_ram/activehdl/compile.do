@@ -19,7 +19,7 @@ vlog -work blk_mem_gen_v8_4_10  -v2k5 -l xpm -l blk_mem_gen_v8_4_10 -l xil_defau
 "../../../ipstatic/simulation/blk_mem_gen_v8_4.v" \
 
 vlog -work xil_defaultlib  -v2k5 -l xpm -l blk_mem_gen_v8_4_10 -l xil_defaultlib \
-"../../../../nbg_cpu_16.gen/sources_1/ip/blk_ram/sim/blk_ram.v" \
+"../../../../nbg_cpu_thumb2.gen/sources_1/ip/blk_ram/sim/blk_ram.v" \
 
 
 vlog -work xil_defaultlib \

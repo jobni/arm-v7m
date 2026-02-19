@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="982.850000 us"></ZoomStartTime>
-      <ZoomEndTime time="2,551.850001 us"></ZoomEndTime>
-      <Cursor1Time time="2,290.350000 us"></Cursor1Time>
+      <ZoomStartTime time="0.050100 us"></ZoomStartTime>
+      <ZoomEndTime time="1,007.050101 us"></ZoomEndTime>
+      <Cursor1Time time="568.050100 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="186"></NameColumnWidth>
-      <ValueColumnWidth column_width="73"></ValueColumnWidth>
+      <ValueColumnWidth column_width="65"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="36" />
+   <WVObjectSize size="39" />
    <wvobject fp_name="/TestBenchCPU/sys_clk" type="logic">
       <obj_property name="ElementShortName">sys_clk</obj_property>
       <obj_property name="ObjectShortName">sys_clk</obj_property>
@@ -97,9 +97,13 @@
       <obj_property name="ElementShortName">r12[31:0]</obj_property>
       <obj_property name="ObjectShortName">r12[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/sp_r13" type="array">
-      <obj_property name="ElementShortName">sp_r13[31:0]</obj_property>
-      <obj_property name="ObjectShortName">sp_r13[31:0]</obj_property>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/sp_main_r13" type="array">
+      <obj_property name="ElementShortName">sp_main_r13[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sp_main_r13[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/sp_process_r13" type="array">
+      <obj_property name="ElementShortName">sp_process_r13[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sp_process_r13[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_register_bank/lr_r14" type="array">
       <obj_property name="ElementShortName">lr_r14[31:0]</obj_property>
@@ -116,6 +120,7 @@
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_instruction_fetch/ir_B" type="array">
       <obj_property name="ElementShortName">ir_B[15:0]</obj_property>
       <obj_property name="ObjectShortName">ir_B[15:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_alu/micro_type" type="array">
       <obj_property name="ElementShortName">micro_type[7:0]</obj_property>
@@ -164,5 +169,13 @@
    <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_alu/micro_index" type="logic">
       <obj_property name="ElementShortName">micro_index</obj_property>
       <obj_property name="ObjectShortName">micro_index</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/u_blk_ram/addra" type="array">
+      <obj_property name="ElementShortName">addra[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBenchCPU/u_processer_core_system/u_memory_interface/u_blk_ram/douta" type="array">
+      <obj_property name="ElementShortName">douta[31:0]</obj_property>
+      <obj_property name="ObjectShortName">douta[31:0]</obj_property>
    </wvobject>
 </wave_config>

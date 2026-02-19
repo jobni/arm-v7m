@@ -35,7 +35,8 @@ module ALU(
     input [15:0] micro_register_rd,
     input [15:0] micro_registers,
     input [31:0] micro_data,
-    input [31:0] sp_r13,
+    input [31:0] sp_main_r13,
+    input [31:0] sp_process_r13,
     input [31:0] pc_r15,
     input [31:0] register_rn,
     input [31:0] register_rt,
@@ -52,6 +53,11 @@ module ALU(
     input apsr_c,
     input apsr_v,
     input apsr_q,
+    input [8:0] ipsr,
+    input pri_mask,
+    input fault_mask,
+    input [8:0] base_pri,
+    input [1:0] control,
     output reg [31:0] d_bus_addr,
     output reg [15:0] register_set_code,
     output reg [31:0] register_set_data,
@@ -1049,7 +1055,7 @@ module ALU(
                 96'b1 << `MICRO_CODE_PUSH: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
-                            d_bus_addr <= sp_r13 - 32'h4;
+                            d_bus_addr <= sp_main_r13 - 32'h4;
                         end 
                         else begin
                             d_bus_addr <= d_bus_addr - 32'h4;
@@ -1140,7 +1146,7 @@ module ALU(
                 96'b1 << `MICRO_CODE_POP: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
-                            d_bus_addr <= sp_r13;
+                            d_bus_addr <= sp_main_r13;
                         end 
                         else begin
                             d_bus_addr <= d_bus_addr + 32'h4;
@@ -2113,18 +2119,89 @@ module ALU(
                     end
                 end
                 96'b1 << `MICRO_CODE_UXTB: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(curr_cnt==8'h0) begin
+                    if(curr_cnt==8'h0) begin
+                        if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                             register_set_data <= ror_c(register_rm, micro_data[4:0]);
                         end
-                        else if(curr_cnt==8'h1) begin
-                            register_set_data <= {24'b0, register_set_data[7:0]};
-                            register_set_code <= micro_register_rd;
+                        else begin
                             micro_done <= 1'b1;
                         end
                     end
-                    else begin
-                        if(curr_cnt==8'h0) begin
+                    else if(curr_cnt==8'h1) begin
+                        register_set_data <= {24'b0, register_set_data[7:0]};
+                        register_set_code <= micro_register_rd;
+                        micro_done <= 1'b1;
+                    end
+                end
+                96'b1 << `MICRO_CODE_MRS: begin
+                    if(curr_cnt==8'h0) begin
+                        if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                            register_set_data <= 32'b0;
+                            case (micro_data[7:3])
+                                5'b00000: begin
+                                    if(micro_data[0]) begin
+                                        register_set_data[8:0] <= ipsr[8:0];
+                                    end
+                                    if(micro_data[1]) begin
+                                        register_set_data[26:24] <= 3'b0;
+                                        register_set_data[15:10] <= 6'b0;
+                                    end
+                                    if(!micro_data[2]) begin
+                                        register_set_data[31:27] <= {apsr_n,apsr_z,apsr_c,apsr_v,apsr_q};
+                                    end
+                                end
+                                5'b00001: begin
+                                    if(current_mode_is_privileged(control)) begin
+                                        case(micro_data[2:0]==3'b0)
+                                            3'b000: register_set_data <= sp_main_r13;
+                                            3'b001: register_set_data <= sp_process_r13;
+                                        endcase
+                                    end
+                                end
+                                5'b00010: begin
+                                    case(micro_data[2:0])
+                                        3'b000:begin
+                                            if(current_mode_is_privileged(control)) begin
+                                                register_set_data[0] <= pri_mask;
+                                            end
+                                            else begin
+                                                register_set_data[0] <= 1'b0;
+                                            end
+                                        end
+                                        3'b001:begin
+                                            if(current_mode_is_privileged(control)) begin
+                                                register_set_data[7:0] <= base_pri[7:0];
+                                            end
+                                            else begin
+                                                register_set_data[7:0] <= 8'b0;
+                                            end
+                                        end
+                                        3'b010:begin
+                                            if(current_mode_is_privileged(control)) begin
+                                                register_set_data[7:0] <= base_pri[7:0];
+                                            end
+                                            else begin
+                                                register_set_data[7:0] <= 8'b0;
+                                            end
+                                        end
+                                        3'b011:begin
+                                            if(current_mode_is_privileged(control)) begin
+                                                register_set_data[0] <= fault_mask;
+                                            end
+                                            else begin
+                                                register_set_data[0] <= 1'b0;
+                                            end
+                                        end
+                                        3'b100:begin
+                                            register_set_data[1:0] = control[1:0];
+                                        end
+                                    endcase
+                                end
+                            endcase
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                        else begin
                             micro_done <= 1'b1;
                         end
                     end
@@ -2132,6 +2209,17 @@ module ALU(
             endcase
         end
     end
+    
+    function current_mode_is_privileged(input [1:0] control);
+        begin
+            if(control[0])begin
+                current_mode_is_privileged = 1'b1;
+            end
+            else begin
+                current_mode_is_privileged = 1'b0;
+            end
+        end
+    endfunction
     
     function [5:0] count_leading_zero_bits(input [31:0] x);
         begin

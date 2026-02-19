@@ -16,7 +16,7 @@ vlog -work blk_mem_gen_v8_4_10  -incr -mfcu  \
 "../../../ipstatic/simulation/blk_mem_gen_v8_4.v" \
 
 vlog -work xil_defaultlib  -incr -mfcu  \
-"../../../../nbg_cpu_16.gen/sources_1/ip/blk_ram/sim/blk_ram.v" \
+"../../../../nbg_cpu_thumb2.gen/sources_1/ip/blk_ram/sim/blk_ram.v" \
 
 
 vlog -work xil_defaultlib \

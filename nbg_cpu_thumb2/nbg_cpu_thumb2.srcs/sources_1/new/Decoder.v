@@ -1436,7 +1436,10 @@ module Decoder(
                         end
                         else if(!ir_B[14] && !ir_B[12] && ir_A[10:5]==6'b011100) begin
                             //MSR
-                            decode_error <= 1'b1;
+                            micro_code[`MICRO_CODE_MSR] <= 1'b1;
+                            micro_register_rn <= convert_4_16(ir_A[3:0]);
+                            micro_data <= ir_B[11:0];
+                            
                         end
                         else if(!ir_B[14] && !ir_B[12] && ir_A[10:4]==7'b0111010) begin
                             //Hint instructions
@@ -1510,8 +1513,10 @@ module Decoder(
                             end
                         end
                         else if(!ir_B[14] && !ir_B[12] && ir_A[10:5]==6'b011111) begin
-                            //MRS
-                            decode_error <= 1'b1;
+                            //MRS T1
+                            micro_code[`MICRO_CODE_MRS] <= 1'b1;
+                            micro_register_rd <= convert_4_16(ir_B[11:8]);
+                            micro_data <= ir_B[7:0];
                         end
                         else if(ir_B[14:12]==3'b010 && ir_A[10:4]==7'b1111111) begin
                             //UDF

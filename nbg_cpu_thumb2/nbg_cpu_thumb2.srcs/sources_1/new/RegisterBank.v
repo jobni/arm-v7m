@@ -35,7 +35,8 @@ module RegisterBank(
     input micro_done,
     input update_pc,
     input [7:0] if_cnt,
-    output reg [31:0] sp_r13,
+    output reg [31:0] sp_main_r13,
+    output reg [31:0] sp_process_r13,
     output reg [31:0] pc_r15,
     output reg [31:0] register_rn,
     output reg [31:0] register_rt,
@@ -46,7 +47,12 @@ module RegisterBank(
     output apsr_z,
     output apsr_c,
     output apsr_v,
-    output apsr_q
+    output apsr_q,
+    output [8:0] ipsr,
+    output reg pri_mask,
+    output reg fault_mask,
+    output reg [8:0] base_pri,
+    output reg [1:0] control
     );
     
     reg [31:0] r0;
@@ -66,6 +72,7 @@ module RegisterBank(
     reg [31:0] psr;
     
     assign {apsr_n, apsr_z, apsr_c, apsr_v, apsr_q} = psr[31:27];
+    assign ipsr = psr[8:0];
     
     always @(*)begin
         case(micro_register_rn)
@@ -82,7 +89,7 @@ module RegisterBank(
             16'b1<<`REGISTER_CODE_R10:register_rn=r10;
             16'b1<<`REGISTER_CODE_R11:register_rn=r11;
             16'b1<<`REGISTER_CODE_R12:register_rn=r12;
-            16'b1<<`REGISTER_CODE_SP:register_rn=sp_r13;
+            16'b1<<`REGISTER_CODE_SP:register_rn=sp_main_r13;
             16'b1<<`REGISTER_CODE_LR:register_rn=lr_r14;
             16'b1<<`REGISTER_CODE_PC:register_rn=pc_r15 + 32'h4;
             default:register_rn=32'b0;
@@ -104,7 +111,7 @@ module RegisterBank(
             16'b1<<`REGISTER_CODE_R10:register_rt=r10;
             16'b1<<`REGISTER_CODE_R11:register_rt=r11;
             16'b1<<`REGISTER_CODE_R12:register_rt=r12;
-            16'b1<<`REGISTER_CODE_SP:register_rt=sp_r13;
+            16'b1<<`REGISTER_CODE_SP:register_rt=sp_main_r13;
             16'b1<<`REGISTER_CODE_LR:register_rt=lr_r14;
             16'b1<<`REGISTER_CODE_PC:register_rt=pc_r15 + 32'h4;
             default:register_rt=32'b0;
@@ -126,7 +133,7 @@ module RegisterBank(
             16'b1<<`REGISTER_CODE_R10:register_rm=r10;
             16'b1<<`REGISTER_CODE_R11:register_rm=r11;
             16'b1<<`REGISTER_CODE_R12:register_rm=r12;
-            16'b1<<`REGISTER_CODE_SP:register_rm=sp_r13;
+            16'b1<<`REGISTER_CODE_SP:register_rm=sp_main_r13;
             16'b1<<`REGISTER_CODE_LR:register_rm=lr_r14;
             16'b1<<`REGISTER_CODE_PC:register_rm=pc_r15 + 32'h4;
             default:register_rm=32'b0;
@@ -148,7 +155,7 @@ module RegisterBank(
             16'b1<<`REGISTER_CODE_R10:register_rd=r10;
             16'b1<<`REGISTER_CODE_R11:register_rd=r11;
             16'b1<<`REGISTER_CODE_R12:register_rd=r12;
-            16'b1<<`REGISTER_CODE_SP:register_rd=sp_r13;
+            16'b1<<`REGISTER_CODE_SP:register_rd=sp_main_r13;
             16'b1<<`REGISTER_CODE_LR:register_rd=lr_r14;
             16'b1<<`REGISTER_CODE_PC:register_rd=pc_r15 + 32'h4;
             default:register_rd=32'b0;
@@ -170,7 +177,7 @@ module RegisterBank(
             16'b1<<`REGISTER_CODE_R10:write_data=r10;
             16'b1<<`REGISTER_CODE_R11:write_data=r11;
             16'b1<<`REGISTER_CODE_R12:write_data=r12;
-            16'b1<<`REGISTER_CODE_SP:write_data=sp_r13;
+            16'b1<<`REGISTER_CODE_SP:write_data=sp_main_r13;
             16'b1<<`REGISTER_CODE_LR:write_data=lr_r14;
             16'b1<<`REGISTER_CODE_PC:write_data=pc_r15 + 32'h4;
             default:write_data=register_set_data;
@@ -322,11 +329,13 @@ module RegisterBank(
     
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n)begin
-            sp_r13 <= 32'b0;
+            sp_main_r13 <= 32'b0;
+            sp_process_r13 <= 32'b0;
         end
         else begin
             if(register_set_code[`REGISTER_CODE_SP]) begin
-                sp_r13 <= register_set_data;
+                sp_main_r13 <= register_set_data;
+                sp_process_r13 <= register_set_data;
             end
         end
     end
