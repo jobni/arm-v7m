@@ -2119,23 +2119,25 @@ module ALU(
                     end
                 end
                 96'b1 << `MICRO_CODE_UXTB: begin
-                    if(curr_cnt==8'h0) begin
-                        if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
                             register_set_data <= ror_c(register_rm, micro_data[4:0]);
                         end
-                        else begin
+                        else if(curr_cnt==8'h1) begin
+                            register_set_data <= {24'b0, register_set_data[7:0]};
+                            register_set_code <= micro_register_rd;
                             micro_done <= 1'b1;
                         end
                     end
-                    else if(curr_cnt==8'h1) begin
-                        register_set_data <= {24'b0, register_set_data[7:0]};
-                        register_set_code <= micro_register_rd;
-                        micro_done <= 1'b1;
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
                     end
                 end
                 96'b1 << `MICRO_CODE_MRS: begin
-                    if(curr_cnt==8'h0) begin
-                        if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
                             register_set_data <= 32'b0;
                             case (micro_data[7:3])
                                 5'b00000: begin
@@ -2201,7 +2203,9 @@ module ALU(
                             register_set_code <= micro_register_rd;
                             micro_done <= 1'b1;
                         end
-                        else begin
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
                             micro_done <= 1'b1;
                         end
                     end
