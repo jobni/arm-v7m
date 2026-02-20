@@ -1506,7 +1506,8 @@ module Decoder(
                             end
                             else if(ir_B[7:4]==4'b0110) begin
                                 //ISB
-                                decode_error <= 1'b1;
+                                micro_code[`MICRO_CODE_ISB] <= 1'b1;
+                                micro_data[3:0] <= ir_B[3:0];
                             end
                             else begin
                                 decode_error <= 1'b1;

@@ -2160,8 +2160,8 @@ module ALU(
                                     end
                                 end
                                 5'b00001: begin
-                                    if(current_mode_is_privileged(control)) begin
-                                        case(micro_data[2:0]==3'b0)
+                                    if(current_mode_is_privileged(handler_mode, control)) begin
+                                        case(micro_data[2:0])
                                             3'b000: register_set_data <= sp_main_r13;
                                             3'b001: register_set_data <= sp_process_r13;
                                         endcase
@@ -2170,7 +2170,7 @@ module ALU(
                                 5'b00010: begin
                                     case(micro_data[2:0])
                                         3'b000:begin
-                                            if(current_mode_is_privileged(control)) begin
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
                                                 register_set_data[0] <= pri_mask;
                                             end
                                             else begin
@@ -2178,7 +2178,7 @@ module ALU(
                                             end
                                         end
                                         3'b001:begin
-                                            if(current_mode_is_privileged(control)) begin
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
                                                 register_set_data[7:0] <= base_pri[7:0];
                                             end
                                             else begin
@@ -2186,7 +2186,7 @@ module ALU(
                                             end
                                         end
                                         3'b010:begin
-                                            if(current_mode_is_privileged(control)) begin
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
                                                 register_set_data[7:0] <= base_pri[7:0];
                                             end
                                             else begin
@@ -2194,7 +2194,7 @@ module ALU(
                                             end
                                         end
                                         3'b011:begin
-                                            if(current_mode_is_privileged(control)) begin
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
                                                 register_set_data[0] <= fault_mask;
                                             end
                                             else begin
@@ -2230,42 +2230,55 @@ module ALU(
                                     end
                                 end
                                 5'b00001: begin
-                                    case (micro_data[2:0])
-                                        3'b000: begin
-                                            register_set_data <= register_rn;
-                                            register_set_code <= 16'b1<<`REGISTER_CODE_SP;
-                                        end
-                                        3'b001: begin
-                                            register_set_data <= register_rn;
-                                            register_set_code <= 16'b1<<`REGISTER_CODE_SP;
-                                        end
-                                    endcase
+                                    if(current_mode_is_privileged(handler_mode, control)) begin
+                                        case (micro_data[2:0])
+                                            3'b000: begin
+                                                register_set_data <= register_rn;
+                                                register_set_code <= 16'b1<<`REGISTER_CODE_SP;
+                                            end
+                                            3'b001: begin
+                                                register_set_data <= register_rn;
+                                                register_set_code <= 16'b1<<`REGISTER_CODE_SP;
+                                            end
+                                        endcase
+                                    end
                                 end
                                 5'b00010: begin
                                     case (micro_data[2:0])
                                         3'b000: begin
-                                            ext_set_data[9] <= register_rn[0];
-                                            ext_set_code[9] <= 1'b1;
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
+                                                ext_set_data[9] <= register_rn[0];
+                                                ext_set_code[9] <= 1'b1;
+                                            end
                                         end
                                         3'b001: begin
-                                            ext_set_data[7:0] <= register_rn[7:0];
-                                            ext_set_code[0] <= 1'b1;
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
+                                                ext_set_data[7:0] <= register_rn[7:0];
+                                                ext_set_code[0] <= 1'b1;
+                                            end
                                         end
                                         3'b010: begin
-                                            if(register_rn[7:0]!=8'b0 && register_rn[7:0]<base_pri[7:0] || base_pri[7:0]==8'b0) begin
+                                            if(current_mode_is_privileged(handler_mode, control)
+                                                &&register_rn[7:0]!=8'b0
+                                                &&register_rn[7:0]<base_pri[7:0]
+                                                ||base_pri[7:0]==8'b0) begin
                                                 ext_set_data[7:0] <= register_rn[7:0];
                                                 ext_set_code[0] <= 1'b1;
                                             end
                                         end
                                         3'b011: begin
-                                            ext_set_data[8] <= register_rn[0];
-                                            ext_set_code[8] <= 1'b1;
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
+                                                ext_set_data[8] <= register_rn[0];
+                                                ext_set_code[8] <= 1'b1;
+                                            end
                                         end
                                         3'b100: begin
-                                            ext_set_data[11:10] <= register_rn[1:0];
-                                            ext_set_code[10] <= 1'b1;
-                                            if(!handler_mode) begin
-                                                ext_set_code[11] <= 1'b1;
+                                            if(current_mode_is_privileged(handler_mode, control)) begin
+                                                ext_set_data[11:10] <= register_rn[1:0];
+                                                ext_set_code[10] <= 1'b1;
+                                                if(!handler_mode) begin
+                                                    ext_set_code[11] <= 1'b1;
+                                                end
                                             end
                                         end
                                     endcase
@@ -2280,17 +2293,35 @@ module ALU(
                         end
                     end
                 end
+                96'b1 << `MICRO_CODE_ISB: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            //未加缓存，暂时无需实现
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
             endcase
         end
     end
     
-    function current_mode_is_privileged(input [1:0] control);
+    function current_mode_is_privileged(input handler_mode, input [1:0] control);
         begin
-            if(control[0])begin
+            if(handler_mode) begin
                 current_mode_is_privileged = 1'b1;
             end
             else begin
-                current_mode_is_privileged = 1'b0;
+                if(control[0])begin
+                    current_mode_is_privileged = 1'b0;
+                end
+                else begin
+                    current_mode_is_privileged = 1'b1;
+                end
             end
         end
     endfunction

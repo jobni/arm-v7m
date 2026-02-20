@@ -92,6 +92,7 @@
 `define MICRO_CODE_UXTH     79  //未实现
 `define MICRO_CODE_MRS      80
 `define MICRO_CODE_MSR      81
+`define MICRO_CODE_ISB      82
 
 //暂未实现
 `define MICRO_CODE_UDF      100  //未实现
@@ -114,7 +115,6 @@
 `define MICRO_CODE_SEV      119  //未实现
 `define MICRO_CODE_WFE      120  //未实现
 `define MICRO_CODE_WFI      121  //未实现
-`define MICRO_CODE_ISB      122  //未实现
 `define MICRO_CODE_DSB      123  //未实现
 `define MICRO_CODE_DMB      124  //未实现
 `define MICRO_CODE_CDP      125  //未实现

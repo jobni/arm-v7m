@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 56160 (0x0000db60)
-    Section header offset: 56192 (0x0000db80)
+    Program header offset: 56148 (0x0000db54)
+    Section header offset: 56180 (0x0000db74)
 
     Section header string table index: 15
 
@@ -2028,7 +2028,7 @@
         0x080011ec:    700a        .p      STRB     r2,[r1,#0]
         0x080011ee:    6803        .h      LDR      r3,[r0,#0]
         0x080011f0:    a013        ..      ADR      r0,{pc}+0x50 ; 0x8001240
-        0x080011f2:    212f        /!      MOVS     r1,#0x2f
+        0x080011f2:    2130        0!      MOVS     r1,#0x30
         0x080011f4:    f7fff834    ..4.    BL       __2printf ; 0x8000260
         0x080011f8:    f04f0000    O...    MOV      r0,#0
         0x080011fc:    f04f0100    O...    MOV      r1,#0
@@ -2100,17 +2100,17 @@
         0x080012d0:    b580        ..      PUSH     {r7,lr}
         0x080012d2:    f7fffe35    ..5.    BL       TC_CoreFunc_Control ; 0x8000f40
         0x080012d6:    a00a        ..      ADR      r0,{pc}+0x2a ; 0x8001300
-        0x080012d8:    f7feffc2    ....    BL       __2printf ; 0x8000260
+        0x080012d8:    f7fff894    ....    BL       puts ; 0x8000404
         0x080012dc:    f7fffdae    ....    BL       TC_CoreFunc_APSR ; 0x8000e3c
         0x080012e0:    a00c        ..      ADR      r0,{pc}+0x34 ; 0x8001314
-        0x080012e2:    f7feffbd    ....    BL       __2printf ; 0x8000260
+        0x080012e2:    f7fff88f    ....    BL       puts ; 0x8000404
         0x080012e6:    f7fffec5    ....    BL       TC_CoreFunc_PSP ; 0x8001074
         0x080012ea:    a00f        ..      ADR      r0,{pc}+0x3e ; 0x8001328
-        0x080012ec:    f7feffb8    ....    BL       __2printf ; 0x8000260
+        0x080012ec:    f7fff88a    ....    BL       puts ; 0x8000404
         0x080012f0:    f7fffe7c    ..|.    BL       TC_CoreFunc_MSP ; 0x8000fec
         0x080012f4:    a010        ..      ADR      r0,{pc}+0x44 ; 0x8001338
         0x080012f6:    e8bd4080    ...@    POP      {r7,lr}
-        0x080012fa:    f7febfb1    ....    B        __2printf ; 0x8000260
+        0x080012fa:    f7ffb883    ....    B        puts ; 0x8000404
         0x080012fe:    bf00        ..      NOP      
     $d.18
         0x08001300:    435f4354    TC_C    DCD    1130316628
@@ -2868,7 +2868,7 @@
 
 
 ** Section #6 '.debug_info' (SHT_PROGBITS)
-    Size   : 9865 bytes
+    Size   : 9853 bytes
 
 
 ** Section #7 '.debug_line' (SHT_PROGBITS)
@@ -2991,18 +2991,6 @@ address     size       variable name                            type
 
 address     size       variable name                            type
 0x08001240  0x25                                                array[37] of char
-
-address     size       variable name                            type
-0x08001338  0x10                                                array[16] of char
-
-address     size       variable name                            type
-0x08001328  0x10                                                array[16] of char
-
-address     size       variable name                            type
-0x08001314  0x11                                                array[17] of char
-
-address     size       variable name                            type
-0x08001300  0x14                                                array[20] of char
 
 address     size       variable name                            type
 0x00000000  0x19                                                array[25] of char

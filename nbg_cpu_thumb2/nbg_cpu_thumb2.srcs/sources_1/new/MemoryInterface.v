@@ -74,7 +74,7 @@ module MemoryInterface(
     assign system_d_addr    = (d_bus_addr[31:20] == 12'h400)  ? d_bus_addr[19:2] : 18'h3FFFF;
     assign system_write_en  = (d_bus_addr[31:20] == 12'h400)  ? write_en : 1'b0;
     assign i_data = flash_i_data;
-    assign mem_test1 = i_bus_addr==32'h08000f84;
+    assign mem_test1 = i_bus_addr==32'h08000f8c;
     assign mem_test2 = d_bus_addr==32'h20000000;
     
     blk_flash u_blk_flash(

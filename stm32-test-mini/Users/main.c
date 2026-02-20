@@ -6,7 +6,7 @@
 #include "CV_Framework.h"
 #include "CV_Config.h"
 
-#define SOFT_VER 47
+#define SOFT_VER 48
 
 char read_str[1024]="15*21=";
 
@@ -132,13 +132,13 @@ void SystemInit (void)
 
 void test_cmsis_func(){
     TC_CoreFunc_Control();
-    printf("TC_CoreFunc_Control");
+    printf("TC_CoreFunc_Control\n");
     TC_CoreFunc_APSR();
-    printf("TC_CoreFunc_APSR");
+    printf("TC_CoreFunc_APSR\n");
     TC_CoreFunc_PSP();
-    printf("TC_CoreFunc_PSP");
+    printf("TC_CoreFunc_PSP\n");
     TC_CoreFunc_MSP();
-    printf("TC_CoreFunc_MSP");
+    printf("TC_CoreFunc_MSP\n");
 }
 
 void (*TST_IRQHandler)(void);
