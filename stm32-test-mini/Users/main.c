@@ -6,7 +6,7 @@
 #include "CV_Framework.h"
 #include "CV_Config.h"
 
-#define SOFT_VER 48
+#define SOFT_VER 51
 
 char read_str[1024]="15*21=";
 
@@ -129,8 +129,24 @@ void SystemInit (void)
     check_cpu();
     printf("SystemInit end!\n");
 }
+void test_smsis_cotext(){
+    TC_CoreInstr_NOP();
+    printf("TC_CoreInstr_NOP\n");
+    TC_CoreInstr_ISB();
+    printf("TC_CoreInstr_ISB\n");
+    TC_CoreInstr_DSB();
+    printf("TC_CoreInstr_DSB\n");
+    TC_CoreInstr_DMB();
+    printf("TC_CoreInstr_DMB\n");
+    TC_CoreInstr_REV();
+    printf("TC_CoreInstr_REV\n");
+    TC_CoreInstr_REV16();
+    printf("TC_CoreInstr_REV16\n");
+    TC_CoreInstr_REVSH();
+    printf("TC_CoreInstr_REVSH\n");
+}
 
-void test_cmsis_func(){
+void test_cmsis_cotext_m(){
     TC_CoreFunc_Control();
     printf("TC_CoreFunc_Control\n");
     TC_CoreFunc_APSR();
@@ -139,7 +155,29 @@ void test_cmsis_func(){
     printf("TC_CoreFunc_PSP\n");
     TC_CoreFunc_MSP();
     printf("TC_CoreFunc_MSP\n");
+    TC_CoreFunc_PSPLIM();
+    printf("TC_CoreFunc_PSPLIM\n");
+    TC_CoreFunc_PSPLIM_NS();
+    printf("TC_CoreFunc_PSPLIM_NS\n");
+    TC_CoreFunc_MSPLIM();
+    printf("TC_CoreFunc_MSPLIM\n");
+    TC_CoreFunc_MSPLIM_NS();
+    printf("TC_CoreFunc_MSPLIM_NS\n");
 }
+
+void test_cmsis_cotext_m_nvic(){
+    TC_CoreFunc_EnDisIRQ();
+    TC_CoreFunc_IRQPrio();
+    TC_CoreFunc_EncDecIRQPrio();
+    TC_CoreFunc_IRQVect();
+    TC_CoreFunc_IPSR();
+    TC_CoreFunc_PRIMASK();
+    TC_CoreFunc_FAULTMASK();
+    TC_CoreFunc_BASEPRI();
+    TC_CoreFunc_FPUType();
+    TC_CoreFunc_FPSCR();
+}
+
 
 void (*TST_IRQHandler)(void);
 IRQn_Type Interrupt0_IRQn = EXTI0_IRQn;
@@ -169,7 +207,7 @@ int main(void){
 //    test_ctype();
 //    test_math_float();
 //    test_math_double();
-    test_cmsis_func();
+    test_smsis_cotext();
     
     sleep(100);
     index = 0;

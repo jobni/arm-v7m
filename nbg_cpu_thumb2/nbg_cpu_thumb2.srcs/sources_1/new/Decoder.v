@@ -1487,22 +1487,14 @@ module Decoder(
                                 decode_error <= 1'b1;
                             end
                             else if(ir_B[7:4]==4'b0100) begin
-                                if(ir_B[3:0]==4'b0000) begin
-                                    //SSBB
-                                    decode_error <= 1'b1;
-                                end
-                                else if(ir_B[3:0]==4'b0100) begin
-                                    //PSSBB
-                                    decode_error <= 1'b1;
-                                end
-                                else begin
-                                    //CLREX
-                                    decode_error <= 1'b1;
-                                end
+                                //DMB
+                                micro_code[`MICRO_CODE_DSB] <= 1'b1;
+                                micro_data[3:0] <= ir_B[3:0];
                             end
                             else if(ir_B[7:4]==4'b0101) begin
                                 //DMB
-                                decode_error <= 1'b1;
+                                micro_code[`MICRO_CODE_DMB] <= 1'b1;
+                                micro_data[3:0] <= ir_B[3:0];
                             end
                             else if(ir_B[7:4]==4'b0110) begin
                                 //ISB

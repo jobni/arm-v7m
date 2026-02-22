@@ -93,44 +93,42 @@
 `define MICRO_CODE_MRS      80
 `define MICRO_CODE_MSR      81
 `define MICRO_CODE_ISB      82
+`define MICRO_CODE_DSB      83
+`define MICRO_CODE_DMB      84
+`define MICRO_CODE_REV      85  //未实现
+`define MICRO_CODE_REV16    86  //未实现
+`define MICRO_CODE_REVH     87  //未实现
+`define MICRO_CODE_REVSG    88  //未实现
+`define MICRO_CODE_REVSH    89  //未实现
+`define MICRO_CODE_CLREX    90  //未实现
+`define MICRO_CODE_UDF      91  //未实现
+`define MICRO_CODE_CPY      92  //未实现
+`define MICRO_CODE_NEG      93  //未实现
+`define MICRO_CODE_SVC      94  //未实现
+`define MICRO_CODE_SFBX     95  //未实现
+`define MICRO_CODE_SMLAL    96  //未实现
+`define MICRO_CODE_SMULL    97  //未实现
+`define MICRO_CODE_SSAT     98  //未实现
+`define MICRO_CODE_USAT     99  //未实现
 
-//暂未实现
-`define MICRO_CODE_UDF      100  //未实现
-`define MICRO_CODE_CPY      101  //未实现
-`define MICRO_CODE_NEG      102  //未实现
-`define MICRO_CODE_REV      103  //未实现
-`define MICRO_CODE_REV16    104  //未实现
-`define MICRO_CODE_REVH     105  //未实现
-`define MICRO_CODE_REVSG    106  //未实现
-`define MICRO_CODE_REVSH    107  //未实现
-`define MICRO_CODE_SVC      108  //未实现
-`define MICRO_CODE_DKPT     109  //未实现
-`define MICRO_CODE_CPS      110  //未实现
-`define MICRO_CODE_SFBX     111  //未实现
-`define MICRO_CODE_SMLAL    112  //未实现
-`define MICRO_CODE_SMULL    113  //未实现
-`define MICRO_CODE_SSAT     114  //未实现
-`define MICRO_CODE_USAT     115  //未实现
-`define MICRO_CODE_CLREX    116  //未实现
-`define MICRO_CODE_SEV      119  //未实现
-`define MICRO_CODE_WFE      120  //未实现
-`define MICRO_CODE_WFI      121  //未实现
-`define MICRO_CODE_DSB      123  //未实现
-`define MICRO_CODE_DMB      124  //未实现
-`define MICRO_CODE_CDP      125  //未实现
-`define MICRO_CODE_DBG      126  //未实现
-`define MICRO_CODE_LDC      127  //未实现
-`define MICRO_CODE_MCR      128  //未实现
-`define MICRO_CODE_MCRR     129  //未实现
-`define MICRO_CODE_MRC      130  //未实现
-`define MICRO_CODE_MRRC     131  //未实现
-`define MICRO_CODE_PLD      132  //未实现
-`define MICRO_CODE_PLI      133  //未实现
-`define MICRO_CODE_STC      134  //未实现
-`define MICRO_CODE_YIELD    135  //未实现
-`define MICRO_CODE_BKPT     136  //未实现
-
+//不准备实现，大多和协处理器多核同步，低功耗有关
 //包含CDP2、LDC2、MCR2、MCRR2、MRC2、MRRC2、STC2
+`define MICRO_CODE_SEV      100  //未实现
+`define MICRO_CODE_WFE      101  //未实现
+`define MICRO_CODE_WFI      102  //未实现
+`define MICRO_CODE_BKPT     103  //未实现
+`define MICRO_CODE_STC      104  //未实现
+`define MICRO_CODE_DBG      105  //未实现
+`define MICRO_CODE_PLD      106  //未实现
+`define MICRO_CODE_PLI      107  //未实现
+`define MICRO_CODE_YIELD    108  //未实现
+`define MICRO_CODE_LDC      109  //未实现
+`define MICRO_CODE_MCR      110  //未实现
+`define MICRO_CODE_MCRR     111  //未实现
+`define MICRO_CODE_MRC      112  //未实现
+`define MICRO_CODE_MRRC     113  //未实现
+`define MICRO_CODE_CPS      114  //未实现
+`define MICRO_CODE_CDP      115  //未实现
 
 `define MICRO_TYPE_LITERAL      0
 `define MICRO_TYPE_IMMEDIATE    1
