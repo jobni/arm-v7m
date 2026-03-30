@@ -270,6 +270,7 @@ Section Cross References
     main.o(.text.test_smsis_cotext) refers (Special) to printf1.o(x$fpl$printf1) for _printf_fp_dec
     main.o(.text.test_smsis_cotext) refers (Special) to _printf_str.o(.text) for _printf_str
     main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_NOP) for TC_CoreInstr_NOP
+    main.o(.text.test_smsis_cotext) refers to main.o(.rodata.str1.1) for .Lstr.48
     main.o(.text.test_smsis_cotext) refers to puts.o(.text) for puts
     main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_ISB) for TC_CoreInstr_ISB
     main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_DSB) for TC_CoreInstr_DSB
@@ -277,6 +278,12 @@ Section Cross References
     main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_REV) for TC_CoreInstr_REV
     main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_REV16) for TC_CoreInstr_REV16
     main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_REVSH) for TC_CoreInstr_REVSH
+    main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_ROR) for TC_CoreInstr_ROR
+    main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_RBIT) for TC_CoreInstr_RBIT
+    main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_CLZ) for TC_CoreInstr_CLZ
+    main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_SSAT) for TC_CoreInstr_SSAT
+    main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_USAT) for TC_CoreInstr_USAT
+    main.o(.text.test_smsis_cotext) refers to cv_coreinstr.o(.text.TC_CoreInstr_RRX) for TC_CoreInstr_RRX
     main.o(.ARM.exidx.text.test_smsis_cotext) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(.ARM.exidx.text.test_smsis_cotext) refers (Special) to _printf_c.o(.ARM.Collect$$_printf_percent$$00000013) for _printf_c
     main.o(.ARM.exidx.text.test_smsis_cotext) refers (Special) to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
@@ -301,7 +308,7 @@ Section Cross References
     main.o(.text.test_cmsis_cotext_m) refers (Special) to printf1.o(x$fpl$printf1) for _printf_fp_dec
     main.o(.text.test_cmsis_cotext_m) refers (Special) to _printf_str.o(.text) for _printf_str
     main.o(.text.test_cmsis_cotext_m) refers to cv_corefunc.o(.text.TC_CoreFunc_Control) for TC_CoreFunc_Control
-    main.o(.text.test_cmsis_cotext_m) refers to main.o(.rodata.str1.1) for .Lstr.49
+    main.o(.text.test_cmsis_cotext_m) refers to main.o(.rodata.str1.1) for .Lstr.61
     main.o(.text.test_cmsis_cotext_m) refers to puts.o(.text) for puts
     main.o(.text.test_cmsis_cotext_m) refers to cv_corefunc.o(.text.TC_CoreFunc_APSR) for TC_CoreFunc_APSR
     main.o(.text.test_cmsis_cotext_m) refers to cv_corefunc.o(.text.TC_CoreFunc_PSP) for TC_CoreFunc_PSP
@@ -1805,7 +1812,6 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.test_cmsis_cotext_m_nvic), (8 bytes).
     Removing main.o(.ARM.exidx.text.main), (8 bytes).
     Removing main.o(.data.read_str), (1024 bytes).
-    Removing main.o(.rodata.str1.1), (23 bytes).
     Removing main.o(.data.Interrupt0_IRQn), (1 bytes).
     Removing main.o(.bss.TST_IRQHandler), (4 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
@@ -1854,17 +1860,11 @@ Removing Unused input sections from the image.
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_REV), (8 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_REV16), (8 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_REVSH), (8 bytes).
-    Removing cv_coreinstr.o(.text.TC_CoreInstr_RBIT), (154 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_RBIT), (8 bytes).
-    Removing cv_coreinstr.o(.text.TC_CoreInstr_ROR), (148 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_ROR), (8 bytes).
-    Removing cv_coreinstr.o(.text.TC_CoreInstr_CLZ), (164 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_CLZ), (8 bytes).
-    Removing cv_coreinstr.o(.text.TC_CoreInstr_SSAT), (252 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_SSAT), (8 bytes).
-    Removing cv_coreinstr.o(.text.TC_CoreInstr_USAT), (240 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_USAT), (8 bytes).
-    Removing cv_coreinstr.o(.text.TC_CoreInstr_RRX), (74 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_RRX), (8 bytes).
     Removing cv_coreinstr.o(.text.TC_CoreInstr_LoadStoreExclusive), (884 bytes).
     Removing cv_coreinstr.o(.ARM.exidx.text.TC_CoreInstr_LoadStoreExclusive), (8 bytes).
@@ -1960,7 +1960,7 @@ Removing Unused input sections from the image.
     Removing cv_report.o(.ARM.exidx.text.__assert_true), (8 bytes).
     Removing cv_report.o(.data.ritf), (20 bytes).
 
-178 unused section(s) (total 14168 bytes) removed from the image.
+171 unused section(s) (total 13113 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2307,48 +2307,63 @@ Image Symbol Table
     As_File_Result                           0x08000d9d   Thumb Code    84  cv_report.o(.text.As_File_Result)
     [Anonymous Symbol]                       0x08000d9c   Section        0  cv_report.o(.text.As_File_Result)
     [Anonymous Symbol]                       0x08000df0   Section        0  main.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000e3c   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_DMB)
-    [Anonymous Symbol]                       0x08000e54   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_DSB)
-    [Anonymous Symbol]                       0x08000e6c   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_ISB)
-    [Anonymous Symbol]                       0x08000e84   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_NOP)
-    [Anonymous Symbol]                       0x08000e98   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_REV)
-    [Anonymous Symbol]                       0x08000f14   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_REV16)
-    [Anonymous Symbol]                       0x08000f78   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_REVSH)
-    [Anonymous Symbol]                       0x08001004   Section        0  cv_report.o(.text.__assert_true)
-    [Anonymous Symbol]                       0x08001060   Section        0  sys.o(.text._sys_exit)
-    [Anonymous Symbol]                       0x08001064   Section        0  sys.o(.text._ttywrch)
-    [Anonymous Symbol]                       0x080010a0   Section        0  sys.o(.text.fputc)
-    [Anonymous Symbol]                       0x080010dc   Section        0  sys.o(.text.get_system_time)
-    [Anonymous Symbol]                       0x08001100   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x080011bc   Section        0  main.o(.text.sleep)
-    [Anonymous Symbol]                       0x08001208   Section        0  main.o(.text.test_smsis_cotext)
-    CL$$btod_d2e                             0x080012e0   Section       62  btod.o(CL$$btod_d2e)
-    CL$$btod_d2e_denorm_low                  0x0800131e   Section       70  btod.o(CL$$btod_d2e_denorm_low)
-    CL$$btod_d2e_norm_op1                    0x08001364   Section       96  btod.o(CL$$btod_d2e_norm_op1)
-    CL$$btod_div_common                      0x080013c4   Section      824  btod.o(CL$$btod_div_common)
-    CL$$btod_e2e                             0x080016fc   Section      220  btod.o(CL$$btod_e2e)
-    CL$$btod_ediv                            0x080017d8   Section       42  btod.o(CL$$btod_ediv)
-    CL$$btod_emul                            0x08001802   Section       42  btod.o(CL$$btod_emul)
-    CL$$btod_mult_common                     0x0800182c   Section      580  btod.o(CL$$btod_mult_common)
-    i.__ARM_fpclassify                       0x08001a70   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    locale$$code                             0x08001a98   Section       44  lc_numeric_c.o(locale$$code)
-    x$fpl$printf1                            0x08001ac4   Section        4  printf1.o(x$fpl$printf1)
-    uc_hextab                                0x08001ac8   Data          20  _printf_hex_int.o(.constdata)
-    .constdata                               0x08001ac8   Section       40  _printf_hex_int.o(.constdata)
-    x$fpl$usenofp                            0x08001ac8   Section        0  usenofp.o(x$fpl$usenofp)
-    lc_hextab                                0x08001adc   Data          20  _printf_hex_int.o(.constdata)
-    tenpwrs_x                                0x08001af0   Data          60  bigflt0.o(.constdata)
-    .constdata                               0x08001af0   Section      148  bigflt0.o(.constdata)
-    tenpwrs_i                                0x08001b2c   Data          64  bigflt0.o(.constdata)
-    .L.str                                   0x08001b84   Data          57  cv_coreinstr.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08001b84   Section        0  cv_coreinstr.o(.rodata.str1.1)
-    locale$$data                             0x08001be0   Section       28  lc_numeric_c.o(locale$$data)
-    __lcnum_c_name                           0x08001be4   Data           2  lc_numeric_c.o(locale$$data)
-    __lcnum_c_start                          0x08001bec   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_point                          0x08001bf8   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_thousands                      0x08001bfa   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_grouping                       0x08001bfb   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_end                            0x08001bfc   Data           0  lc_numeric_c.o(locale$$data)
+    [Anonymous Symbol]                       0x08000e3c   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_CLZ)
+    [Anonymous Symbol]                       0x08000ee0   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_DMB)
+    [Anonymous Symbol]                       0x08000ef8   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_DSB)
+    [Anonymous Symbol]                       0x08000f10   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_ISB)
+    [Anonymous Symbol]                       0x08000f28   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_NOP)
+    [Anonymous Symbol]                       0x08000f3c   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_RBIT)
+    [Anonymous Symbol]                       0x08000fd8   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_REV)
+    [Anonymous Symbol]                       0x08001054   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_REV16)
+    [Anonymous Symbol]                       0x080010b8   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_REVSH)
+    [Anonymous Symbol]                       0x08001144   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_ROR)
+    [Anonymous Symbol]                       0x080011d8   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_RRX)
+    [Anonymous Symbol]                       0x08001224   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_SSAT)
+    [Anonymous Symbol]                       0x08001320   Section        0  cv_coreinstr.o(.text.TC_CoreInstr_USAT)
+    [Anonymous Symbol]                       0x08001410   Section        0  cv_report.o(.text.__assert_true)
+    [Anonymous Symbol]                       0x0800146c   Section        0  sys.o(.text._sys_exit)
+    [Anonymous Symbol]                       0x08001470   Section        0  sys.o(.text._ttywrch)
+    [Anonymous Symbol]                       0x080014ac   Section        0  sys.o(.text.fputc)
+    [Anonymous Symbol]                       0x080014e8   Section        0  sys.o(.text.get_system_time)
+    [Anonymous Symbol]                       0x0800150c   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x080015c8   Section        0  main.o(.text.sleep)
+    [Anonymous Symbol]                       0x08001614   Section        0  main.o(.text.test_smsis_cotext)
+    CL$$btod_d2e                             0x0800174c   Section       62  btod.o(CL$$btod_d2e)
+    CL$$btod_d2e_denorm_low                  0x0800178a   Section       70  btod.o(CL$$btod_d2e_denorm_low)
+    CL$$btod_d2e_norm_op1                    0x080017d0   Section       96  btod.o(CL$$btod_d2e_norm_op1)
+    CL$$btod_div_common                      0x08001830   Section      824  btod.o(CL$$btod_div_common)
+    CL$$btod_e2e                             0x08001b68   Section      220  btod.o(CL$$btod_e2e)
+    CL$$btod_ediv                            0x08001c44   Section       42  btod.o(CL$$btod_ediv)
+    CL$$btod_emul                            0x08001c6e   Section       42  btod.o(CL$$btod_emul)
+    CL$$btod_mult_common                     0x08001c98   Section      580  btod.o(CL$$btod_mult_common)
+    i.__ARM_fpclassify                       0x08001edc   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    locale$$code                             0x08001f04   Section       44  lc_numeric_c.o(locale$$code)
+    x$fpl$printf1                            0x08001f30   Section        4  printf1.o(x$fpl$printf1)
+    uc_hextab                                0x08001f34   Data          20  _printf_hex_int.o(.constdata)
+    .constdata                               0x08001f34   Section       40  _printf_hex_int.o(.constdata)
+    x$fpl$usenofp                            0x08001f34   Section        0  usenofp.o(x$fpl$usenofp)
+    lc_hextab                                0x08001f48   Data          20  _printf_hex_int.o(.constdata)
+    tenpwrs_x                                0x08001f5c   Data          60  bigflt0.o(.constdata)
+    .constdata                               0x08001f5c   Section      148  bigflt0.o(.constdata)
+    tenpwrs_i                                0x08001f98   Data          64  bigflt0.o(.constdata)
+    .L.str.3                                 0x08001ff0   Data           3  main.o(.rodata.str1.1)
+    .Lstr.53                                 0x08001ff0   Data          19  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08001ff0   Section        0  main.o(.rodata.str1.1)
+    .Lstr.51                                 0x08002003   Data          17  main.o(.rodata.str1.1)
+    .Lstr.50                                 0x08002014   Data          17  main.o(.rodata.str1.1)
+    .Lstr.49                                 0x08002025   Data          17  main.o(.rodata.str1.1)
+    .Lstr.48                                 0x08002036   Data          17  main.o(.rodata.str1.1)
+    .Lstr.52                                 0x08002047   Data          17  main.o(.rodata.str1.1)
+    .L.str                                   0x0800205b   Data          57  cv_coreinstr.o(.rodata.str1.1)
+    .Lstr.61                                 0x0800205b   Data          20  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x0800205b   Section        0  cv_coreinstr.o(.rodata.str1.1)
+    locale$$data                             0x080020b4   Section       28  lc_numeric_c.o(locale$$data)
+    __lcnum_c_name                           0x080020b8   Data           2  lc_numeric_c.o(locale$$data)
+    __lcnum_c_start                          0x080020c0   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_point                          0x080020cc   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_thousands                      0x080020ce   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_grouping                       0x080020cf   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_end                            0x080020d0   Data           0  lc_numeric_c.o(locale$$data)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
     current_assertions.0                     0x200000c0   Data           4  cv_report.o(.bss.current_assertions.0)
     [Anonymous Symbol]                       0x200000c0   Section        0  cv_report.o(.bss.current_assertions.0)
@@ -2558,35 +2573,41 @@ Image Symbol Table
     __rt_SIGABRT_inner                       0x08000d35   Thumb Code    14  defsig_abrt_inner.o(.text)
     __default_signal_display                 0x08000d65   Thumb Code    50  defsig_general.o(.text)
     SystemInit                               0x08000df1   Thumb Code    60  main.o(.text.SystemInit)
-    TC_CoreInstr_DMB                         0x08000e3d   Thumb Code    22  cv_coreinstr.o(.text.TC_CoreInstr_DMB)
-    TC_CoreInstr_DSB                         0x08000e55   Thumb Code    22  cv_coreinstr.o(.text.TC_CoreInstr_DSB)
-    TC_CoreInstr_ISB                         0x08000e6d   Thumb Code    22  cv_coreinstr.o(.text.TC_CoreInstr_ISB)
-    TC_CoreInstr_NOP                         0x08000e85   Thumb Code    20  cv_coreinstr.o(.text.TC_CoreInstr_NOP)
-    TC_CoreInstr_REV                         0x08000e99   Thumb Code   124  cv_coreinstr.o(.text.TC_CoreInstr_REV)
-    TC_CoreInstr_REV16                       0x08000f15   Thumb Code    98  cv_coreinstr.o(.text.TC_CoreInstr_REV16)
-    TC_CoreInstr_REVSH                       0x08000f79   Thumb Code   140  cv_coreinstr.o(.text.TC_CoreInstr_REVSH)
-    __assert_true                            0x08001005   Thumb Code    92  cv_report.o(.text.__assert_true)
-    _sys_exit                                0x08001061   Thumb Code     2  sys.o(.text._sys_exit)
-    _ttywrch                                 0x08001065   Thumb Code    60  sys.o(.text._ttywrch)
-    fputc                                    0x080010a1   Thumb Code    60  sys.o(.text.fputc)
-    get_system_time                          0x080010dd   Thumb Code    36  sys.o(.text.get_system_time)
-    main                                     0x08001101   Thumb Code   120  main.o(.text.main)
-    sleep                                    0x080011bd   Thumb Code    40  main.o(.text.sleep)
-    test_smsis_cotext                        0x08001209   Thumb Code    76  main.o(.text.test_smsis_cotext)
-    _btod_d2e                                0x080012e1   Thumb Code    62  btod.o(CL$$btod_d2e)
-    _d2e_denorm_low                          0x0800131f   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
-    _d2e_norm_op1                            0x08001365   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
-    __btod_div_common                        0x080013c5   Thumb Code   696  btod.o(CL$$btod_div_common)
-    _e2e                                     0x080016fd   Thumb Code   220  btod.o(CL$$btod_e2e)
-    _btod_ediv                               0x080017d9   Thumb Code    42  btod.o(CL$$btod_ediv)
-    _btod_emul                               0x08001803   Thumb Code    42  btod.o(CL$$btod_emul)
-    __btod_mult_common                       0x0800182d   Thumb Code   580  btod.o(CL$$btod_mult_common)
-    __ARM_fpclassify                         0x08001a71   Thumb Code    40  fpclassify.o(i.__ARM_fpclassify)
-    _get_lc_numeric                          0x08001a99   Thumb Code    44  lc_numeric_c.o(locale$$code)
-    _printf_fp_dec                           0x08001ac5   Thumb Code     4  printf1.o(x$fpl$printf1)
-    __I$use$fp                               0x08001ac8   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x08001bc0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001be0   Number         0  anon$$obj.o(Region$$Table)
+    TC_CoreInstr_CLZ                         0x08000e3d   Thumb Code   164  cv_coreinstr.o(.text.TC_CoreInstr_CLZ)
+    TC_CoreInstr_DMB                         0x08000ee1   Thumb Code    22  cv_coreinstr.o(.text.TC_CoreInstr_DMB)
+    TC_CoreInstr_DSB                         0x08000ef9   Thumb Code    22  cv_coreinstr.o(.text.TC_CoreInstr_DSB)
+    TC_CoreInstr_ISB                         0x08000f11   Thumb Code    22  cv_coreinstr.o(.text.TC_CoreInstr_ISB)
+    TC_CoreInstr_NOP                         0x08000f29   Thumb Code    20  cv_coreinstr.o(.text.TC_CoreInstr_NOP)
+    TC_CoreInstr_RBIT                        0x08000f3d   Thumb Code   154  cv_coreinstr.o(.text.TC_CoreInstr_RBIT)
+    TC_CoreInstr_REV                         0x08000fd9   Thumb Code   124  cv_coreinstr.o(.text.TC_CoreInstr_REV)
+    TC_CoreInstr_REV16                       0x08001055   Thumb Code    98  cv_coreinstr.o(.text.TC_CoreInstr_REV16)
+    TC_CoreInstr_REVSH                       0x080010b9   Thumb Code   140  cv_coreinstr.o(.text.TC_CoreInstr_REVSH)
+    TC_CoreInstr_ROR                         0x08001145   Thumb Code   148  cv_coreinstr.o(.text.TC_CoreInstr_ROR)
+    TC_CoreInstr_RRX                         0x080011d9   Thumb Code    74  cv_coreinstr.o(.text.TC_CoreInstr_RRX)
+    TC_CoreInstr_SSAT                        0x08001225   Thumb Code   252  cv_coreinstr.o(.text.TC_CoreInstr_SSAT)
+    TC_CoreInstr_USAT                        0x08001321   Thumb Code   240  cv_coreinstr.o(.text.TC_CoreInstr_USAT)
+    __assert_true                            0x08001411   Thumb Code    92  cv_report.o(.text.__assert_true)
+    _sys_exit                                0x0800146d   Thumb Code     2  sys.o(.text._sys_exit)
+    _ttywrch                                 0x08001471   Thumb Code    60  sys.o(.text._ttywrch)
+    fputc                                    0x080014ad   Thumb Code    60  sys.o(.text.fputc)
+    get_system_time                          0x080014e9   Thumb Code    36  sys.o(.text.get_system_time)
+    main                                     0x0800150d   Thumb Code   120  main.o(.text.main)
+    sleep                                    0x080015c9   Thumb Code    40  main.o(.text.sleep)
+    test_smsis_cotext                        0x08001615   Thumb Code   172  main.o(.text.test_smsis_cotext)
+    _btod_d2e                                0x0800174d   Thumb Code    62  btod.o(CL$$btod_d2e)
+    _d2e_denorm_low                          0x0800178b   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
+    _d2e_norm_op1                            0x080017d1   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
+    __btod_div_common                        0x08001831   Thumb Code   696  btod.o(CL$$btod_div_common)
+    _e2e                                     0x08001b69   Thumb Code   220  btod.o(CL$$btod_e2e)
+    _btod_ediv                               0x08001c45   Thumb Code    42  btod.o(CL$$btod_ediv)
+    _btod_emul                               0x08001c6f   Thumb Code    42  btod.o(CL$$btod_emul)
+    __btod_mult_common                       0x08001c99   Thumb Code   580  btod.o(CL$$btod_mult_common)
+    __ARM_fpclassify                         0x08001edd   Thumb Code    40  fpclassify.o(i.__ARM_fpclassify)
+    _get_lc_numeric                          0x08001f05   Thumb Code    44  lc_numeric_c.o(locale$$code)
+    _printf_fp_dec                           0x08001f31   Thumb Code     4  printf1.o(x$fpl$printf1)
+    __I$use$fp                               0x08001f34   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x08002094   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080020b4   Number         0  anon$$obj.o(Region$$Table)
     tcitf                                    0x20000000   Data           8  cv_report.o(.data.tcitf)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     __stdout                                 0x20000068   Data          84  sys.o(.bss.__stdout)
@@ -2603,9 +2624,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001c08, Max: 0x00008000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000020d8, Max: 0x00008000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001bfc, Max: 0x00008000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000020d0, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2712,55 +2733,63 @@ Memory Map of the image
     0x08000d98   0x08000d98   0x00000004   Code   RO          233    .text.As_File_Dbgi  cv_report.o
     0x08000d9c   0x08000d9c   0x00000054   Code   RO          231    .text.As_File_Result  cv_report.o
     0x08000df0   0x08000df0   0x0000004c   Code   RO           27    .text.SystemInit    main.o
-    0x08000e3c   0x08000e3c   0x00000016   Code   RO          115    .text.TC_CoreInstr_DMB  cv_coreinstr.o
-    0x08000e52   0x08000e52   0x00000002   PAD
-    0x08000e54   0x08000e54   0x00000016   Code   RO          113    .text.TC_CoreInstr_DSB  cv_coreinstr.o
-    0x08000e6a   0x08000e6a   0x00000002   PAD
-    0x08000e6c   0x08000e6c   0x00000016   Code   RO          111    .text.TC_CoreInstr_ISB  cv_coreinstr.o
-    0x08000e82   0x08000e82   0x00000002   PAD
-    0x08000e84   0x08000e84   0x00000014   Code   RO          105    .text.TC_CoreInstr_NOP  cv_coreinstr.o
-    0x08000e98   0x08000e98   0x0000007c   Code   RO          121    .text.TC_CoreInstr_REV  cv_coreinstr.o
-    0x08000f14   0x08000f14   0x00000062   Code   RO          123    .text.TC_CoreInstr_REV16  cv_coreinstr.o
-    0x08000f76   0x08000f76   0x00000002   PAD
-    0x08000f78   0x08000f78   0x0000008c   Code   RO          125    .text.TC_CoreInstr_REVSH  cv_coreinstr.o
-    0x08001004   0x08001004   0x0000005c   Code   RO          247    .text.__assert_true  cv_report.o
-    0x08001060   0x08001060   0x00000002   Code   RO           54    .text._sys_exit     sys.o
-    0x08001062   0x08001062   0x00000002   PAD
-    0x08001064   0x08001064   0x0000003c   Code   RO           50    .text._ttywrch      sys.o
-    0x080010a0   0x080010a0   0x0000003c   Code   RO           60    .text.fputc         sys.o
-    0x080010dc   0x080010dc   0x00000024   Code   RO           56    .text.get_system_time  sys.o
-    0x08001100   0x08001100   0x000000bc   Code   RO           35    .text.main          main.o
-    0x080011bc   0x080011bc   0x0000004c   Code   RO           19    .text.sleep         main.o
-    0x08001208   0x08001208   0x000000d8   Code   RO           29    .text.test_smsis_cotext  main.o
-    0x080012e0   0x080012e0   0x0000003e   Code   RO          736    CL$$btod_d2e        c_w.l(btod.o)
-    0x0800131e   0x0800131e   0x00000046   Code   RO          738    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
-    0x08001364   0x08001364   0x00000060   Code   RO          737    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
-    0x080013c4   0x080013c4   0x00000338   Code   RO          746    CL$$btod_div_common  c_w.l(btod.o)
-    0x080016fc   0x080016fc   0x000000dc   Code   RO          743    CL$$btod_e2e        c_w.l(btod.o)
-    0x080017d8   0x080017d8   0x0000002a   Code   RO          740    CL$$btod_ediv       c_w.l(btod.o)
-    0x08001802   0x08001802   0x0000002a   Code   RO          739    CL$$btod_emul       c_w.l(btod.o)
-    0x0800182c   0x0800182c   0x00000244   Code   RO          745    CL$$btod_mult_common  c_w.l(btod.o)
-    0x08001a70   0x08001a70   0x00000028   Code   RO          659    i.__ARM_fpclassify  m_ws.l(fpclassify.o)
-    0x08001a98   0x08001a98   0x0000002c   Code   RO          773    locale$$code        c_w.l(lc_numeric_c.o)
-    0x08001ac4   0x08001ac4   0x00000004   Code   RO          364    x$fpl$printf1       fz_ws.l(printf1.o)
-    0x08001ac8   0x08001ac8   0x00000000   Code   RO          638    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x08001ac8   0x08001ac8   0x00000028   Data   RO          286    .constdata          c_w.l(_printf_hex_int.o)
-    0x08001af0   0x08001af0   0x00000094   Data   RO          734    .constdata          c_w.l(bigflt0.o)
-    0x08001b84   0x08001b84   0x00000039   Data   RO          153    .rodata.str1.1      cv_coreinstr.o
-    0x08001bbd   0x08001bbd   0x00000003   PAD
-    0x08001bc0   0x08001bc0   0x00000020   Data   RO          973    Region$$Table       anon$$obj.o
-    0x08001be0   0x08001be0   0x0000001c   Data   RO          772    locale$$data        c_w.l(lc_numeric_c.o)
+    0x08000e3c   0x08000e3c   0x000000a4   Code   RO          131    .text.TC_CoreInstr_CLZ  cv_coreinstr.o
+    0x08000ee0   0x08000ee0   0x00000016   Code   RO          115    .text.TC_CoreInstr_DMB  cv_coreinstr.o
+    0x08000ef6   0x08000ef6   0x00000002   PAD
+    0x08000ef8   0x08000ef8   0x00000016   Code   RO          113    .text.TC_CoreInstr_DSB  cv_coreinstr.o
+    0x08000f0e   0x08000f0e   0x00000002   PAD
+    0x08000f10   0x08000f10   0x00000016   Code   RO          111    .text.TC_CoreInstr_ISB  cv_coreinstr.o
+    0x08000f26   0x08000f26   0x00000002   PAD
+    0x08000f28   0x08000f28   0x00000014   Code   RO          105    .text.TC_CoreInstr_NOP  cv_coreinstr.o
+    0x08000f3c   0x08000f3c   0x0000009a   Code   RO          127    .text.TC_CoreInstr_RBIT  cv_coreinstr.o
+    0x08000fd6   0x08000fd6   0x00000002   PAD
+    0x08000fd8   0x08000fd8   0x0000007c   Code   RO          121    .text.TC_CoreInstr_REV  cv_coreinstr.o
+    0x08001054   0x08001054   0x00000062   Code   RO          123    .text.TC_CoreInstr_REV16  cv_coreinstr.o
+    0x080010b6   0x080010b6   0x00000002   PAD
+    0x080010b8   0x080010b8   0x0000008c   Code   RO          125    .text.TC_CoreInstr_REVSH  cv_coreinstr.o
+    0x08001144   0x08001144   0x00000094   Code   RO          129    .text.TC_CoreInstr_ROR  cv_coreinstr.o
+    0x080011d8   0x080011d8   0x0000004a   Code   RO          137    .text.TC_CoreInstr_RRX  cv_coreinstr.o
+    0x08001222   0x08001222   0x00000002   PAD
+    0x08001224   0x08001224   0x000000fc   Code   RO          133    .text.TC_CoreInstr_SSAT  cv_coreinstr.o
+    0x08001320   0x08001320   0x000000f0   Code   RO          135    .text.TC_CoreInstr_USAT  cv_coreinstr.o
+    0x08001410   0x08001410   0x0000005c   Code   RO          247    .text.__assert_true  cv_report.o
+    0x0800146c   0x0800146c   0x00000002   Code   RO           54    .text._sys_exit     sys.o
+    0x0800146e   0x0800146e   0x00000002   PAD
+    0x08001470   0x08001470   0x0000003c   Code   RO           50    .text._ttywrch      sys.o
+    0x080014ac   0x080014ac   0x0000003c   Code   RO           60    .text.fputc         sys.o
+    0x080014e8   0x080014e8   0x00000024   Code   RO           56    .text.get_system_time  sys.o
+    0x0800150c   0x0800150c   0x000000bc   Code   RO           35    .text.main          main.o
+    0x080015c8   0x080015c8   0x0000004c   Code   RO           19    .text.sleep         main.o
+    0x08001614   0x08001614   0x00000138   Code   RO           29    .text.test_smsis_cotext  main.o
+    0x0800174c   0x0800174c   0x0000003e   Code   RO          736    CL$$btod_d2e        c_w.l(btod.o)
+    0x0800178a   0x0800178a   0x00000046   Code   RO          738    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
+    0x080017d0   0x080017d0   0x00000060   Code   RO          737    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
+    0x08001830   0x08001830   0x00000338   Code   RO          746    CL$$btod_div_common  c_w.l(btod.o)
+    0x08001b68   0x08001b68   0x000000dc   Code   RO          743    CL$$btod_e2e        c_w.l(btod.o)
+    0x08001c44   0x08001c44   0x0000002a   Code   RO          740    CL$$btod_ediv       c_w.l(btod.o)
+    0x08001c6e   0x08001c6e   0x0000002a   Code   RO          739    CL$$btod_emul       c_w.l(btod.o)
+    0x08001c98   0x08001c98   0x00000244   Code   RO          745    CL$$btod_mult_common  c_w.l(btod.o)
+    0x08001edc   0x08001edc   0x00000028   Code   RO          659    i.__ARM_fpclassify  m_ws.l(fpclassify.o)
+    0x08001f04   0x08001f04   0x0000002c   Code   RO          773    locale$$code        c_w.l(lc_numeric_c.o)
+    0x08001f30   0x08001f30   0x00000004   Code   RO          364    x$fpl$printf1       fz_ws.l(printf1.o)
+    0x08001f34   0x08001f34   0x00000000   Code   RO          638    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x08001f34   0x08001f34   0x00000028   Data   RO          286    .constdata          c_w.l(_printf_hex_int.o)
+    0x08001f5c   0x08001f5c   0x00000094   Data   RO          734    .constdata          c_w.l(bigflt0.o)
+    0x08001ff0   0x08001ff0   0x0000006b   Data   RO           38    .rodata.str1.1      main.o
+    0x0800205b   0x0800205b   0x00000039   Data   RO          153    .rodata.str1.1      cv_coreinstr.o
+    0x08002094   0x08002094   0x00000020   Data   RO          973    Region$$Table       anon$$obj.o
+    0x080020b4   0x080020b4   0x0000001c   Data   RO          772    locale$$data        c_w.l(lc_numeric_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001c00, Size: 0x000014f0, Max: 0x00002800, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080020d0, Size: 0x000014f0, Max: 0x00002800, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08001c00   0x00000008   Data   RW          249    .data.tcitf         cv_report.o
+    0x20000000   0x080020d0   0x00000008   Data   RW          249    .data.tcitf         cv_report.o
     0x20000008        -       0x00000060   Zero   RW          695    .bss                c_w.l(libspace.o)
     0x20000068        -       0x00000054   Zero   RW           67    .bss.__stdout       sys.o
     0x200000bc        -       0x00000001   Zero   RW           64    .bss.cpu_ver        sys.o
-    0x200000bd   0x08001c08   0x00000003   PAD
+    0x200000bd   0x080020d8   0x00000003   PAD
     0x200000c0        -       0x00000004   Zero   RW          252    .bss.current_assertions.0  cv_report.o
     0x200000c4        -       0x00000004   Zero   RW          253    .bss.current_assertions.1  cv_report.o
     0x200000c8        -       0x00000004   Zero   RW          254    .bss.current_assertions.2  cv_report.o
@@ -2777,16 +2806,16 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       448          0         57          0          0      11021   cv_coreinstr.o
+      1480          0         57          0          0      11021   cv_coreinstr.o
        180          4          0          8       3116       4229   cv_report.o
-       556        260          0          0          0       5836   main.o
+       652        260        107          0          0       5890   main.o
        112         22        236          0       2048        952   startup_stm32f103xb.o
        158          0          0          0         89       3626   sys.o
 
     ----------------------------------------------------------------------
-      1464        286        328          8       5256      25664   Object Totals
+      2596        286        432          8       5256      25718   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        10          0          3          0          3          0   (incl. Padding)
+        14          0          0          0          3          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2871,15 +2900,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      6620        574        544          8       5352      27248   Grand Totals
-      6620        574        544          8       5352      27248   ELF Image Totals
-      6620        574        544          8          0          0   ROM Totals
+      7752        574        648          8       5352      27302   Grand Totals
+      7752        574        648          8       5352      27302   ELF Image Totals
+      7752        574        648          8          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 7164 (   7.00kB)
+    Total RO  Size (Code + RO Data)                 8400 (   8.20kB)
     Total RW  Size (RW Data + ZI Data)              5360 (   5.23kB)
-    Total ROM Size (Code + RO Data + RW Data)       7172 (   7.00kB)
+    Total ROM Size (Code + RO Data + RW Data)       8408 (   8.21kB)
 
 ==============================================================================
 

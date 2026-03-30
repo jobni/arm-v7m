@@ -144,6 +144,18 @@ void test_smsis_cotext(){
     printf("TC_CoreInstr_REV16\n");
     TC_CoreInstr_REVSH();
     printf("TC_CoreInstr_REVSH\n");
+    TC_CoreInstr_ROR();
+    printf("TC_CoreInstr_ROR\n");
+    TC_CoreInstr_RBIT();
+    printf("TC_CoreInstr_RBIT\n");
+    TC_CoreInstr_CLZ();
+    printf("TC_CoreInstr_CLZ\n");
+    TC_CoreInstr_SSAT();
+    printf("TC_CoreInstr_SSAT\n");
+    TC_CoreInstr_USAT();
+    printf("TC_CoreInstr_USAT\n");
+    TC_CoreInstr_RRX();
+    printf("TC_CoreInstr_RRX\n");
 }
 
 void test_cmsis_cotext_m(){

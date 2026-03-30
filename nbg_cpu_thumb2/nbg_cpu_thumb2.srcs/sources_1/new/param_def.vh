@@ -52,64 +52,62 @@
 `define MICRO_CODE_SBFX     46  //未实现
 `define MICRO_CODE_CLZ      47
 `define MICRO_CODE_RBIT     48  //未实现
+`define MICRO_CODE_REV      49
+`define MICRO_CODE_REV16    50
+`define MICRO_CODE_REVSH    51
 
 //与或非
-`define MICRO_CODE_AND      49
-`define MICRO_CODE_EOR      50
-`define MICRO_CODE_ORR      51
-`define MICRO_CODE_ORN      52  //未实现
-`define MICRO_CODE_MVN      53
-`define MICRO_CODE_TST      54
-`define MICRO_CODE_TEQ      55
+`define MICRO_CODE_AND      52
+`define MICRO_CODE_EOR      53
+`define MICRO_CODE_ORR      54
+`define MICRO_CODE_ORN      55  //未实现
+`define MICRO_CODE_MVN      56
+`define MICRO_CODE_TST      57
+`define MICRO_CODE_TEQ      58
 
 //加减乘除
-`define MICRO_CODE_ADC      56
-`define MICRO_CODE_ADD      57
-`define MICRO_CODE_ADDW     58  //未实现
-`define MICRO_CODE_SUB      59
-`define MICRO_CODE_SUBW     60  //未实现
-`define MICRO_CODE_SBC      61
-`define MICRO_CODE_RSB      62
-`define MICRO_CODE_CMN      63
-`define MICRO_CODE_CMP      64
-`define MICRO_CODE_MUL      65
-`define MICRO_CODE_UMLAL    66
-`define MICRO_CODE_UMULL    67
-`define MICRO_CODE_MLA      68
-`define MICRO_CODE_MLS      69
-`define MICRO_CODE_UDIV     70
-`define MICRO_CODE_SDIV     71
+`define MICRO_CODE_ADC      59
+`define MICRO_CODE_ADD      60
+`define MICRO_CODE_ADDW     61  //未实现
+`define MICRO_CODE_SUB      62
+`define MICRO_CODE_SUBW     63  //未实现
+`define MICRO_CODE_SBC      64
+`define MICRO_CODE_RSB      65
+`define MICRO_CODE_CMN      66
+`define MICRO_CODE_CMP      67
+`define MICRO_CODE_MUL      68
+`define MICRO_CODE_UMLAL    69
+`define MICRO_CODE_UMULL    70
+`define MICRO_CODE_MLA      71
+`define MICRO_CODE_MLS      72
+`define MICRO_CODE_UDIV     73
+`define MICRO_CODE_SDIV     74
 
 //综合指令
-`define MICRO_CODE_ADR      72
-`define MICRO_CODE_MOV      73
-`define MICRO_CODE_MOVT     74
-`define MICRO_CODE_MOVW     75  //未实现
-`define MICRO_CODE_NOP      76
-`define MICRO_CODE_SXTB     77
-`define MICRO_CODE_SXTH     78  //未实现
-`define MICRO_CODE_UXTB     78
-`define MICRO_CODE_UXTH     79  //未实现
-`define MICRO_CODE_MRS      80
-`define MICRO_CODE_MSR      81
-`define MICRO_CODE_ISB      82
-`define MICRO_CODE_DSB      83
-`define MICRO_CODE_DMB      84
-`define MICRO_CODE_REV      85  //未实现
-`define MICRO_CODE_REV16    86  //未实现
-`define MICRO_CODE_REVH     87  //未实现
-`define MICRO_CODE_REVSG    88  //未实现
-`define MICRO_CODE_REVSH    89  //未实现
-`define MICRO_CODE_CLREX    90  //未实现
-`define MICRO_CODE_UDF      91  //未实现
-`define MICRO_CODE_CPY      92  //未实现
-`define MICRO_CODE_NEG      93  //未实现
-`define MICRO_CODE_SVC      94  //未实现
-`define MICRO_CODE_SFBX     95  //未实现
-`define MICRO_CODE_SMLAL    96  //未实现
-`define MICRO_CODE_SMULL    97  //未实现
-`define MICRO_CODE_SSAT     98  //未实现
-`define MICRO_CODE_USAT     99  //未实现
+`define MICRO_CODE_ADR      75
+`define MICRO_CODE_MOV      76
+`define MICRO_CODE_MOVT     77
+`define MICRO_CODE_MOVW     78  //未实现
+`define MICRO_CODE_NOP      79
+`define MICRO_CODE_SXTB     80
+`define MICRO_CODE_SXTH     81  //未实现
+`define MICRO_CODE_UXTB     82
+`define MICRO_CODE_UXTH     83  //未实现
+`define MICRO_CODE_MRS      84
+`define MICRO_CODE_MSR      85
+`define MICRO_CODE_ISB      86
+`define MICRO_CODE_DSB      87
+`define MICRO_CODE_DMB      88
+`define MICRO_CODE_CLREX    89  //未实现
+`define MICRO_CODE_UDF      90  //未实现
+`define MICRO_CODE_CPY      91  //未实现
+`define MICRO_CODE_NEG      92  //未实现
+`define MICRO_CODE_SVC      93  //未实现
+`define MICRO_CODE_SFBX     94  //未实现
+`define MICRO_CODE_SMLAL    95  //未实现
+`define MICRO_CODE_SMULL    96  //未实现
+`define MICRO_CODE_SSAT     97  //未实现
+`define MICRO_CODE_USAT     98  //未实现
 
 //不准备实现，大多和协处理器多核同步，低功耗有关
 //包含CDP2、LDC2、MCR2、MCRR2、MRC2、MRRC2、STC2

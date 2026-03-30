@@ -1455,6 +1455,79 @@ module ALU(
                         end
                     end
                 end
+                96'b1 << `MICRO_CODE_UBFX: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= register_rn << micro_data[20:16];
+                        end
+                        else if(curr_cnt==8'h1) begin
+                            register_set_data <= register_set_data >> micro_data[28:24];
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_CLZ: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= count_leading_zero_bits(register_rm);
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_REV: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= {register_rm[7:0],register_rm[15:8],register_rm[23:16],register_rm[31:24]};
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_REV16: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= {register_rm[23:16],register_rm[31:24],register_rm[7:0],register_rm[15:8]};
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_REVSH: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= {{16{register_rm[7]}},register_rm[7:0],register_rm[15:8]};
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
                 96'b1 << `MICRO_CODE_AND: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
@@ -2020,20 +2093,6 @@ module ALU(
                         end
                     end
                 end
-                96'b1 << `MICRO_CODE_CLZ: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(curr_cnt==8'h0) begin
-                            register_set_data <= count_leading_zero_bits(register_rm);
-                            register_set_code <= micro_register_rd;
-                            micro_done <= 1'b1;
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
                 96'b1 << `MICRO_CODE_MOV: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(micro_type[`MICRO_TYPE_IMMEDIATE]) begin
@@ -2069,23 +2128,6 @@ module ALU(
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
                             register_set_data <= {micro_data[15:0], register_rm[15:0]};
-                            register_set_code <= micro_register_rd;
-                            micro_done <= 1'b1;
-                        end
-                    end
-                    else begin
-                        if(curr_cnt==8'h0) begin
-                            micro_done <= 1'b1;
-                        end
-                    end
-                end
-                96'b1 << `MICRO_CODE_UBFX: begin
-                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
-                        if(curr_cnt==8'h0) begin
-                            register_set_data <= register_rn << micro_data[20:16];
-                        end
-                        else if(curr_cnt==8'h1) begin
-                            register_set_data <= register_set_data >> micro_data[28:24];
                             register_set_code <= micro_register_rd;
                             micro_done <= 1'b1;
                         end

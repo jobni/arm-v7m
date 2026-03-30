@@ -669,15 +669,21 @@ module Decoder(
                     end
                     else if(ir_A[11:6] == 6'b101000) begin
                         //REV
-                        decode_error <= 1'b1;
+                        micro_code[`MICRO_CODE_REV] <= 1'b1;
+                        micro_register_rm <= convert_3_8(ir_A[5:3]);
+                        micro_register_rd <= convert_3_8(ir_A[2:0]);
                     end
                     else if(ir_A[11:6] == 6'b101001) begin
                         //REV16
-                        decode_error <= 1'b1;
+                        micro_code[`MICRO_CODE_REV16] <= 1'b1;
+                        micro_register_rm <= convert_3_8(ir_A[5:3]);
+                        micro_register_rd <= convert_3_8(ir_A[2:0]);
                     end
                     else if(ir_A[11:6] == 6'b101011) begin
                         //REVSH
-                        decode_error <= 1'b1;
+                        micro_code[`MICRO_CODE_REVSH] <= 1'b1;
+                        micro_register_rm <= convert_3_8(ir_A[5:3]);
+                        micro_register_rd <= convert_3_8(ir_A[2:0]);
                     end
                     else if(ir_A[11:9] == 3'b110) begin
                         //POP T1
@@ -2208,11 +2214,15 @@ module Decoder(
                             else if(ir_A[5:4]==2'b01) begin
                                 if(ir_B[5:4]==2'b00) begin
                                     //REV
-                                    decode_error <= 1'b1;
+                                    micro_code[`MICRO_CODE_REV] <= 1'b1;
+                                    micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                    micro_register_rm <= convert_4_16(ir_B[3:0]);
                                 end
                                 else if(ir_B[5:4]==2'b01) begin
                                     //REV16
-                                    decode_error <= 1'b1;
+                                    micro_code[`MICRO_CODE_REV16] <= 1'b1;
+                                    micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                    micro_register_rm <= convert_4_16(ir_B[3:0]);
                                 end
                                 else if(ir_B[5:4]==2'b10) begin
                                     //RBIT
@@ -2220,7 +2230,9 @@ module Decoder(
                                 end
                                 else if(ir_B[5:4]==2'b11) begin
                                     //REVSH
-                                    decode_error <= 1'b1;
+                                    micro_code[`MICRO_CODE_REVSH] <= 1'b1;
+                                    micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                    micro_register_rm <= convert_4_16(ir_B[3:0]);
                                 end
                                 else begin
                                     decode_error <= 1'b1;
