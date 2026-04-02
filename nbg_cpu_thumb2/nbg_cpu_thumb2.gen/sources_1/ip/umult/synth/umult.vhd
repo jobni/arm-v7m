@@ -1,5 +1,5 @@
 -- (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- (c) Copyright 2022-2025 Advanced Micro Devices, Inc. All rights reserved.
+-- (c) Copyright 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of AMD and is protected under U.S. and international copyright
@@ -47,14 +47,14 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:mult_gen:12.0
--- IP Revision: 22
+-- IP Revision: 24
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-LIBRARY mult_gen_v12_0_22;
-USE mult_gen_v12_0_22.mult_gen_v12_0_22;
+LIBRARY mult_gen_v12_0_24;
+USE mult_gen_v12_0_24.mult_gen_v12_0_24;
 
 ENTITY umult IS
   PORT (
@@ -68,7 +68,7 @@ END umult;
 ARCHITECTURE umult_arch OF umult IS
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF umult_arch: ARCHITECTURE IS "yes";
-  COMPONENT mult_gen_v12_0_22 IS
+  COMPONENT mult_gen_v12_0_24 IS
     GENERIC (
       C_VERBOSITY : INTEGER;
       C_MODEL_TYPE : INTEGER;
@@ -99,13 +99,13 @@ ARCHITECTURE umult_arch OF umult IS
       SCLR : IN STD_LOGIC;
       P : OUT STD_LOGIC_VECTOR(63 DOWNTO 0)
     );
-  END COMPONENT mult_gen_v12_0_22;
+  END COMPONENT mult_gen_v12_0_24;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF umult_arch: ARCHITECTURE IS "mult_gen_v12_0_22,Vivado 2024.2.2";
+  ATTRIBUTE X_CORE_INFO OF umult_arch: ARCHITECTURE IS "mult_gen_v12_0_24,Vivado 2025.2.1";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
-  ATTRIBUTE CHECK_LICENSE_TYPE OF umult_arch : ARCHITECTURE IS "umult,mult_gen_v12_0_22,{}";
+  ATTRIBUTE CHECK_LICENSE_TYPE OF umult_arch : ARCHITECTURE IS "umult,mult_gen_v12_0_24,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF umult_arch: ARCHITECTURE IS "umult,mult_gen_v12_0_22,{x_ipProduct=Vivado 2024.2.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=mult_gen,x_ipVersion=12.0,x_ipCoreRevision=22,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_VERBOSITY=0,C_MODEL_TYPE=0,C_OPTIMIZE_GOAL=1,C_XDEVICEFAMILY=zynq,C_HAS_CE=0,C_HAS_SCLR=0,C_LATENCY=1,C_A_WIDTH=32,C_A_TYPE=1,C_B_WIDTH=32,C_B_TYPE=1,C_OUT_HIGH=63,C_OUT_LOW=0,C_MULT_TYPE=1,C_CE_OVERRIDES_SCLR=0,C_CCM_IMP=0,C_B_VALUE=10000001,C_HAS_ZERO_DETECT=0,C_ROUND_OUTPUT=0,C_ROUND_PT=0}";
+  ATTRIBUTE CORE_GENERATION_INFO OF umult_arch: ARCHITECTURE IS "umult,mult_gen_v12_0_24,{x_ipProduct=Vivado 2025.2.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=mult_gen,x_ipVersion=12.0,x_ipCoreRevision=24,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_VERBOSITY=0,C_MODEL_TYPE=0,C_OPTIMIZE_GOAL=1,C_XDEVICEFAMILY=zynq,C_HAS_CE=0,C_HAS_SCLR=0,C_LATENCY=1,C_A_WIDTH=32,C_A_TYPE=1,C_B_WIDTH=32,C_B_TYPE=1,C_OUT_HIGH=63,C_OUT_LOW=0,C_MULT_TYPE=1,C_CE_OVERRIDES_SCLR=0,C_CCM_IMP=0,C_B_VALUE=10000001,C_HAS_ZERO_DETECT=0,C_ROUND_OUTPUT=0,C_ROUND_PT=0}";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_MODE : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
@@ -122,7 +122,7 @@ ARCHITECTURE umult_arch OF umult IS
   ATTRIBUTE X_INTERFACE_MODE OF P: SIGNAL IS "master p_intf";
   ATTRIBUTE X_INTERFACE_PARAMETER OF P: SIGNAL IS "XIL_INTERFACENAME p_intf, LAYERED_METADATA undef";
 BEGIN
-  U0 : mult_gen_v12_0_22
+  U0 : mult_gen_v12_0_24
     GENERIC MAP (
       C_VERBOSITY => 0,
       C_MODEL_TYPE => 0,

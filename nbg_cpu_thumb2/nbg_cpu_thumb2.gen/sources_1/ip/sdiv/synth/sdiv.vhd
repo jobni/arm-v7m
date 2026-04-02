@@ -1,5 +1,5 @@
 -- (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- (c) Copyright 2022-2025 Advanced Micro Devices, Inc. All rights reserved.
+-- (c) Copyright 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of AMD and is protected under U.S. and international copyright
@@ -47,14 +47,14 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:div_gen:5.1
--- IP Revision: 23
+-- IP Revision: 25
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-LIBRARY div_gen_v5_1_23;
-USE div_gen_v5_1_23.div_gen_v5_1_23;
+LIBRARY div_gen_v5_1_25;
+USE div_gen_v5_1_25.div_gen_v5_1_25;
 
 ENTITY sdiv IS
   PORT (
@@ -73,7 +73,7 @@ END sdiv;
 ARCHITECTURE sdiv_arch OF sdiv IS
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF sdiv_arch: ARCHITECTURE IS "yes";
-  COMPONENT div_gen_v5_1_23 IS
+  COMPONENT div_gen_v5_1_25 IS
     GENERIC (
       C_XDEVICEFAMILY : STRING;
       C_HAS_ARESETN : INTEGER;
@@ -120,13 +120,13 @@ ARCHITECTURE sdiv_arch OF sdiv IS
       m_axis_dout_tlast : OUT STD_LOGIC;
       m_axis_dout_tdata : OUT STD_LOGIC_VECTOR(63 DOWNTO 0)
     );
-  END COMPONENT div_gen_v5_1_23;
+  END COMPONENT div_gen_v5_1_25;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF sdiv_arch: ARCHITECTURE IS "div_gen_v5_1_23,Vivado 2024.2.2";
+  ATTRIBUTE X_CORE_INFO OF sdiv_arch: ARCHITECTURE IS "div_gen_v5_1_25,Vivado 2025.2.1";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
-  ATTRIBUTE CHECK_LICENSE_TYPE OF sdiv_arch : ARCHITECTURE IS "sdiv,div_gen_v5_1_23,{}";
+  ATTRIBUTE CHECK_LICENSE_TYPE OF sdiv_arch : ARCHITECTURE IS "sdiv,div_gen_v5_1_25,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF sdiv_arch: ARCHITECTURE IS "sdiv,div_gen_v5_1_23,{x_ipProduct=Vivado 2024.2.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=div_gen,x_ipVersion=5.1,x_ipCoreRevision=23,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ARESETN=0,C_HAS_ACLKEN=0,C_LATENCY=69,ALGORITHM_TYPE=1,DIVISOR_WIDTH=32,DIVIDEND_WIDTH=32,SIGNED_B=1,DIVCLK_SEL=8,FRACTIONAL_B=1,FRACTIONAL_WIDTH=32,C_HAS_DIV_BY_ZERO=0,C_THROTTLE_SCHEME=3,C_TLAST_RESOLUTION=0,C_HAS_S_AXIS_DIVISOR_TUSER=0,C_HAS_S_AXIS_DIVISOR_TLAST=0,C_S_AXIS_DIVISOR_TDA" & 
+  ATTRIBUTE CORE_GENERATION_INFO OF sdiv_arch: ARCHITECTURE IS "sdiv,div_gen_v5_1_25,{x_ipProduct=Vivado 2025.2.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=div_gen,x_ipVersion=5.1,x_ipCoreRevision=25,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ARESETN=0,C_HAS_ACLKEN=0,C_LATENCY=69,ALGORITHM_TYPE=1,DIVISOR_WIDTH=32,DIVIDEND_WIDTH=32,SIGNED_B=1,DIVCLK_SEL=8,FRACTIONAL_B=1,FRACTIONAL_WIDTH=32,C_HAS_DIV_BY_ZERO=0,C_THROTTLE_SCHEME=3,C_TLAST_RESOLUTION=0,C_HAS_S_AXIS_DIVISOR_TUSER=0,C_HAS_S_AXIS_DIVISOR_TLAST=0,C_S_AXIS_DIVISOR_TDA" & 
 "TA_WIDTH=32,C_S_AXIS_DIVISOR_TUSER_WIDTH=1,C_HAS_S_AXIS_DIVIDEND_TUSER=0,C_HAS_S_AXIS_DIVIDEND_TLAST=0,C_S_AXIS_DIVIDEND_TDATA_WIDTH=32,C_S_AXIS_DIVIDEND_TUSER_WIDTH=1,C_M_AXIS_DOUT_TDATA_WIDTH=64,C_M_AXIS_DOUT_TUSER_WIDTH=1}";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_MODE : STRING;
@@ -149,7 +149,7 @@ ARCHITECTURE sdiv_arch OF sdiv IS
   ATTRIBUTE X_INTERFACE_MODE OF s_axis_divisor_tvalid: SIGNAL IS "slave S_AXIS_DIVISOR";
   ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_divisor_tvalid: SIGNAL IS "XIL_INTERFACENAME S_AXIS_DIVISOR, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
 BEGIN
-  U0 : div_gen_v5_1_23
+  U0 : div_gen_v5_1_25
     GENERIC MAP (
       C_XDEVICEFAMILY => "zynq",
       C_HAS_ARESETN => 0,

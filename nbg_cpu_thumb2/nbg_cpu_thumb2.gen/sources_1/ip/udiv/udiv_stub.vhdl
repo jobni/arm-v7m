@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-- Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2024.2.2 (win64) Build 6060944 Thu Mar 06 19:10:01 MST 2025
--- Date        : Fri Apr 11 22:14:24 2025
+-- Tool Version: Vivado v.2025.2.1 (win64) Build 6403652 Thu Mar 19 19:48:24 GMT 2026
+-- Date        : Fri Apr  3 06:51:41 2026
 -- Host        : study-box running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/udiv/udiv_stub.vhdl
+--               c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/udiv/udiv_stub.vhdl
 -- Design      : udiv
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-2
@@ -27,9 +27,9 @@ entity udiv is
   );
 
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of udiv : entity is "udiv,div_gen_v5_1_23,{}";
+  attribute CHECK_LICENSE_TYPE of udiv : entity is "udiv,div_gen_v5_1_25,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of udiv : entity is "udiv,div_gen_v5_1_23,{x_ipProduct=Vivado 2024.2.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=div_gen,x_ipVersion=5.1,x_ipCoreRevision=23,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ARESETN=0,C_HAS_ACLKEN=0,C_LATENCY=35,ALGORITHM_TYPE=1,DIVISOR_WIDTH=32,DIVIDEND_WIDTH=32,SIGNED_B=0,DIVCLK_SEL=8,FRACTIONAL_B=0,FRACTIONAL_WIDTH=32,C_HAS_DIV_BY_ZERO=0,C_THROTTLE_SCHEME=3,C_TLAST_RESOLUTION=0,C_HAS_S_AXIS_DIVISOR_TUSER=0,C_HAS_S_AXIS_DIVISOR_TLAST=0,C_S_AXIS_DIVISOR_TDATA_WIDTH=32,C_S_AXIS_DIVISOR_TUSER_WIDTH=1,C_HAS_S_AXIS_DIVIDEND_TUSER=0,C_HAS_S_AXIS_DIVIDEND_TLAST=0,C_S_AXIS_DIVIDEND_TDATA_WIDTH=32,C_S_AXIS_DIVIDEND_TUSER_WIDTH=1,C_M_AXIS_DOUT_TDATA_WIDTH=64,C_M_AXIS_DOUT_TUSER_WIDTH=1}";
+  attribute core_generation_info of udiv : entity is "udiv,div_gen_v5_1_25,{x_ipProduct=Vivado 2025.2.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=div_gen,x_ipVersion=5.1,x_ipCoreRevision=25,x_ipLanguage=VERILOG,x_ipSimLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ARESETN=0,C_HAS_ACLKEN=0,C_LATENCY=35,ALGORITHM_TYPE=1,DIVISOR_WIDTH=32,DIVIDEND_WIDTH=32,SIGNED_B=0,DIVCLK_SEL=8,FRACTIONAL_B=0,FRACTIONAL_WIDTH=32,C_HAS_DIV_BY_ZERO=0,C_THROTTLE_SCHEME=3,C_TLAST_RESOLUTION=0,C_HAS_S_AXIS_DIVISOR_TUSER=0,C_HAS_S_AXIS_DIVISOR_TLAST=0,C_S_AXIS_DIVISOR_TDATA_WIDTH=32,C_S_AXIS_DIVISOR_TUSER_WIDTH=1,C_HAS_S_AXIS_DIVIDEND_TUSER=0,C_HAS_S_AXIS_DIVIDEND_TLAST=0,C_S_AXIS_DIVIDEND_TDATA_WIDTH=32,C_S_AXIS_DIVIDEND_TUSER_WIDTH=1,C_M_AXIS_DOUT_TDATA_WIDTH=64,C_M_AXIS_DOUT_TUSER_WIDTH=1}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of udiv : entity is "yes";
 end udiv;
@@ -60,6 +60,6 @@ architecture stub of udiv is
   attribute x_interface_parameter of m_axis_dout_tvalid : signal is "XIL_INTERFACENAME M_AXIS_DOUT, TDATA_NUM_BYTES 8, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 0, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute x_interface_info of m_axis_dout_tdata : signal is "xilinx.com:interface:axis:1.0 M_AXIS_DOUT TDATA";
   attribute x_core_info : string;
-  attribute x_core_info of stub : architecture is "div_gen_v5_1_23,Vivado 2024.2.2";
+  attribute x_core_info of stub : architecture is "div_gen_v5_1_25,Vivado 2025.2.1";
 begin
 end;

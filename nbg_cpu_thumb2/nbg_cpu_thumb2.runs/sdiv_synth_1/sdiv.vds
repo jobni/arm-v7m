@@ -1,28 +1,28 @@
 #-----------------------------------------------------------
-# Vivado v2024.2.2 (64-bit)
-# SW Build 6060944 on Thu Mar 06 19:10:01 MST 2025
-# IP Build 6050500 on Thu Mar  6 23:33:39 MST 2025
-# SharedData Build 6060542 on Thu Mar 06 10:31:07 MST 2025
-# Start of session at: Fri Apr 11 22:12:33 2025
-# Process ID         : 6896
-# Current directory  : C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1
+# Vivado v2025.2.1 (64-bit)
+# SW Build 6403652 on Thu Mar 19 19:48:24 GMT 2026
+# IP Build 6403511 on Thu Mar 19 12:41:45 MDT 2026
+# SharedData Build 6403650 on Thu Mar 19 14:02:13 MDT 2026
+# Start of session at: Fri Apr  3 06:49:57 2026
+# Process ID         : 6780
+# Current directory  : C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1
 # Command line       : vivado.exe -log sdiv.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sdiv.tcl
-# Log file           : C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1/sdiv.vds
-# Journal file       : C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1\vivado.jou
+# Log file           : C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1/sdiv.vds
+# Journal file       : C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1\vivado.jou
 # Running On         : study-box
 # Platform           : Windows Server 2016 or Windows 10
-# Operating System   : 26100
+# Operating System   : 26200
 # Processor Detail   : AMD Ryzen 7 7735HS with Radeon Graphics        
 # CPU Frequency      : 3194 MHz
-# CPU Physical cores : 8
-# CPU Logical cores  : 16
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
 # Host memory        : 29833 MB
-# Swap memory        : 0 MB
-# Total Virtual      : 29833 MB
-# Available Virtual  : 20229 MB
+# Swap memory        : 1879 MB
+# Total Virtual      : 31712 MB
+# Available Virtual  : 21057 MB
 #-----------------------------------------------------------
 source sdiv.tcl -notrace
-INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: sdiv
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 534.828 ; gain = 221.941
 Command: synth_design -top sdiv -part xc7z020clg400-2 -incremental_mode off -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
@@ -30,11 +30,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 8448
+INFO: [Synth 8-7075] Helper process launched with PID 6124
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1002.957 ; gain = 467.562
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1321.137 ; gain = 540.535
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'sdiv' [c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/sdiv/synth/sdiv.vhd:73]
+INFO: [Synth 8-638] synthesizing module 'sdiv' [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/sdiv/synth/sdiv.vhd:73]
 	Parameter C_XDEVICEFAMILY bound to: zynq - type: string 
 	Parameter C_HAS_ARESETN bound to: 0 - type: integer 
 	Parameter C_HAS_ACLKEN bound to: 0 - type: integer 
@@ -59,159 +59,158 @@ INFO: [Synth 8-638] synthesizing module 'sdiv' [c:/Users/nibao/Desktop/vivado/nb
 	Parameter C_S_AXIS_DIVIDEND_TUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_M_AXIS_DOUT_TDATA_WIDTH bound to: 64 - type: integer 
 	Parameter C_M_AXIS_DOUT_TUSER_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'div_gen_v5_1_23' declared at 'c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/sdiv/hdl/div_gen_v5_1_vh_rfs.vhd:12886' bound to instance 'U0' of component 'div_gen_v5_1_23' [c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/sdiv/synth/sdiv.vhd:152]
-INFO: [Synth 8-256] done synthesizing module 'sdiv' (0#1) [c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/sdiv/synth/sdiv.vhd:73]
-WARNING: [Synth 8-7129] Port ce in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aclr in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aset in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ainit in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sclr in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sset in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sinit in module c_twos_comp_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ce in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aclr in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aset in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ainit in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sclr in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sset in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sinit in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized44 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized44 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized44 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized44 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized13 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized13 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized13 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized42 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized42 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized42 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized40 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized40 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized40 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized20 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized20 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized20 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized20 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized38 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized38 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized38 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized18 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized18 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized18 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized18 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ce in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port bypass in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aclr in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aset in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ainit in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sclr in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sset in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sinit in module c_addsub_lut6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port b_in in module c_addsub_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a_signed in module c_addsub_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port b_signed in module c_addsub_viv is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized15 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized15 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized15 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized15 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized36 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized36 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized36 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized34 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized34 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized34 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized7 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized7 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized7 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized32 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized32 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized32 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized30 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized30 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized30 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized28 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized28 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized28 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized26 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized26 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized26 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized24 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized24 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized24 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized22 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized22 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized22 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized11 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized11 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized11 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized9 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized9 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized9 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized9 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port rdy in module dividervdc_v is either unconnected or has no load
-WARNING: [Synth 8-7129] Port nd in module dividervdc_v is either unconnected or has no load
-WARNING: [Synth 8-7129] Port aclr in module dividervdc_v is either unconnected or has no load
-WARNING: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_10_viv__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_10_viv__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_10_viv__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_10_viv__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-3491] module 'div_gen_v5_1_25' declared at 'c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/sdiv/hdl/div_gen_v5_1_vh_rfs.vhd:12886' bound to instance 'U0' of component 'div_gen_v5_1_25' [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/sdiv/synth/sdiv.vhd:152]
+INFO: [Synth 8-256] done synthesizing module 'sdiv' (0#1) [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/sdiv/synth/sdiv.vhd:73]
+INFO: [Synth 8-7129] Port ce in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port aclr in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port aset in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port ainit in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port sclr in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port sset in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port sinit in module c_twos_comp_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port ce in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port aclr in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port aset in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ainit in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port sclr in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port sset in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port sinit in module c_twos_comp_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized44 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized44 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized44 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized44 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized13 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized13 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized13 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized42 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized42 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized42 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized40 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized40 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized40 is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized20 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized20 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized20 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized20 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized38 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized38 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized38 is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized18 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized18 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized18 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized18 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ce in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port bypass in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port aclr in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port aset in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ainit in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port sclr in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port sset in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port sinit in module c_addsub_lut6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port b_in in module c_addsub_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port a_signed in module c_addsub_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port b_signed in module c_addsub_viv is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized15 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized15 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized15 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized15 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized36 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized36 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized36 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized34 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized34 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized34 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized7 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized7 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized7 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized32 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized32 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized32 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized30 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized30 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized30 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized28 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized28 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized28 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized26 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized26 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized26 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized24 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized24 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized24 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized22 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized22 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized22 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized11 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized11 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized11 is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized9 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized9 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized9 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized9 is either unconnected or has no load
+INFO: [Synth 8-7129] Port rdy in module dividervdc_v is either unconnected or has no load
+INFO: [Synth 8-7129] Port nd in module dividervdc_v is either unconnected or has no load
+INFO: [Synth 8-7129] Port aclr in module dividervdc_v is either unconnected or has no load
+INFO: [Synth 8-7129] Port CE in module xbip_pipe_v3_0_11_viv__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SINIT in module xbip_pipe_v3_0_11_viv__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SCLR in module xbip_pipe_v3_0_11_viv__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSET in module xbip_pipe_v3_0_11_viv__parameterized3 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1188.590 ; gain = 653.195
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1521.805 ; gain = 741.203
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1188.590 ; gain = 653.195
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1521.805 ; gain = 741.203
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1188.590 ; gain = 653.195
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1521.805 ; gain = 741.203
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1188.590 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.058 . Memory (MB): peak = 1521.805 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 528 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/sdiv/sdiv_ooc.xdc] for cell 'U0'
-Finished Parsing XDC File [c:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.gen/sources_1/ip/sdiv/sdiv_ooc.xdc] for cell 'U0'
-Parsing XDC File [C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1/dont_touch.xdc]
+Parsing XDC File [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/sdiv/sdiv_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/sdiv/sdiv_ooc.xdc] for cell 'U0'
+Parsing XDC File [C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1229.430 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1613.250 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1230.883 ; gain = 1.453
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.069 . Memory (MB): peak = 1613.250 ; gain = 0.000
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1230.883 ; gain = 695.488
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1613.250 ; gain = 832.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1230.883 ; gain = 695.488
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1613.250 ; gain = 832.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1230.883 ; gain = 695.488
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1613.250 ; gain = 832.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1230.883 ; gain = 695.488
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1613.250 ; gain = 832.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -231,27 +230,26 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1230.883 ; gain = 695.488
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1613.250 ; gain = 832.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1331.762 ; gain = 796.367
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1665.297 ; gain = 884.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1344.375 ; gain = 808.980
+Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1678.891 ; gain = 898.289
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1366.582 ; gain = 831.188
+Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1699.676 ; gain = 919.074
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -269,37 +267,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -327,32 +325,32 @@ Report Cell Usage:
 |10    |FDRE    |  1555|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:32 . Memory (MB): peak = 1562.031 ; gain = 984.344
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1562.031 ; gain = 1026.637
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:30 . Memory (MB): peak = 1927.520 ; gain = 1055.473
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1927.520 ; gain = 1146.918
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.039 . Memory (MB): peak = 1562.031 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.050 . Memory (MB): peak = 1927.520 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 564 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1566.988 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1940.340 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 72 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 72 instances
 
-Synth Design complete | Checksum: 5c2aa36b
+Synth Design complete | Checksum: 655569ff
 INFO: [Common 17-83] Releasing license: Synthesis
-22 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
+121 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 1566.988 ; gain = 1268.766
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1566.988 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1/sdiv.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP sdiv, cache-ID = 92c976037cd28715
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1940.340 ; gain = 1393.043
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1940.340 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1/sdiv.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP sdiv, cache-ID = 3fc274db16111d29
 INFO: [Coretcl 2-1174] Renamed 166 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1566.988 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/nibao/Desktop/vivado/nbg_cpu_16/nbg_cpu_16.runs/sdiv_synth_1/sdiv.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1940.340 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/sdiv_synth_1/sdiv.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file sdiv_utilization_synth.rpt -pb sdiv_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 11 22:13:20 2025...
+INFO: [Common 17-206] Exiting Vivado at Fri Apr  3 06:50:50 2026...

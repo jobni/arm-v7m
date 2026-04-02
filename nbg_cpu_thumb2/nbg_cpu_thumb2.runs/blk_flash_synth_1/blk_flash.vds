@@ -1,10 +1,10 @@
 #-----------------------------------------------------------
-# Vivado v2024.2.2 (64-bit)
-# SW Build 6060944 on Thu Mar 06 19:10:01 MST 2025
-# IP Build 6050500 on Thu Mar  6 23:33:39 MST 2025
-# SharedData Build 6060542 on Thu Mar 06 10:31:07 MST 2025
-# Start of session at: Sun Feb 22 11:35:52 2026
-# Process ID         : 11420
+# Vivado v2025.2.1 (64-bit)
+# SW Build 6403652 on Thu Mar 19 19:48:24 GMT 2026
+# IP Build 6403511 on Thu Mar 19 12:41:45 MDT 2026
+# SharedData Build 6403650 on Thu Mar 19 14:02:13 MDT 2026
+# Start of session at: Fri Apr  3 06:47:59 2026
+# Process ID         : 1360
 # Current directory  : C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_flash_synth_1
 # Command line       : vivado.exe -log blk_flash.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_flash.tcl
 # Log file           : C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_flash_synth_1/blk_flash.vds
@@ -19,10 +19,10 @@
 # Host memory        : 29833 MB
 # Swap memory        : 1879 MB
 # Total Virtual      : 31712 MB
-# Available Virtual  : 22375 MB
+# Available Virtual  : 20984 MB
 #-----------------------------------------------------------
 source blk_flash.tcl -notrace
-INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: blk_flash
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 538.156 ; gain = 224.395
 Command: synth_design -top blk_flash -part xc7z020clg400-2 -incremental_mode off -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
@@ -30,9 +30,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9792
+INFO: [Synth 8-7075] Helper process launched with PID 9584
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1000.891 ; gain = 465.895
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1319.551 ; gain = 540.984
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'blk_flash' [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/synth/blk_flash.vhd:78]
 	Parameter C_FAMILY bound to: zynq - type: string 
@@ -110,122 +110,122 @@ INFO: [Synth 8-638] synthesizing module 'blk_flash' [c:/Users/nibao/Desktop/viva
 	Parameter C_COUNT_36K_BRAM bound to: 7 - type: string 
 	Parameter C_COUNT_18K_BRAM bound to: 1 - type: string 
 	Parameter C_EST_POWER_SUMMARY bound to: Estimated Power for IP     :     24.33515 mW - type: string 
-INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_10' declared at 'c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195209' bound to instance 'U0' of component 'blk_mem_gen_v8_4_10' [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/synth/blk_flash.vhd:254]
+INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_12' declared at 'c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195209' bound to instance 'U0' of component 'blk_mem_gen_v8_4_12' [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/synth/blk_flash.vhd:254]
 INFO: [Synth 8-256] done synthesizing module 'blk_flash' (0#1) [c:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/synth/blk_flash.vhd:78]
-WARNING: [Synth 8-7129] Port CLKB in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR_I in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR_I in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[12] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[11] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[10] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[9] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[8] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[7] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[6] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[5] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[4] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[3] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[2] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[1] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port RDADDRECC_I[0] in module blk_mem_output_block is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
-WARNING: [Synth 8-7129] Port MUX_RST[0] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port MEM_LAT_RST in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port MEM_REG_RST in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port MUX_REGCE[0] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port MEM_REGCE in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port WE in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[12] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[11] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[10] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[9] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[8] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[7] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[6] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[5] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[4] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[3] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[2] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[1] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADDR_IN[0] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port SBITERRIN[31] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port CLKB in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR_I in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR_I in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[12] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[11] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[10] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[9] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[8] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[7] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[6] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[5] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[4] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[3] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[2] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[1] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port RDADDRECC_I[0] in module blk_mem_output_block is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized6 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized5 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized4 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized3 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized2 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized1 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init is either unconnected or has no load
+INFO: [Synth 8-7129] Port MUX_RST[0] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port MEM_LAT_RST in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port MEM_REG_RST in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port MUX_REGCE[0] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port MEM_REGCE in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port WE in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[12] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[11] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[10] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[9] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[8] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[7] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[6] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[5] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[4] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[3] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[2] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[1] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port ADDR_IN[0] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port SBITERRIN[31] in module blk_mem_gen_mux__parameterized0 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:29 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:28 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:29 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:28 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:29 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:28 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1391.773 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1730.449 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -238,44 +238,34 @@ Parsing XDC File [C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_t
 Finished Parsing XDC File [C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_flash_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1391.773 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1730.449 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1391.773 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.046 . Memory (MB): peak = 1730.449 ; gain = 0.000
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:37 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:36 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:37 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:36 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_flash_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:37 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:36 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:37 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:36 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
-Detailed RTL Component Info : 
-+---XORs : 
-	   2 Input      1 Bit         XORs := 16    
-+---Registers : 
-	                5 Bit    Registers := 16    
-	                1 Bit    Registers := 66    
-+---Muxes : 
-	   2 Input   32 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -291,27 +281,26 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:38 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:38 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:43 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:46 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:43 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:46 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:43 . Memory (MB): peak = 1391.773 ; gain = 856.777
+Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:46 . Memory (MB): peak = 1730.449 ; gain = 951.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -329,51 +318,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-Static Shift Register Report:
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|Module Name         | RTL Name                                                                                                              | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|blk_mem_gen_v8_4_10 | inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[6].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4] | 4      | 2     | NO           | NO                 | YES               | 2      | 0       | 
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -398,31 +373,31 @@ Report Cell Usage:
 |11    |FDRE     |    14|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:46 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 151 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:44 . Memory (MB): peak = 1571.535 ; gain = 1036.539
-Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:47 . Memory (MB): peak = 1571.535 ; gain = 1036.539
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:48 . Memory (MB): peak = 1943.336 ; gain = 1164.770
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:51 . Memory (MB): peak = 1943.336 ; gain = 1164.770
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1571.535 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1943.336 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1584.312 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1956.148 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: c4ef83c7
+Synth Design complete | Checksum: 21c7f5d2
 INFO: [Common 17-83] Releasing license: Synthesis
-22 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
+121 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:34 ; elapsed = 00:01:04 . Memory (MB): peak = 1584.312 ; gain = 1285.328
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1584.312 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 1956.148 ; gain = 1406.707
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1956.148 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_flash_synth_1/blk_flash.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP blk_flash, cache-ID = 4c03adc73e710176
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP blk_flash, cache-ID = 6fc95f21c24bf905
 INFO: [Coretcl 2-1174] Renamed 22 cell refs.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1584.312 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1956.148 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/nibao/Desktop/vivado/arm-v7m/nbg_cpu_thumb2/nbg_cpu_thumb2.runs/blk_flash_synth_1/blk_flash.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file blk_flash_utilization_synth.rpt -pb blk_flash_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Feb 22 11:37:00 2026...
+INFO: [Common 17-206] Exiting Vivado at Fri Apr  3 06:49:06 2026...

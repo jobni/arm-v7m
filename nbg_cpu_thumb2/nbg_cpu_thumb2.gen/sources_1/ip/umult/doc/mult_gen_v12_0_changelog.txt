@@ -1,3 +1,20 @@
+2025.2.1:
+ * Version 12.0 (Rev. 24)
+ * No changes
+
+2025.2:
+ * Version 12.0 (Rev. 24)
+ * Revision change in one or more subcores
+
+2025.1.1:
+ * Version 12.0 (Rev. 23)
+ * No changes
+
+2025.1:
+ * Version 12.0 (Rev. 23)
+ * General: Updated IP Catalog taxonomy structure. This change has no impact to the IP.
+ * General: Updated DSP48 to DSP in GUI. No change to functionality or performance.
+
 2024.2.2:
  * Version 12.0 (Rev. 22)
  * No changes
@@ -291,7 +308,7 @@
  * Changed all port names to upper case
  * There have been no functional changes to this IP.  The version number has changed to support unique versioning in Vivado starting with 2013.1.
 
-(c) Copyright 2000 - 2025 Advanced Micro Devices, Inc. All rights reserved.
+(c) Copyright 2000 - 2026 Advanced Micro Devices, Inc. All rights reserved.
 
 This file contains confidential and proprietary information
 of AMD and is protected under U.S. and international copyright

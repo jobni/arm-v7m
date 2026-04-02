@@ -92,7 +92,7 @@
 --
  *****************************************************************************
  *
- * Filename: blk_mem_gen_v8_4_10.v
+ * Filename: blk_mem_gen_v8_4_12.v
  *
  * Description:
  *   This file is the Verilog behvarial model for the
@@ -1602,10 +1602,10 @@ module blk_mem_axi_regs_fwd_v8_4
 // Output Register Stage module
 //
 // This module builds the output register stages of the memory. This module is 
-// instantiated in the main memory module (blk_mem_gen_v8_4_10) which is
+// instantiated in the main memory module (blk_mem_gen_v8_4_12) which is
 // declared/implemented further down in this file.
 //*****************************************************************************
-module blk_mem_gen_v8_4_10_output_stage
+module blk_mem_gen_v8_4_12_output_stage
   #(parameter C_FAMILY              = "virtex7",
     parameter C_XDEVICEFAMILY       = "virtex7",
     parameter C_RST_TYPE            = "SYNC",
@@ -1621,7 +1621,8 @@ module blk_mem_gen_v8_4_10_output_stage
     parameter C_USE_SOFTECC         = 0,
     parameter C_USE_ECC             = 0,
     parameter NUM_STAGES            = 1,
-	parameter C_EN_ECC_PIPE         = 0,
+    parameter C_USE_URAM            = 0,
+ 	  parameter C_EN_ECC_PIPE         = 0,
     parameter FLOP_DELAY            = 100
   )
   (
@@ -1695,6 +1696,10 @@ module blk_mem_gen_v8_4_10_output_stage
   reg [C_ADDRB_WIDTH*REG_STAGES-1:0] rdaddrecc_regs;
   reg [REG_STAGES-1:0] sbiterr_regs;
   reg [REG_STAGES-1:0] dbiterr_regs;
+  reg [C_DATA_WIDTH-1:0] out_regs_int;
+  reg [C_ADDRB_WIDTH-1:0] rdaddrecc_regs_int;
+  reg sbiterr_regs_int;
+  reg dbiterr_regs_int;
 
   reg [C_DATA_WIDTH*8-1:0]          init_str = C_INIT_VAL;
   reg [C_DATA_WIDTH-1:0]            init_val ;
@@ -1722,7 +1727,7 @@ module blk_mem_gen_v8_4_10_output_stage
   // For V4 ECC, REGCE is always 1
   // Virtex-4 ECC Not Yet Supported
   assign   regce_i = ((C_HAS_REGCE==1) && REGCE) ||
-                     ((C_HAS_REGCE==0) && (C_HAS_EN==0 || EN));
+                     ((C_HAS_REGCE==0) && (C_HAS_EN==0 || EN)) || (C_USE_URAM > 0) ;
   
   //Internal SRR is tied to user RST or '0' depending on parameters
   assign   rst_i   = (C_HAS_RST==1) && RST;
@@ -1747,6 +1752,10 @@ module blk_mem_gen_v8_4_10_output_stage
     rdaddrecc_regs = 0;
     sbiterr_regs = {(REG_STAGES+1){1'b0}};
     dbiterr_regs = {(REG_STAGES+1){1'b0}};
+    out_regs_int = init_val;
+    rdaddrecc_regs_int = 'b0;
+    sbiterr_regs_int = 1'b0;
+    dbiterr_regs_int = 1'b0;
   end
 
  //***********************************************
@@ -1859,7 +1868,7 @@ module blk_mem_gen_v8_4_10_output_stage
  //              or 
  // Mux Pipeline Stages (>0) + Mux Output Reg
  //*************************************************************
- generate if (NUM_STAGES > 1) begin : multi_stage
+ generate if ((NUM_STAGES > 1 &&  NUM_STAGES <= 2 && C_USE_URAM > 0) || (C_USE_URAM <= 0 && NUM_STAGES > 1)) begin : two_reg_stage
        //Asynchronous Reset
       always @(posedge CLK) begin
         if (C_RST_PRIORITY == "CE") begin  //REGCE has priority
@@ -1899,9 +1908,64 @@ module blk_mem_gen_v8_4_10_output_stage
       end  //end CLK
   end //end multi_stage generate statement
   endgenerate
+
+ //************************************************************
+ // NUM_STAGES > 3 
+ // Mem Output Reg + Mux Output Reg
+ //              or 
+ // Mem Output Reg + Mux Pipeline Stages (>0) + Mux Output Reg
+ //              or 
+ // Mux Pipeline Stages (>0) + Mux Output Reg 
+ //*************************************************************
+  
+  generate if (NUM_STAGES >= 3 && (C_USE_URAM > 0)) begin : multi_stage
+       //Asynchronous Reset
+      always @(posedge CLK) begin
+        if (C_RST_PRIORITY == "CE") begin  //REGCE has priority
+          if (regce_i && rst_i) begin
+            DOUT    <= #FLOP_DELAY init_val;
+            RDADDRECC <= #FLOP_DELAY 0;
+            SBITERR <= #FLOP_DELAY 1'b0;
+            DBITERR <= #FLOP_DELAY 1'b0;
+          end else if (regce_i) begin
+            DOUT    <= #FLOP_DELAY
+                          out_regs[C_DATA_WIDTH*(NUM_STAGES-3)+:C_DATA_WIDTH];
+            RDADDRECC <= #FLOP_DELAY rdaddrecc_regs[C_ADDRB_WIDTH*(NUM_STAGES-3)+:C_ADDRB_WIDTH];
+            SBITERR <= #FLOP_DELAY sbiterr_regs[NUM_STAGES-3];
+            DBITERR <= #FLOP_DELAY dbiterr_regs[NUM_STAGES-3];
+          end //Output signal assignments
+        end else begin                     //RST has priority
+          if (rst_i) begin
+            DOUT    <= #FLOP_DELAY init_val;
+            RDADDRECC <= #FLOP_DELAY 0;
+            SBITERR <= #FLOP_DELAY 1'b0;
+            DBITERR <= #FLOP_DELAY 1'b0;
+          end else if (regce_i) begin
+            DOUT    <= #FLOP_DELAY
+                          out_regs[C_DATA_WIDTH*(NUM_STAGES-3)+:C_DATA_WIDTH];
+            RDADDRECC <= #FLOP_DELAY rdaddrecc_regs[C_ADDRB_WIDTH*(NUM_STAGES-3)+:C_ADDRB_WIDTH];
+            SBITERR <= #FLOP_DELAY sbiterr_regs[NUM_STAGES-3];
+            DBITERR <= #FLOP_DELAY dbiterr_regs[NUM_STAGES-3];
+          end //Output signal assignments
+        end   //end Priority conditions
+         // Shift the data through the output stages
+           out_regs     <= #FLOP_DELAY (out_regs << C_DATA_WIDTH) | out_regs_int;
+           rdaddrecc_regs <= #FLOP_DELAY (rdaddrecc_regs << C_ADDRB_WIDTH) | rdaddrecc_regs_int;
+           sbiterr_regs <= #FLOP_DELAY (sbiterr_regs << 1) | sbiterr_regs_int;
+           dbiterr_regs <= #FLOP_DELAY (dbiterr_regs << 1) | dbiterr_regs_int;
+          
+         if (en_i) begin
+           out_regs_int     <= #FLOP_DELAY DIN;
+           rdaddrecc_regs_int <= #FLOP_DELAY RDADDRECC_IN;
+           sbiterr_regs_int <= #FLOP_DELAY SBITERR_IN;
+           dbiterr_regs_int <= #FLOP_DELAY DBITERR_IN;
+         end
+      end  //end CLK
+  end //end multi_stage generate statement
+  endgenerate
 endmodule
 
-module blk_mem_gen_v8_4_10_softecc_output_reg_stage
+module blk_mem_gen_v8_4_12_softecc_output_reg_stage
   #(parameter C_DATA_WIDTH          = 32,
     parameter C_ADDRB_WIDTH         = 10,
     parameter C_HAS_SOFTECC_OUTPUT_REGS_B= 0,
@@ -1993,8 +2057,8 @@ endmodule
 //
 // This module is the top-level behavioral model and this implements the RAM 
 //*****************************************************************************
-module blk_mem_gen_v8_4_10_mem_module
-  #(parameter C_CORENAME                = "blk_mem_gen_v8_4_10",
+module blk_mem_gen_v8_4_12_mem_module
+  #(parameter C_CORENAME                = "blk_mem_gen_v8_4_12",
     parameter C_FAMILY                  = "virtex7",
     parameter C_XDEVICEFAMILY           = "virtex7",
     parameter C_MEM_TYPE                = 2,
@@ -2045,6 +2109,9 @@ module blk_mem_gen_v8_4_10_mem_module
     parameter C_MUX_PIPELINE_STAGES     = 0,
     parameter C_USE_SOFTECC             = 0,
     parameter C_USE_ECC                 = 0,
+    parameter C_USE_URAM                = 0,
+    parameter C_READ_LATENCY_A          = 1,
+    parameter C_READ_LATENCY_B          = 1,
     parameter C_HAS_INJECTERR           = 0,
     parameter C_SIM_COLLISION_CHECK     = "NONE",
     parameter C_COMMON_CLK              = 1,
@@ -2209,9 +2276,9 @@ module blk_mem_gen_v8_4_10_mem_module
   //////////////////////////////////////////////////////////////////////////
 
 
-// Note: C_CORENAME parameter is hard-coded to "blk_mem_gen_v8_4_10" and it is
+// Note: C_CORENAME parameter is hard-coded to "blk_mem_gen_v8_4_12" and it is
 // only used by this module to print warning messages. It is neither passed 
-// down from blk_mem_gen_v8_4_10_xst.v nor present in the instantiation template
+// down from blk_mem_gen_v8_4_12_xst.v nor present in the instantiation template
 // coregen generates
   
   //***************************************************************************
@@ -2328,7 +2395,7 @@ module blk_mem_gen_v8_4_10_mem_module
   integer write_addr_a_width, read_addr_a_width;
   integer write_addr_b_width, read_addr_b_width;
 
-    localparam C_FAMILY_LOCALPARAM =      (C_FAMILY=="virtexuplushbm"?"virtex7":(C_FAMILY=="zynquplusrfsoc"?"virtex7":(C_FAMILY=="zynquplus"?"virtex7":(C_FAMILY=="kintexuplus"?"virtex7":(C_FAMILY=="virtexuplus"?"virtex7":(C_FAMILY=="virtexu"?"virtex7":(C_FAMILY=="kintexu" ? "virtex7":(C_FAMILY=="virtex7" ? "virtex7" : (C_FAMILY=="virtex7l" ? "virtex7" : (C_FAMILY=="qvirtex7" ? "virtex7" : (C_FAMILY=="qvirtex7l" ? "virtex7" : (C_FAMILY=="kintex7" ? "virtex7" : (C_FAMILY=="kintex7l" ? "virtex7" : (C_FAMILY=="qkintex7" ? "virtex7" : (C_FAMILY=="qkintex7l" ? "virtex7" : (C_FAMILY=="artix7" ? "virtex7" : (C_FAMILY=="artix7l" ? "virtex7" : (C_FAMILY=="qartix7" ? "virtex7" : (C_FAMILY=="qartix7l" ? "virtex7" : (C_FAMILY=="aartix7" ? "virtex7" : (C_FAMILY=="zynq" ? "virtex7" : (C_FAMILY=="azynq" ? "virtex7" : (C_FAMILY=="qzynq" ? "virtex7" : C_FAMILY)))))))))))))))))))))));
+    localparam C_FAMILY_LOCALPARAM =      (C_FAMILY=="virtexuplushbm"?"virtex7":(C_FAMILY=="zynquplusrfsoc"?"virtex7":(C_FAMILY=="zynquplus"?"virtex7":(C_FAMILY=="kintexuplus"?"virtex7":(C_FAMILY=="virtexuplus"?"virtex7":(C_FAMILY=="virtexu"?"virtex7":(C_FAMILY=="kintexu" ? "virtex7":(C_FAMILY=="virtex7" ? "virtex7" : (C_FAMILY=="virtex7l" ? "virtex7" : (C_FAMILY=="qvirtex7" ? "virtex7" : (C_FAMILY=="qvirtex7l" ? "virtex7" : (C_FAMILY=="kintex7" ? "virtex7" : (C_FAMILY=="kintex7l" ? "virtex7" : (C_FAMILY=="qkintex7" ? "virtex7" : (C_FAMILY=="qkintex7l" ? "virtex7" : (C_FAMILY=="artix7" ? "virtex7" : (C_FAMILY=="artix7l" ? "virtex7" : (C_FAMILY=="qartix7" ? "virtex7" : (C_FAMILY=="qartix7l" ? "virtex7" : (C_FAMILY=="aartix7" ? "virtex7" : (C_FAMILY=="zynq" ? "virtex7" : (C_FAMILY=="azynq" ? "virtex7" : (C_FAMILY=="qzynq" ? "virtex7" : (C_FAMILY=="spartanuplus"?"virtex7" : C_FAMILY))))))))))))))))))))))));
 
   // Internal configuration parameters
   //---------------------------------------------
@@ -2349,9 +2416,9 @@ module blk_mem_gen_v8_4_10_mem_module
   
   // Calculate total number of register stages in the core
   // -----------------------------------------------------
-  localparam NUM_OUTPUT_STAGES_A = (C_HAS_MEM_OUTPUT_REGS_A+MUX_PIPELINE_STAGES_A+C_HAS_MUX_OUTPUT_REGS_A);
+  localparam NUM_OUTPUT_STAGES_A =  (C_USE_URAM > 0) ? (C_READ_LATENCY_A - 1) : (C_HAS_MEM_OUTPUT_REGS_A+MUX_PIPELINE_STAGES_A+C_HAS_MUX_OUTPUT_REGS_A);
 
-  localparam NUM_OUTPUT_STAGES_B = (C_HAS_MEM_OUTPUT_REGS_B+MUX_PIPELINE_STAGES_B+C_HAS_MUX_OUTPUT_REGS_B);
+  localparam NUM_OUTPUT_STAGES_B =  (C_USE_URAM > 0) ? (C_READ_LATENCY_B - 1):  (C_HAS_MEM_OUTPUT_REGS_B+MUX_PIPELINE_STAGES_B+C_HAS_MUX_OUTPUT_REGS_B);
 
   wire                   ena_i;
   wire                   enb_i;
@@ -3219,9 +3286,23 @@ module blk_mem_gen_v8_4_10_mem_module
   //***************************************************************
   // Port A
   
+  reg ena_reg = 1'b0;
+  wire ena_internal;
+  always@(posedge CLKA) begin 
+   ena_reg <= ENA;
+  end
+  assign ena_internal = (C_USE_URAM > 0) ? ena_reg : ENA;
+  reg enb_reg = 1'b0;
+  wire enb_internal;
+  always@(posedge CLKB) begin 
+   enb_reg <= ENB;
+  end
+  assign enb_internal = (C_USE_URAM > 0) ? enb_reg : ENB;
+  
+
   assign rsta_outp_stage = RSTA & (~SLEEP);
 
-  blk_mem_gen_v8_4_10_output_stage
+  blk_mem_gen_v8_4_12_output_stage
     #(.C_FAMILY                 (C_FAMILY),
       .C_XDEVICEFAMILY          (C_XDEVICEFAMILY),
       .C_RST_TYPE               ("SYNC"),
@@ -3236,13 +3317,14 @@ module blk_mem_gen_v8_4_10_mem_module
       .C_HAS_MEM_OUTPUT_REGS    (C_HAS_MEM_OUTPUT_REGS_A),
       .C_USE_SOFTECC            (C_USE_SOFTECC),
       .C_USE_ECC                (C_USE_ECC),
+      .C_USE_URAM               (C_USE_URAM),
       .NUM_STAGES               (NUM_OUTPUT_STAGES_A),
-	  .C_EN_ECC_PIPE            (0),
+	    .C_EN_ECC_PIPE            (0),
       .FLOP_DELAY               (FLOP_DELAY))
       reg_a
         (.CLK         (CLKA),
          .RST         (rsta_outp_stage),//(RSTA),
-         .EN          (ENA),
+         .EN          (ena_internal),
          .REGCE       (REGCEA),
          .DIN_I       (memory_out_a),
          .DOUT        (DOUTA),
@@ -3258,7 +3340,7 @@ module blk_mem_gen_v8_4_10_mem_module
   assign rstb_outp_stage = RSTB & (~SLEEP);
 
   // Port B 
-  blk_mem_gen_v8_4_10_output_stage
+  blk_mem_gen_v8_4_12_output_stage
     #(.C_FAMILY                 (C_FAMILY),
       .C_XDEVICEFAMILY          (C_XDEVICEFAMILY),
       .C_RST_TYPE               ("SYNC"),
@@ -3273,13 +3355,14 @@ module blk_mem_gen_v8_4_10_mem_module
       .C_HAS_MEM_OUTPUT_REGS    (C_HAS_MEM_OUTPUT_REGS_B),
       .C_USE_SOFTECC            (C_USE_SOFTECC),
       .C_USE_ECC                (C_USE_ECC),
+      .C_USE_URAM               (C_USE_URAM),
       .NUM_STAGES               (NUM_OUTPUT_STAGES_B),
       .C_EN_ECC_PIPE            (C_EN_ECC_PIPE),
       .FLOP_DELAY               (FLOP_DELAY))
       reg_b
         (.CLK         (CLKB),
          .RST         (rstb_outp_stage),//(RSTB),
-         .EN          (ENB),
+         .EN          (enb_internal),
          .REGCE       (REGCEB),
          .DIN_I       (memory_out_b),
          .DOUT        (dout_i),
@@ -3295,7 +3378,7 @@ module blk_mem_gen_v8_4_10_mem_module
   //***************************************************************
   //  Instantiate the Input and Output register stages
   //***************************************************************
-blk_mem_gen_v8_4_10_softecc_output_reg_stage
+blk_mem_gen_v8_4_12_softecc_output_reg_stage
     #(.C_DATA_WIDTH                 (C_READ_WIDTH_B),
       .C_ADDRB_WIDTH                (C_ADDRB_WIDTH),
       .C_HAS_SOFTECC_OUTPUT_REGS_B  (C_HAS_SOFTECC_OUTPUT_REGS_B),
@@ -3454,8 +3537,8 @@ endmodule
 // This module is the top-level behavioral model and this implements the memory 
 // module and the input registers
 //*****************************************************************************
-module blk_mem_gen_v8_4_10
-  #(parameter C_CORENAME                = "blk_mem_gen_v8_4_10",
+module blk_mem_gen_v8_4_12
+  #(parameter C_CORENAME                = "blk_mem_gen_v8_4_12",
     parameter C_FAMILY                  = "virtex7",
     parameter C_XDEVICEFAMILY           = "virtex7",
     parameter C_ELABORATION_DIR         = "",
@@ -4137,7 +4220,7 @@ module blk_mem_gen_v8_4_10
   endgenerate
 
   generate if ((C_INTERFACE_TYPE == 0) && (C_ENABLE_32BIT_ADDRESS == 0)) begin : native_mem_module
-blk_mem_gen_v8_4_10_mem_module
+blk_mem_gen_v8_4_12_mem_module
   #(.C_CORENAME                        (C_CORENAME),
     .C_FAMILY                          (C_FAMILY),
     .C_XDEVICEFAMILY                   (C_XDEVICEFAMILY),
@@ -4195,8 +4278,11 @@ blk_mem_gen_v8_4_10_mem_module
     .FLOP_DELAY                        (FLOP_DELAY),
     .C_DISABLE_WARN_BHV_COLL           (C_DISABLE_WARN_BHV_COLL),
  .C_EN_ECC_PIPE                     (C_EN_ECC_PIPE),
+    .C_USE_URAM                        (C_USE_URAM),
+    .C_READ_LATENCY_A                  (C_READ_LATENCY_A),
+    .C_READ_LATENCY_B                  (C_READ_LATENCY_B),
     .C_DISABLE_WARN_BHV_RANGE          (C_DISABLE_WARN_BHV_RANGE))
-    blk_mem_gen_v8_4_10_inst
+    blk_mem_gen_v8_4_12_inst
    (.CLKA            (CLKA),
    .RSTA             (RSTA_I_SAFE),//(rsta_in),
    .ENA              (ENA_I_SAFE),//(ena_in),
@@ -4259,7 +4345,7 @@ blk_mem_gen_v8_4_10_mem_module
   assign lsb_zero_i = 0;
   assign RDADDRECC  = {msb_zero_i,rdaddrecc_i,lsb_zero_i};
 
-blk_mem_gen_v8_4_10_mem_module
+blk_mem_gen_v8_4_12_mem_module
   #(.C_CORENAME                        (C_CORENAME),
     .C_FAMILY                          (C_FAMILY),
     .C_XDEVICEFAMILY                   (C_XDEVICEFAMILY),
@@ -4317,8 +4403,11 @@ blk_mem_gen_v8_4_10_mem_module
     .FLOP_DELAY                        (FLOP_DELAY),
     .C_DISABLE_WARN_BHV_COLL           (C_DISABLE_WARN_BHV_COLL),
  .C_EN_ECC_PIPE                     (C_EN_ECC_PIPE),
+    .C_USE_URAM                        (C_USE_URAM),
+    .C_READ_LATENCY_A                  (C_READ_LATENCY_A),
+    .C_READ_LATENCY_B                  (C_READ_LATENCY_B),
     .C_DISABLE_WARN_BHV_RANGE          (C_DISABLE_WARN_BHV_RANGE))
-    blk_mem_gen_v8_4_10_inst
+    blk_mem_gen_v8_4_12_inst
    (.CLKA            (CLKA),
    .RSTA             (RSTA_I_SAFE),//(rsta_in),
    .ENA              (ENA_I_SAFE),//(ena_in),
@@ -4475,7 +4564,7 @@ assign s_axi_arlen_c = (C_AXI_TYPE == 1)?S_AXI_ARLEN:8'h0;
     .S_AXI_RD_EN                  (s_axi_rd_en_c)
   );
 
-blk_mem_gen_v8_4_10_mem_module
+blk_mem_gen_v8_4_12_mem_module
   #(.C_CORENAME                        (C_CORENAME),
     .C_FAMILY                          (C_FAMILY),
     .C_XDEVICEFAMILY                   (C_XDEVICEFAMILY),
@@ -4533,8 +4622,11 @@ blk_mem_gen_v8_4_10_mem_module
     .FLOP_DELAY                        (FLOP_DELAY),
     .C_DISABLE_WARN_BHV_COLL           (C_DISABLE_WARN_BHV_COLL),
 	.C_EN_ECC_PIPE                     (0),
+    .C_USE_URAM                        (C_USE_URAM),
+    .C_READ_LATENCY_A                  (C_READ_LATENCY_A),
+    .C_READ_LATENCY_B                  (C_READ_LATENCY_B),
     .C_DISABLE_WARN_BHV_RANGE          (C_DISABLE_WARN_BHV_RANGE))
-    blk_mem_gen_v8_4_10_inst
+    blk_mem_gen_v8_4_12_inst
    (.CLKA            (S_ACLK),
    .RSTA             (s_aresetn_a_c),
    .ENA              (s_axi_wr_en_c),

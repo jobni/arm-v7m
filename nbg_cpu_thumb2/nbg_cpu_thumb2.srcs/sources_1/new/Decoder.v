@@ -1836,18 +1836,23 @@ module Decoder(
                                 end
                                 else if(ir_A[8:7]==2'b00 && ir_B[11:8]==4'b1110) begin
                                     // LDRHT
+                                    decode_error <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b10 && ((ir_B[11] && ir_B[8])||ir_B[11:8]==4'b1100)) begin
                                     // LDRSH (immediate) T2
+                                    decode_error <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b11) begin
                                     // LDRSH (immediate) T1
+                                    decode_error <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b10 && ir_B[11:6]==6'b0) begin
                                     // LDRSH (register)
+                                    decode_error <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b10 && ir_B[11:8]==4'b1110) begin
                                     // LDRSHT
+                                    decode_error <= 1'b1;
                                 end
                                 else begin
                                     decode_error <= 1'b1;
@@ -1856,6 +1861,7 @@ module Decoder(
                             else if(ir_A[3:0]==4'b1111) begin
                                 if(ir_A[8]) begin
                                     // LDRSH (literal)
+                                    decode_error <= 1'b1;
                                 end
                             end
                             else begin

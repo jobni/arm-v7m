@@ -1,2 +1,2 @@
-blk_flash.v,verilog,xil_defaultlib,../../../../nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/sim/blk_flash.v,
+blk_flash.v,verilog,xil_defaultlib,../../../../nbg_cpu_thumb2.gen/sources_1/ip/blk_flash/sim/blk_flash.v,incdir="../../../../../../../../../../Xilinx/2025.2.1/Vivado/data/rsb/busdef"
 glbl.v,Verilog,xil_defaultlib,glbl.v

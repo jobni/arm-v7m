@@ -13,7 +13,6 @@
   <File Type="BG-BIN" Name="ProcesserCoreSystem.bin"/>
   <File Type="PLACE-CTRL" Name="ProcesserCoreSystem_control_sets_placed.rpt"/>
   <File Type="ROUTE-PWR-RPX" Name="ProcesserCoreSystem_power_routed.rpx"/>
-  <File Type="ROUTE-DCP" Name="ProcesserCoreSystem_routed.dcp"/>
   <File Type="BITSTR-MSK" Name="ProcesserCoreSystem.msk"/>
   <File Type="BITSTR-RBT" Name="ProcesserCoreSystem.rbt"/>
   <File Type="ROUTE-TIMINGSUMMARY" Name="ProcesserCoreSystem_timing_summary_routed.rpt"/>
@@ -48,6 +47,7 @@
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="OPT-HWDEF" Name="ProcesserCoreSystem.hwdef"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="ProcesserCoreSystem_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-DCP" Name="ProcesserCoreSystem_routed.dcp"/>
   <File Type="ROUTE-ERROR-DCP" Name="ProcesserCoreSystem_routed_error.dcp"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="ProcesserCoreSystem_routed_bb.dcp"/>
   <File Type="ROUTE-TIMING-PB" Name="ProcesserCoreSystem_timing_summary_routed.pb"/>

@@ -3,7 +3,7 @@
   "ip_inst": {
     "xci_name": "blk_flash",
     "component_reference": "xilinx.com:ip:blk_mem_gen:8.4",
-    "ip_revision": "10",
+    "ip_revision": "12",
     "gen_directory": "../../../../nbg_cpu_thumb2.gen/sources_1/ip/blk_flash",
     "parameters": {
       "component_parameters": {
@@ -14,7 +14,7 @@
         "Use_AXI_ID": [ { "value": "false", "resolve_type": "user", "format": "bool", "enabled": false, "usage": "all" } ],
         "AXI_ID_Width": [ { "value": "4", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ],
         "Memory_Type": [ { "value": "True_Dual_Port_RAM", "value_src": "user", "resolve_type": "user", "usage": "all" } ],
-        "PRIM_type_to_Implement": [ { "value": "BRAM", "resolve_type": "user", "enabled": false, "usage": "all" } ],
+        "PRIM_type_to_Implement": [ { "value": "BRAM", "resolve_type": "user", "usage": "all" } ],
         "Enable_32bit_Address": [ { "value": "false", "resolve_type": "user", "format": "bool", "usage": "all" } ],
         "ecctype": [ { "value": "No_ECC", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "ECC": [ { "value": "false", "resolve_type": "user", "format": "bool", "enabled": false, "usage": "all" } ],
@@ -76,7 +76,7 @@
         "use_bram_block": [ { "value": "Stand_Alone", "resolve_type": "user", "usage": "all" } ],
         "MEM_FILE": [ { "value": "no_mem_loaded", "resolve_type": "user", "usage": "all" } ],
         "CTRL_ECC_ALGO": [ { "value": "NONE", "resolve_type": "user", "usage": "all" } ],
-        "EN_SAFETY_CKT": [ { "value": "true", "resolve_type": "user", "format": "bool", "usage": "all" } ],
+        "EN_SAFETY_CKT": [ { "value": "true", "value_src": "user", "resolve_type": "user", "format": "bool", "usage": "all" } ],
         "READ_LATENCY_A": [ { "value": "1", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ],
         "READ_LATENCY_B": [ { "value": "1", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ]
       },
@@ -158,27 +158,27 @@
         "C_EST_POWER_SUMMARY": [ { "value": "Estimated Power for IP     :     24.33515 mW", "resolve_type": "generated", "usage": "all" } ]
       },
       "project_parameters": {
-        "ARCHITECTURE": [ { "value": "zynq" } ],
-        "BASE_BOARD_PART": [ { "value": "" } ],
-        "BOARD_CONNECTIONS": [ { "value": "" } ],
-        "DEVICE": [ { "value": "xc7z020" } ],
-        "NEXTGEN_VERSAL": [ { "value": "0" } ],
-        "PACKAGE": [ { "value": "clg400" } ],
-        "PREFHDL": [ { "value": "VERILOG" } ],
-        "SILICON_REVISION": [ { "value": "" } ],
-        "SIMULATOR_LANGUAGE": [ { "value": "VERILOG" } ],
-        "SPEEDGRADE": [ { "value": "-2" } ],
-        "STATIC_POWER": [ { "value": "" } ],
-        "TEMPERATURE_GRADE": [ { "value": "" } ]
+        "ARCHITECTURE": [ { "value": "zynq", "resolve_type": "generated", "usage": "all" } ],
+        "BASE_BOARD_PART": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+        "BOARD_CONNECTIONS": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+        "DEVICE": [ { "value": "xc7z020", "resolve_type": "generated", "usage": "all" } ],
+        "NEXTGEN_VERSAL": [ { "value": "0", "resolve_type": "generated", "usage": "all" } ],
+        "PACKAGE": [ { "value": "clg400", "resolve_type": "generated", "usage": "all" } ],
+        "PREFHDL": [ { "value": "VERILOG", "resolve_type": "generated", "usage": "all" } ],
+        "SILICON_REVISION": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "VERILOG", "resolve_type": "generated", "usage": "all" } ],
+        "SPEEDGRADE": [ { "value": "-2", "resolve_type": "generated", "usage": "all" } ],
+        "STATIC_POWER": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+        "TEMPERATURE_GRADE": [ { "value": "", "resolve_type": "generated", "usage": "all" } ]
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "10" } ],
+        "IPREVISION": [ { "value": "12" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../nbg_cpu_thumb2.gen/sources_1/ip/blk_flash" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
-        "SWVERSION": [ { "value": "2024.2.2" } ],
+        "SWVERSION": [ { "value": "2025.2.1" } ],
         "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },
@@ -286,5 +286,6 @@
         }
       }
     }
-  }
+  },
+  "checksum": "b5930d59"
 }

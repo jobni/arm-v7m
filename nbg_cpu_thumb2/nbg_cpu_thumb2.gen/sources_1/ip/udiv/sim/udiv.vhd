@@ -1,5 +1,5 @@
 -- (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- (c) Copyright 2022-2025 Advanced Micro Devices, Inc. All rights reserved.
+-- (c) Copyright 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of AMD and is protected under U.S. and international copyright
@@ -47,14 +47,14 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:div_gen:5.1
--- IP Revision: 23
+-- IP Revision: 25
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-LIBRARY div_gen_v5_1_23;
-USE div_gen_v5_1_23.div_gen_v5_1_23;
+LIBRARY div_gen_v5_1_25;
+USE div_gen_v5_1_25.div_gen_v5_1_25;
 
 ENTITY udiv IS
   PORT (
@@ -73,7 +73,7 @@ END udiv;
 ARCHITECTURE udiv_arch OF udiv IS
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF udiv_arch: ARCHITECTURE IS "yes";
-  COMPONENT div_gen_v5_1_23 IS
+  COMPONENT div_gen_v5_1_25 IS
     GENERIC (
       C_XDEVICEFAMILY : STRING;
       C_HAS_ARESETN : INTEGER;
@@ -120,7 +120,7 @@ ARCHITECTURE udiv_arch OF udiv IS
       m_axis_dout_tlast : OUT STD_LOGIC;
       m_axis_dout_tdata : OUT STD_LOGIC_VECTOR(63 DOWNTO 0)
     );
-  END COMPONENT div_gen_v5_1_23;
+  END COMPONENT div_gen_v5_1_25;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_MODE : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
@@ -142,7 +142,7 @@ ARCHITECTURE udiv_arch OF udiv IS
   ATTRIBUTE X_INTERFACE_MODE OF s_axis_divisor_tvalid: SIGNAL IS "slave S_AXIS_DIVISOR";
   ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_divisor_tvalid: SIGNAL IS "XIL_INTERFACENAME S_AXIS_DIVISOR, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
 BEGIN
-  U0 : div_gen_v5_1_23
+  U0 : div_gen_v5_1_25
     GENERIC MAP (
       C_XDEVICEFAMILY => "zynq",
       C_HAS_ARESETN => 0,
