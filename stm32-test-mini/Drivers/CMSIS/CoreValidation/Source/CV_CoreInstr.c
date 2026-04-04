@@ -119,6 +119,25 @@ void TC_CoreInstr_WFE (void) {
   ASSERT_TRUE(1U == 1U);
 }
 
+__attribute__((noinline))
+uint32_t MY__RBIT(uint32_t value){
+    return __RBIT(value);
+}
+
+__attribute__((noinline))
+uint32_t MY__REVSH(uint32_t value){
+    return __REVSH(value);
+}
+
+__attribute__((noinline))
+uint32_t MY__ROR(uint32_t value,uint32_t a){
+    return __ROR(value,a);
+}
+
+__attribute__((noinline))
+uint32_t MY__CLZ(uint32_t value){
+    return __CLZ(value);
+}
 /*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
 /**
 \brief Test case: TC_CoreInstr_REV
@@ -172,19 +191,19 @@ void TC_CoreInstr_REVSH(void) {
            int16_t result = 0U;
 
   value = 0x4711;
-  result = __REVSH(value);
+  result = MY__REVSH(value);
   ASSERT_TRUE(result == 0x1147);
 
   value = (int16_t)0x8000;
-  result = __REVSH(value);
+  result = MY__REVSH(value);
   ASSERT_TRUE(result == 0x0080);
 
   value = 0x0080;
-  result = __REVSH(value);
+  result = MY__REVSH(value);
   ASSERT_TRUE(result == (int16_t)0x8000);
 
   value = -0x1234;
-  result = __REVSH(value);
+  result = MY__REVSH(value);
   ASSERT_TRUE(result == (int16_t)0xcced);
 }
 
@@ -199,23 +218,23 @@ void TC_CoreInstr_RBIT (void) {
            uint32_t result = 0U;
 
   value = 0xAAAAAAAAU;
-  result = __RBIT(value);
+  result = MY__RBIT(value);
   ASSERT_TRUE(result == 0x55555555U);
 
   value = 0x55555555U;
-  result = __RBIT(value);
+  result = MY__RBIT(value);
   ASSERT_TRUE(result == 0xAAAAAAAAU);
 
   value = 0x00000001U;
-  result = __RBIT(value);
+  result = MY__RBIT(value);
   ASSERT_TRUE(result == 0x80000000U);
 
   value = 0x80000000U;
-  result = __RBIT(value);
+  result = MY__RBIT(value);
   ASSERT_TRUE(result == 0x00000001U);
 
   value = 0xDEADBEEFU;
-  result = __RBIT(value);
+  result = MY__RBIT(value);
   ASSERT_TRUE(result == 0xF77DB57BU);
 }
 
@@ -230,23 +249,23 @@ void TC_CoreInstr_ROR(void) {
            uint32_t result = 0U;
 
   value = 0x00000001U;
-  result = __ROR(value, 1U);
+  result = MY__ROR(value, 1U);
   ASSERT_TRUE(result == 0x80000000U);
 
   value = 0x80000000U;
-  result = __ROR(value, 1U);
+  result = MY__ROR(value, 1U);
   ASSERT_TRUE(result == 0x40000000U);
 
   value = 0x40000000U;
-  result = __ROR(value, 30U);
+  result = MY__ROR(value, 30U);
   ASSERT_TRUE(result == 0x00000001U);
 
   value = 0x00000001U;
-  result = __ROR(value, 32U);
+  result = MY__ROR(value, 32U);
   ASSERT_TRUE(result == 0x00000001U);
 
   value = 0x08154711U;
-  result = __ROR(value, 8U);
+  result = MY__ROR(value, 8U);
   ASSERT_TRUE(result == 0x11081547U);
 }
 
@@ -261,27 +280,27 @@ void TC_CoreInstr_CLZ (void) {
            uint32_t result = 0U;
 
   value = 0x00000000U;
-  result = __CLZ(value);
+  result = MY__CLZ(value);
   ASSERT_TRUE(result == 32);
 
   value = 0x00000001U;
-  result = __CLZ(value);
+  result = MY__CLZ(value);
   ASSERT_TRUE(result == 31);
 
   value = 0x40000000U;
-  result = __CLZ(value);
+  result = MY__CLZ(value);
   ASSERT_TRUE(result == 1);
 
   value = 0x80000000U;
-  result = __CLZ(value);
+  result = MY__CLZ(value);
   ASSERT_TRUE(result == 0);
 
   value = 0xFFFFFFFFU;
-  result = __CLZ(value);
+  result = MY__CLZ(value);
   ASSERT_TRUE(result == 0);
 
   value = 0x80000001U;
-  result = __CLZ(value);
+  result = MY__CLZ(value);
   ASSERT_TRUE(result == 0);
 }
 

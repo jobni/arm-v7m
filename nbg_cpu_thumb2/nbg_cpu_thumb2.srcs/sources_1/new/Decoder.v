@@ -511,7 +511,7 @@ module Decoder(
                         micro_add <= 1'b1;
                     end
                     else if(ir_A[15:9] == 7'b0101111) begin
-                        //LDRSH (register)
+                        //LDRSH (register) T1
                         decode_error <= 1'b1;
                     end
                     else if(ir_A[15:11] == 5'b01100) begin
@@ -643,8 +643,10 @@ module Decoder(
                         micro_data <= {25'b0, ir_A[9], ir_A[7:3], 1'b0};
                     end
                     else if(ir_A[11:6] ==6'b001000) begin
-                        //SXTH
-                        decode_error <= 1'b1;
+                        //SXTH T1
+                        micro_code[`MICRO_CODE_SXTH] <= 1'b1;
+                        micro_register_rm <= convert_3_8(ir_A[5:3]);
+                        micro_register_rd <= convert_3_8(ir_A[2:0]);
                     end
                     else if(ir_A[11:6] ==6'b001001) begin
                         //SXTB T1
@@ -653,8 +655,10 @@ module Decoder(
                         micro_register_rd <= convert_3_8(ir_A[2:0]);
                     end
                     else if(ir_A[11:6] == 6'b001010) begin
-                        //UXTH
-                        decode_error <= 1'b1;
+                        //UXTH T1
+                        micro_code[`MICRO_CODE_UXTH] <= 1'b1;
+                        micro_register_rm <= convert_3_8(ir_A[5:3]);
+                        micro_register_rd <= convert_3_8(ir_A[2:0]);
                     end
                     else if(ir_A[11:6] == 6'b001011) begin
                         //UXTB T1
@@ -1795,7 +1799,7 @@ module Decoder(
                         if(ir_B[15:12]!=4'b1111) begin
                             if(ir_A[3:0]!=4'b1111) begin
                                 if(!ir_A[8] && ir_A[3:0]==4'b1111) begin
-                                    // LDRH (literal) T1
+                                    //LDRH (literal) T1
                                     micro_code[`MICRO_CODE_LDRH] <= 1'b1;
                                     micro_type[`MICRO_TYPE_LITERAL] <= 1'b1;
                                     micro_register_rt <= convert_4_16(ir_B[15:12]);
@@ -1803,7 +1807,7 @@ module Decoder(
                                     micro_add <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b01) begin
-                                    // LDRH (immediate) T2
+                                    //LDRH (immediate) T2
                                     micro_code[`MICRO_CODE_LDRH] <= 1'b1;
                                     micro_type[`MICRO_TYPE_IMMEDIATE] <= 1'b1;
                                     micro_register_rn <= convert_4_16(ir_A[3:0]);
@@ -1813,7 +1817,7 @@ module Decoder(
                                     micro_add <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b00 && ((ir_B[11] && ir_B[8])||ir_B[11:8]==4'b1100)) begin
-                                    // LDRH (immediate) T3
+                                    //LDRH (immediate) T3
                                     micro_code[`MICRO_CODE_LDRH] <= 1'b1;
                                     micro_type[`MICRO_TYPE_IMMEDIATE] <= 1'b1;
                                     micro_register_rn <= convert_4_16(ir_A[3:0]);
@@ -1824,7 +1828,7 @@ module Decoder(
                                     micro_wback <= ir_B[8];
                                 end
                                 else if(ir_A[8:7]==2'b00 && ir_B[11:6]==6'b0) begin
-                                    // LDRH (register) T2
+                                    //LDRH (register) T2
                                     micro_code[`MICRO_CODE_LDRH] <= 1'b1;
                                     micro_type[`MICRO_TYPE_REGISTER] <= 1'b1;
                                     micro_register_rn <= convert_4_16(ir_A[3:0]);
@@ -1835,23 +1839,43 @@ module Decoder(
                                     micro_add <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b00 && ir_B[11:8]==4'b1110) begin
-                                    // LDRHT
+                                    //LDRHT
                                     decode_error <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b10 && ((ir_B[11] && ir_B[8])||ir_B[11:8]==4'b1100)) begin
-                                    // LDRSH (immediate) T2
-                                    decode_error <= 1'b1;
+                                    //LDRSH (immediate) T2
+                                    micro_code[`MICRO_CODE_LDRSH] <= 1'b1;
+                                    micro_type[`MICRO_TYPE_IMMEDIATE] <= 1'b1;
+                                    micro_register_rn <= convert_4_16(ir_A[3:0]);
+                                    micro_register_rt <= convert_4_16(ir_B[15:12]);
+                                    micro_data <= ir_B[7:0];
+                                    micro_index <= ir_B[10];
+                                    micro_add <= ir_B[9];
+                                    micro_wback = ir_B[8];
                                 end
                                 else if(ir_A[8:7]==2'b11) begin
-                                    // LDRSH (immediate) T1
-                                    decode_error <= 1'b1;
+                                    //LDRSH (immediate) T1
+                                    micro_code[`MICRO_CODE_LDRSH] <= 1'b1;
+                                    micro_type[`MICRO_TYPE_IMMEDIATE] <= 1'b1;
+                                    micro_register_rn <= convert_4_16(ir_A[3:0]);
+                                    micro_register_rt <= convert_4_16(ir_B[15:12]);
+                                    micro_data <= ir_B[11:0];
+                                    micro_index <= 1'b1;
+                                    micro_add <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b10 && ir_B[11:6]==6'b0) begin
-                                    // LDRSH (register)
-                                    decode_error <= 1'b1;
+                                    //LDRSH (register) T2
+                                    micro_code[`MICRO_CODE_LDRSH] <= 1'b1;
+                                    micro_type[`MICRO_TYPE_REGISTER] <= 1'b1;
+                                    micro_register_rn <= convert_4_16(ir_A[3:0]);
+                                    micro_register_rt <= convert_4_16(ir_B[15:12]);
+                                    micro_register_rm <= convert_4_16(ir_B[3:0]);
+                                    micro_data <= ir_B[5:4];
+                                    micro_index <= 1'b1;
+                                    micro_add <= 1'b1;
                                 end
                                 else if(ir_A[8:7]==2'b10 && ir_B[11:8]==4'b1110) begin
-                                    // LDRSHT
+                                    //LDRSHT
                                     decode_error <= 1'b1;
                                 end
                                 else begin
@@ -1860,8 +1884,12 @@ module Decoder(
                             end
                             else if(ir_A[3:0]==4'b1111) begin
                                 if(ir_A[8]) begin
-                                    // LDRSH (literal)
-                                    decode_error <= 1'b1;
+                                    //LDRSH (literal)
+                                    micro_code[`MICRO_CODE_LDRSH] <= 1'b1;
+                                    micro_type[`MICRO_TYPE_LITERAL] <= 1'b1;
+                                    micro_register_rt <= convert_4_16(ir_B[15:12]);
+                                    micro_data <= ir_B[11:0];
+                                    micro_add <= ir_A[7];
                                 end
                             end
                             else begin
@@ -1978,8 +2006,11 @@ module Decoder(
                                 decode_error <= 1'b1;
                             end
                             else begin
-                                //SXTH
-                                decode_error <= 1'b1;
+                                //SXTH T2
+                                micro_code[`MICRO_CODE_SXTH] <= 1'b1;
+                                micro_register_rm <= convert_4_16(ir_B[3:0]);
+                                micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                micro_data <= {27'b0, ir_B[5:4],3'b0};
                             end
                         end
                         else if(ir_A[7:4]==4'b0001 && ir_B[7]) begin
@@ -1988,8 +2019,11 @@ module Decoder(
                                 decode_error <= 1'b1;
                             end
                             else begin
-                                //UXTH
-                                decode_error <= 1'b1;
+                                //UXTH T2
+                                micro_code[`MICRO_CODE_UXTH] <= 1'b1;
+                                micro_register_rm <= convert_4_16(ir_B[3:0]);
+                                micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                micro_data <= {27'b0, ir_B[5:4],3'b0};
                             end
                         end
                         else if(ir_A[7:4]==4'b0010 && ir_B[7]) begin
