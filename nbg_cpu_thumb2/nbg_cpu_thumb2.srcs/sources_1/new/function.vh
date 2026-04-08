@@ -59,8 +59,8 @@ function [2:0] decode_imm_shift_t(input [1:0] type, input [4:0] imm5);
     begin
         case(type)
             2'b00:decode_imm_shift_t=`SRTYPE_LSL;
-            2'b01:decode_imm_shift_t=(imm5==5'b0000)?`SRTYPE_LSR:`SRTYPE_LSR;
-            2'b10:decode_imm_shift_t=(imm5==5'b0000)?`SRTYPE_ASR:`SRTYPE_ASR;
+            2'b01:decode_imm_shift_t=`SRTYPE_LSR;
+            2'b10:decode_imm_shift_t=`SRTYPE_ASR;
             2'b11:decode_imm_shift_t=(imm5==5'b0000)?`SRTYPE_RRX :`SRTYPE_ROR;
         endcase
     end
@@ -156,6 +156,25 @@ function [31:0] bfc(input [31:0] x,input [4:0] msb,input [4:0] lsb);
             if(msb>=i && lsb<=i) begin
                 bfc[i] = 1'b0;
             end
+        end
+    end
+endfunction
+
+function [32:0] signed_sat_q(input signed [31:0] x, input [4:0] imm5);
+    reg signed [31:0] pos_max;
+    reg signed [31:0] neg_min;
+    reg signed [31:0] result;
+    begin
+        pos_max = 32'b1<<imm5-1'b1;
+        neg_min = -(32'b1<<imm5);
+        if(x>pos_max) begin
+            signed_sat_q = {1'b1, pos_max};
+        end
+        else if(x<neg_min) begin
+            signed_sat_q = {1'b1, neg_min};
+        end
+        else begin
+            signed_sat_q = {1'b0, x};
         end
     end
 endfunction

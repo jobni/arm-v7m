@@ -1568,6 +1568,23 @@ module ALU(
                         end
                     end
                 end
+                96'b1 << `MICRO_CODE_RBIT: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= {register_rm[0],register_rm[1],register_rm[2],register_rm[3],register_rm[4],register_rm[5],register_rm[6],register_rm[7],
+                                                  register_rm[8],register_rm[9],register_rm[10],register_rm[11],register_rm[12],register_rm[13],register_rm[14],register_rm[15],
+                                                  register_rm[16],register_rm[17],register_rm[18],register_rm[19],register_rm[20],register_rm[21],register_rm[22],register_rm[23],
+                                                  register_rm[24],register_rm[25],register_rm[26],register_rm[27],register_rm[28],register_rm[29],register_rm[30],register_rm[31]};
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
                 96'b1 << `MICRO_CODE_REV: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin
@@ -2214,6 +2231,28 @@ module ALU(
                         end
                         else if(s_dout_tvalid) begin
                             register_set_data <= s_dout_tdata[63:32];
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
+                96'b1 << `MICRO_CODE_SSAT: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= shift_c(register_rn, micro_data[10:8], micro_data[5:0], apsr_c);
+                        end
+                        else if(curr_cnt==8'h1) begin
+                            {psr_set_data[27], register_set_data} <= signed_sat_q(register_set_data, micro_data[16:12]);
+                        end
+                        else if(curr_cnt==8'h2) begin
+                            if(psr_set_data[27]) begin
+                                psr_set_code[27] <= 1'b1;
+                            end
                             register_set_code <= micro_register_rd;
                             micro_done <= 1'b1;
                         end

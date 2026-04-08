@@ -51,7 +51,7 @@
 `define MICRO_CODE_UBFX     45
 `define MICRO_CODE_SBFX     46  //未实现
 `define MICRO_CODE_CLZ      47
-`define MICRO_CODE_RBIT     48  //未实现
+`define MICRO_CODE_RBIT     48
 `define MICRO_CODE_REV      49
 `define MICRO_CODE_REV16    50
 `define MICRO_CODE_REVSH    51
@@ -69,7 +69,7 @@
 `define MICRO_CODE_TST      61
 `define MICRO_CODE_TEQ      62
 
-//加减乘除
+//加减乘除运算
 `define MICRO_CODE_ADC      63
 `define MICRO_CODE_ADD      64
 `define MICRO_CODE_ADDW     65  //未实现
@@ -86,28 +86,28 @@
 `define MICRO_CODE_MLS      76
 `define MICRO_CODE_UDIV     77
 `define MICRO_CODE_SDIV     78
+`define MICRO_CODE_SSAT     79
+`define MICRO_CODE_USAT     80  //未实现
 
 //综合指令
-`define MICRO_CODE_ADR      79
-`define MICRO_CODE_MOV      80
-`define MICRO_CODE_MOVT     81
-`define MICRO_CODE_MOVW     82  //未实现
-`define MICRO_CODE_NOP      83
-`define MICRO_CODE_MRS      84
-`define MICRO_CODE_MSR      85
-`define MICRO_CODE_ISB      86
-`define MICRO_CODE_DSB      87
-`define MICRO_CODE_DMB      88
-`define MICRO_CODE_CLREX    89  //未实现
-`define MICRO_CODE_UDF      90  //未实现
-`define MICRO_CODE_CPY      91  //未实现
-`define MICRO_CODE_NEG      92  //未实现
-`define MICRO_CODE_SVC      93  //未实现
-`define MICRO_CODE_SFBX     94  //未实现
-`define MICRO_CODE_SMLAL    95  //未实现
-`define MICRO_CODE_SMULL    96  //未实现
-`define MICRO_CODE_SSAT     97  //未实现
-`define MICRO_CODE_USAT     98  //未实现
+`define MICRO_CODE_ADR      81
+`define MICRO_CODE_MOV      82
+`define MICRO_CODE_MOVT     83
+`define MICRO_CODE_MOVW     84  //未实现
+`define MICRO_CODE_NOP      85
+`define MICRO_CODE_MRS      86
+`define MICRO_CODE_MSR      87
+`define MICRO_CODE_ISB      88
+`define MICRO_CODE_DSB      89
+`define MICRO_CODE_DMB      90
+`define MICRO_CODE_CLREX    91  //未实现
+`define MICRO_CODE_UDF      92  //未实现
+`define MICRO_CODE_CPY      93  //未实现
+`define MICRO_CODE_NEG      94  //未实现
+`define MICRO_CODE_SVC      95  //未实现
+`define MICRO_CODE_SFBX     96  //未实现
+`define MICRO_CODE_SMLAL    97  //未实现
+`define MICRO_CODE_SMULL    98  //未实现
 
 //不准备实现，大多和协处理器多核同步，低功耗有关
 //包含CDP2、LDC2、MCR2、MCRR2、MRC2、MRRC2、STC2

@@ -1382,8 +1382,11 @@ module Decoder(
                                 micro_data <= {16'b0, ir_A[3:0], ir_A[10], ir_B[14:12], ir_B[7:0]};
                             end
                             else if(ir_A[8:4]==5'b10000 || ir_A[8:4]==5'b10010) begin
-                                //SSAT
-                                decode_error <= 1'b1;
+                                //SSAT T1
+                                micro_code[`MICRO_CODE_SSAT] <= 1'b1;
+                                micro_register_rn <= convert_4_16(ir_A[3:0]);
+                                micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                micro_data <= {16'b0, ir_B[4:0], decode_imm_shift_tn(ir_B[5:4], {ir_B[14:12], ir_B[7:6]})};
                             end
                             else if(ir_A[8:4]==5'b10010) begin
                                 //SSAT16
@@ -2253,23 +2256,25 @@ module Decoder(
                             end
                             else if(ir_A[5:4]==2'b01) begin
                                 if(ir_B[5:4]==2'b00) begin
-                                    //REV
+                                    //REV T1
                                     micro_code[`MICRO_CODE_REV] <= 1'b1;
                                     micro_register_rd <= convert_4_16(ir_B[11:8]);
                                     micro_register_rm <= convert_4_16(ir_B[3:0]);
                                 end
                                 else if(ir_B[5:4]==2'b01) begin
-                                    //REV16
+                                    //REV16 T1
                                     micro_code[`MICRO_CODE_REV16] <= 1'b1;
                                     micro_register_rd <= convert_4_16(ir_B[11:8]);
                                     micro_register_rm <= convert_4_16(ir_B[3:0]);
                                 end
                                 else if(ir_B[5:4]==2'b10) begin
-                                    //RBIT
-                                    decode_error <= 1'b1;
+                                    //RBIT T1
+                                    micro_code[`MICRO_CODE_RBIT] <= 1'b1;
+                                    micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                    micro_register_rm <= convert_4_16(ir_B[3:0]);
                                 end
                                 else if(ir_B[5:4]==2'b11) begin
-                                    //REVSH
+                                    //REVSH T1
                                     micro_code[`MICRO_CODE_REVSH] <= 1'b1;
                                     micro_register_rd <= convert_4_16(ir_B[11:8]);
                                     micro_register_rm <= convert_4_16(ir_B[3:0]);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1765682454" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ProcesserCoreSystem.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1775648332" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ProcesserCoreSystem.dcp">
   <File Type="REPORTS-TCL" Name="ProcesserCoreSystem_reports.tcl"/>
   <File Type="RDS-UTIL" Name="ProcesserCoreSystem_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="ProcesserCoreSystem_utilization_synth.pb"/>
@@ -8,6 +8,12 @@
   <File Type="RDS-DCP" Name="ProcesserCoreSystem.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/rom.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/param_def.vh">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -96,12 +102,6 @@
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/rom.coe">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>

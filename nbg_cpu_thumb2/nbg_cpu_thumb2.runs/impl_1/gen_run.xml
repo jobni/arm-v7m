@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z020clg400-2" LaunchTime="1765682454">
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-2" LaunchTime="1775648332">
   <File Type="REPORTS-TCL" Name="ProcesserCoreSystem_reports.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="ProcesserCoreSystem_power_summary_routed.pb"/>
   <File Type="BITSTR-MMI" Name="ProcesserCoreSystem.mmi"/>
@@ -72,6 +72,12 @@
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/rom.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/param_def.vh">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -163,12 +169,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/rom.coe">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="ProcesserCoreSystem"/>
@@ -213,7 +213,6 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
-    <Step Id="write_device_image"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="blk_ram"/>
   <BlockFileSet Type="BlockSrcs" Name="blk_flash"/>
