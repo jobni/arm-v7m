@@ -1419,7 +1419,10 @@ module Decoder(
                             end
                             else if(ir_A[8:4]==5'b11000 || ir_A[8:4]==5'b11010) begin
                                 //USAT
-                                decode_error <= 1'b1;
+                                micro_code[`MICRO_CODE_USAT] <= 1'b1;
+                                micro_register_rn <= convert_4_16(ir_A[3:0]);
+                                micro_register_rd <= convert_4_16(ir_B[11:8]);
+                                micro_data <= {16'b0, ir_B[4:0], decode_imm_shift_tn(ir_B[5:4], {ir_B[14:12], ir_B[7:6]})};
                             end
                             else if(ir_A[8:4]==5'b11010) begin
                                 //USAT16

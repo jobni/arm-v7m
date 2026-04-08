@@ -2263,6 +2263,28 @@ module ALU(
                         end
                     end
                 end
+                96'b1 << `MICRO_CODE_USAT: begin
+                    if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
+                        if(curr_cnt==8'h0) begin
+                            register_set_data <= shift_c(register_rn, micro_data[10:8], micro_data[5:0], apsr_c);
+                        end
+                        else if(curr_cnt==8'h1) begin
+                            {psr_set_data[27], register_set_data} <= unsigned_sat_q(register_set_data, micro_data[16:12]);
+                        end
+                        else if(curr_cnt==8'h2) begin
+                            if(psr_set_data[27]) begin
+                                psr_set_code[27] <= 1'b1;
+                            end
+                            register_set_code <= micro_register_rd;
+                            micro_done <= 1'b1;
+                        end
+                    end
+                    else begin
+                        if(curr_cnt==8'h0) begin
+                            micro_done <= 1'b1;
+                        end
+                    end
+                end
                 96'b1 << `MICRO_CODE_ADR: begin
                     if(condition_pass(current_cond(micro_it), apsr_n, apsr_z, apsr_c, apsr_v)) begin
                         if(curr_cnt==8'h0) begin

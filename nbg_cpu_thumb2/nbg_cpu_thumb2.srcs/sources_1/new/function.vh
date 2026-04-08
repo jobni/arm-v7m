@@ -165,7 +165,7 @@ function [32:0] signed_sat_q(input signed [31:0] x, input [4:0] imm5);
     reg signed [31:0] neg_min;
     reg signed [31:0] result;
     begin
-        pos_max = 32'b1<<imm5-1'b1;
+        pos_max = 1<<imm5-1;
         neg_min = -(32'b1<<imm5);
         if(x>pos_max) begin
             signed_sat_q = {1'b1, pos_max};
@@ -175,6 +175,23 @@ function [32:0] signed_sat_q(input signed [31:0] x, input [4:0] imm5);
         end
         else begin
             signed_sat_q = {1'b0, x};
+        end
+    end
+endfunction
+
+function [32:0] unsigned_sat_q(input signed [31:0] x, input [4:0] imm5);
+    reg [31:0] pos_max;
+    reg [31:0] result;
+    begin
+        pos_max = 1<<(imm5+1)-1;
+        if(x>pos_max) begin
+            unsigned_sat_q = {1'b1, pos_max};
+        end
+        else if(x<1'b0) begin
+            unsigned_sat_q = {1'b1, 1'b0};
+        end
+        else begin
+            unsigned_sat_q = {1'b0, x};
         end
     end
 endfunction

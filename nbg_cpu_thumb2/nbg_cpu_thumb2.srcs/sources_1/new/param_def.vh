@@ -87,7 +87,7 @@
 `define MICRO_CODE_UDIV     77
 `define MICRO_CODE_SDIV     78
 `define MICRO_CODE_SSAT     79
-`define MICRO_CODE_USAT     80  //未实现
+`define MICRO_CODE_USAT     80
 
 //综合指令
 `define MICRO_CODE_ADR      81
